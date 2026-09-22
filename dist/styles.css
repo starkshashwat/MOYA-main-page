@@ -254,7 +254,9 @@ body {
   height: 100%;
   width: auto;
   max-width: 76vw;
-  transition: transform 0.4s var(--ease-cinematic);
+  will-change: transform;
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
 }
 
 @media (min-width: 1200px) {
@@ -361,15 +363,15 @@ body {
   white-space: nowrap;
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  transition: all 0.3s var(--ease-cinematic);
+  transition: background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
   cursor: pointer;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+  will-change: transform, opacity;
 }
 
 .side-gateway-btn:hover {
   background: rgba(28, 28, 34, 0.9);
   border-color: rgba(255, 255, 255, 0.3);
-  transform: translateY(-2px);
   box-shadow: 0 8px 28px rgba(0, 0, 0, 0.65);
 }
 
@@ -550,17 +552,7 @@ body {
 
 .letter-reveal {
   display: inline-block;
-  opacity: 0;
-  transform: translateY(40px);
-  animation: letterUp 0.8s var(--ease-cinematic) forwards;
-  animation-delay: calc(var(--char-index) * 0.08s + 0.15s);
-}
-
-@keyframes letterUp {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  will-change: transform, opacity;
 }
 
 .superscript-mark {
@@ -569,14 +561,8 @@ body {
   color: var(--cs-ink);
   vertical-align: super;
   margin-left: 0.06em;
-  opacity: 0;
-  animation: markFadeIn 0.8s ease 0.55s forwards;
-}
-
-@keyframes markFadeIn {
-  to {
-    opacity: 1;
-  }
+  display: inline-block;
+  will-change: transform, opacity;
 }
 
 /* Pill CTA next to MOYA title (like Studiova's green arrow circle) */
@@ -593,21 +579,12 @@ body {
   flex-shrink: 0;
   margin-bottom: 0.75rem;
   pointer-events: auto;
-  transition: all 0.3s var(--ease-cinematic);
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
-  opacity: 0;
-  animation: pillFadeIn 0.6s ease 0.7s forwards;
-}
-
-@keyframes pillFadeIn {
-  to {
-    opacity: 1;
-  }
+  will-change: transform, opacity;
 }
 
 .brand-pill-cta:hover {
   background: #ffffff;
-  transform: scale(1.1) rotate(6deg);
   box-shadow: 0 6px 30px rgba(225, 224, 204, 0.4);
 }
 
@@ -811,7 +788,8 @@ body {
     letter-spacing: 0.05em;
     text-align: center;
     white-space: nowrap;
-    transition: all 0.25s ease;
+    transition: background 0.3s ease, border-color 0.3s ease;
+    will-change: transform, opacity;
   }
 
   .mobile-gw-btn:active {
