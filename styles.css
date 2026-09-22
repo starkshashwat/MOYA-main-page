@@ -232,7 +232,6 @@ body {
   align-items: flex-end;
   pointer-events: none;
   z-index: 10;
-  overflow: hidden;
 }
 
 @media (min-width: 1200px) {
@@ -706,45 +705,101 @@ body {
     height: auto;
     min-height: 100vh;
     min-height: 100dvh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
   }
 
   .mentor-stage {
     position: relative;
-    height: 60vh;
-    max-height: 520px;
-    margin-top: 1rem;
+    height: auto;
+    width: 100%;
+    margin: 0.5rem 0 0 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
   .mentor-wrap {
-    max-width: 85vw;
+    position: relative;
+    width: 100%;
+    max-width: 480px;
+    aspect-ratio: 16 / 9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    padding: 0 0.5rem;
+  }
+
+  .mentor-ambient-halo {
+    position: absolute;
+    width: 90%;
+    height: 90%;
+    left: 5%;
+    top: 5%;
+    border-radius: 50%;
+    background: radial-gradient(circle at 50% 50%, rgba(123, 79, 202, 0.22) 0%, rgba(245, 197, 24, 0.05) 50%, transparent 75%);
+    filter: blur(30px);
+    z-index: -1;
+  }
+
+  .mentor-image-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    aspect-ratio: 16 / 9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .mentor-picture {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+
+  .mentor-hero-img {
+    width: 100%;
+    height: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: contain;
+    object-position: center bottom;
+    display: block;
+    filter: drop-shadow(0 10px 25px rgba(0, 0, 0, 0.85));
   }
 
   .bottom-typography-layer {
     position: relative;
-    padding: 0 1.5rem 0.5rem 1.5rem;
+    padding: 0 1.5rem;
+    margin-top: 0.25rem;
   }
 
   .hero-signature-strip {
     position: relative;
     bottom: auto;
-    padding: 0.75rem 1.5rem;
+    padding: 0.75rem 1.5rem 0.25rem 1.5rem;
   }
 
+  /* 2x2 Symmetrical Grid for Mobile Gateways */
   .mobile-gateway-dock {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-    padding: 0.75rem 1.25rem 1.5rem 1.25rem;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.6rem;
+    padding: 0.5rem 1.25rem 1.5rem 1.25rem;
     z-index: 35;
     position: relative;
-    justify-content: center;
+    max-width: 440px;
+    margin: 0 auto;
+    width: 100%;
   }
 
   .mobile-gw-btn {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    padding: 0.65rem 1.15rem;
+    padding: 0.75rem 0.6rem;
     background: rgba(255, 255, 255, 0.05);
     border: 1px solid rgba(255, 255, 255, 0.12);
     border-radius: 9999px;
@@ -753,7 +808,8 @@ body {
     font-family: var(--font-sans);
     font-size: 0.6875rem;
     font-weight: 700;
-    letter-spacing: 0.06em;
+    letter-spacing: 0.05em;
+    text-align: center;
     white-space: nowrap;
     transition: all 0.25s ease;
   }
@@ -779,7 +835,7 @@ body {
 /* Mobile Phone (< 640px) */
 @media (max-width: 639px) {
   .top-nav-bar {
-    padding: 1rem 1.25rem;
+    padding: 1.1rem 1.25rem 0.35rem 1.25rem;
   }
 
   .brand-logo-img {
@@ -796,75 +852,87 @@ body {
   }
 
   .mentor-stage {
-    height: 52vh;
-    max-height: 440px;
+    margin: 0.25rem 0 0 0;
   }
 
   .mentor-wrap {
-    max-width: 95vw;
+    width: 100%;
+    max-width: 100%;
+    padding: 0 0.5rem;
+    aspect-ratio: 16 / 9;
   }
 
   .bottom-typography-layer {
-    padding: 0 1.25rem 0.25rem 1.25rem;
+    padding: 0 1.25rem;
   }
 
   .bottom-editorial {
-    max-width: 260px;
+    max-width: 280px;
     gap: 0.5rem;
+    margin-bottom: 0.25rem;
   }
 
   .editorial-asterisk {
-    font-size: 0.875rem;
+    font-size: 0.9rem;
   }
 
   .editorial-statement {
     font-size: 0.8125rem;
   }
 
+  .oversized-typography-container {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    width: 100%;
+    gap: 0.5rem;
+  }
+
   .oversized-title {
-    font-size: clamp(3.6rem, 23vw, 6.5rem);
-    line-height: 0.82;
+    font-size: clamp(3.8rem, 21vw, 5.8rem);
+    line-height: 0.8;
   }
 
   .brand-pill-cta {
-    width: 2.6rem;
-    height: 2.6rem;
-    margin-bottom: 0.5rem;
+    width: 2.75rem;
+    height: 2.75rem;
+    margin-bottom: 0.35rem;
   }
 
   .brand-pill-cta svg {
-    width: 15px;
-    height: 15px;
+    width: 16px;
+    height: 16px;
   }
 
   .hero-signature-strip {
-    padding: 0.5rem 1.25rem;
+    padding: 0.6rem 1.25rem 0.25rem 1.25rem;
   }
 
   .mobile-gateway-dock {
-    padding: 0.5rem 1rem 1.25rem 1rem;
-    gap: 0.45rem;
+    padding: 0.4rem 1rem 1.25rem 1rem;
+    gap: 0.5rem;
   }
 
   .mobile-gw-btn {
     font-size: 0.65rem;
-    padding: 0.55rem 0.95rem;
+    padding: 0.7rem 0.4rem;
   }
 }
 
-/* Very small screens */
+/* Very small screens (< 380px) */
 @media (max-width: 380px) {
   .oversized-title {
-    font-size: clamp(3rem, 25vw, 4.8rem);
+    font-size: clamp(2.9rem, 23vw, 4.2rem);
   }
 
   .mobile-gateway-dock {
-    flex-direction: column;
-    align-items: stretch;
+    grid-template-columns: 1fr;
+    gap: 0.45rem;
   }
 
   .mobile-gw-btn {
-    text-align: center;
+    font-size: 0.625rem;
+    padding: 0.65rem 0.5rem;
   }
 }
 
