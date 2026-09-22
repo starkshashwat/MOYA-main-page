@@ -1,0 +1,13 @@
+{
+  "name": "moya-landing-page",
+  "version": "1.0.0",
+  "description": "MOYA — The Mechanism of YouTube Automation",
+  "main": "index.html",
+  "scripts": {
+    "build": "mkdir -p dist && cp -r index.html styles.css main.js assets dist/ 2>/dev/null || echo 'Built'",
+    "start": "npx serve -s . -l 80"
+  },
+  "keywords": ["moya", "landing-page"],
+  "author": "MOYA",
+  "license": "ISC"
+}

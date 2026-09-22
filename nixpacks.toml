@@ -1,0 +1,10 @@
+providers = ["static"]
+
+[phases.setup]
+nixPkgs = ["caddy"]
+
+[phases.build]
+cmds = []
+
+[start]
+cmd = "caddy run --config Caddyfile --adapter caddyfile"
