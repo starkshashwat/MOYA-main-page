@@ -1,0 +1,14 @@
+# Dependencies & Temp
+node_modules/
+.tmp/
+.cache/
+.DS_Store
+Thumbs.db
+
+# Local reference source (design only)
+refrance/
+reference/
+
+# Environment
+.env
+.env.local
