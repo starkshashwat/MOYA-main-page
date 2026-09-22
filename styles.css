@@ -1,6 +1,6 @@
 /* ==========================================================================
    MOYA GATEWAY HERO DESIGN SYSTEM — RE-ENGINEERED & DECLUTTERED
-   Minimal Editorial Language • Re-engineered 3D Spotlight Cards • High-Impact CTAs
+   Minimal Editorial Language • Dual Viewport Mentor Cutouts • High-Impact CTAs
    ========================================================================== */
 
 :root {
@@ -270,46 +270,39 @@ body {
   }
 }
 
-/* MENTOR SILHOUETTE VISUAL */
+/* MENTOR SILHOUETTE VISUAL — DUAL VIEWPORT ADAPTIVE */
 .mentor-silhouette-wrap {
   position: absolute;
-  top: 4%;
-  right: 6%;
-  width: 270px;
-  max-width: 44vw;
-  height: 68%;
+  bottom: 0;
+  right: 2%;
+  width: auto;
+  max-width: 56vw;
+  height: 86%;
+  max-height: calc(100vh - 210px);
   display: flex;
   align-items: flex-end;
-  justify-content: center;
+  justify-content: flex-end;
   pointer-events: none;
   z-index: 15;
   transition: transform 0.4s var(--ease-cinematic);
 }
 
-@media (min-width: 768px) {
-  .mentor-silhouette-wrap {
-    top: 3%;
-    right: 12%;
-    width: 350px;
-    height: 74%;
-  }
-}
-
 @media (min-width: 1200px) {
   .mentor-silhouette-wrap {
-    top: 2%;
-    right: 15%;
-    width: 420px;
-    height: 80%;
+    right: 4%;
+    max-width: 54vw;
+    height: 88%;
   }
 }
 
 .mentor-ambient-halo {
   position: absolute;
-  width: 135%;
-  height: 135%;
+  width: 120%;
+  height: 120%;
+  right: -10%;
+  bottom: 0;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(123, 79, 202, 0.25) 0%, rgba(245, 197, 24, 0.08) 50%, transparent 75%);
+  background: radial-gradient(circle at 60% 60%, rgba(123, 79, 202, 0.28) 0%, rgba(245, 197, 24, 0.08) 50%, transparent 75%);
   filter: blur(40px);
   z-index: -1;
 }
@@ -320,24 +313,30 @@ body {
   height: 100%;
   display: flex;
   align-items: flex-end;
-  justify-content: center;
+  justify-content: flex-end;
+}
+
+.mentor-picture {
+  display: block;
+  width: 100%;
+  height: 100%;
 }
 
 .mentor-hero-img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  object-position: top center;
-  border-radius: 2rem 2rem 0 0;
-  filter: grayscale(12%) contrast(108%) brightness(96%);
-  mask-image: linear-gradient(to bottom, black 50%, rgba(0,0,0,0.8) 75%, transparent 100%);
-  -webkit-mask-image: linear-gradient(to bottom, black 50%, rgba(0,0,0,0.8) 75%, transparent 100%);
+  object-fit: contain;
+  object-position: bottom right;
+  display: block;
+  filter: drop-shadow(0 15px 35px rgba(0, 0, 0, 0.7));
+  mask-image: linear-gradient(to bottom, black 82%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom, black 82%, transparent 100%);
 }
 
 .mentor-blend-gradient {
   position: absolute;
   inset: 0;
-  background: linear-gradient(to top, var(--cs-dark) 0%, rgba(7, 7, 7, 0.4) 30%, transparent 70%);
+  background: linear-gradient(to top, var(--cs-dark) 0%, rgba(7, 7, 7, 0.3) 15%, transparent 60%);
   pointer-events: none;
 }
 
@@ -763,9 +762,10 @@ body {
 }
 
 /* ==========================================================================
-   9. RESPONSIVE BREAKPOINTS
+   9. RESPONSIVE BREAKPOINTS (Desktop, Tablet, Mobile)
    ========================================================================== */
 
+/* Tablet Optimization (768px - 1023px) */
 @media (max-width: 1023px) {
   .hero-frame-container {
     height: auto;
@@ -780,11 +780,27 @@ body {
 
   .mentor-silhouette-wrap {
     position: relative;
-    top: auto;
+    bottom: auto;
     right: auto;
-    margin: 1rem auto 0 auto;
-    width: 250px;
-    height: 300px;
+    margin: 1.25rem auto 0.5rem auto;
+    width: 100%;
+    max-width: 380px;
+    height: 380px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+  }
+
+  .mentor-ambient-halo {
+    right: 0;
+    left: 0;
+    margin: auto;
+    width: 100%;
+    height: 100%;
+  }
+
+  .mentor-hero-img {
+    object-position: bottom center;
   }
 
   .hero-composition {
@@ -812,6 +828,7 @@ body {
   }
 }
 
+/* Mobile Phone Optimization (390px - 640px) */
 @media (max-width: 639px) {
   .hero-frame-container {
     padding: 0.5rem;
@@ -836,9 +853,13 @@ body {
   }
 
   .mentor-silhouette-wrap {
-    width: 210px;
-    height: 250px;
-    margin-top: 0.5rem;
+    max-width: 270px;
+    height: 320px;
+    margin: 0.5rem auto 0.25rem auto;
+  }
+
+  .mentor-hero-img {
+    object-position: bottom center;
   }
 
   .oversized-title {

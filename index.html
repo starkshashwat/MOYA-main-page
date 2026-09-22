@@ -54,16 +54,22 @@
       <!-- CENTRAL HERO COMPOSITION -->
       <section class="hero-composition">
 
-        <!-- MENTOR CENTRAL VISUAL (Layered with z-index between text & glow) -->
+        <!-- MENTOR CENTRAL VISUAL WITH DUAL VIEWPORT ASSETS -->
+        <!-- Desktop: 1672x941 landscape cutout | Mobile: 941x1672 vertical portrait cutout -->
         <div class="mentor-silhouette-wrap" id="mentorWrap" aria-hidden="true">
           <div class="mentor-ambient-halo"></div>
           <div class="mentor-image-container">
-            <img src="assets/mentor-savan-intro.webp" 
-                 alt="MOYA Mentor Savan Matariya" 
-                 class="mentor-hero-img" 
-                 id="mentorImg"
-                 loading="eager"
-                 fetchpriority="high">
+            <picture class="mentor-picture">
+              <source media="(max-width: 820px)" srcset="assets/mentor-mobile.png">
+              <img src="assets/mentor-desktop.png" 
+                   alt="MOYA Mentor Savan Matariya" 
+                   class="mentor-hero-img" 
+                   id="mentorImg"
+                   loading="eager"
+                   fetchpriority="high"
+                   width="1672"
+                   height="941">
+            </picture>
             <div class="mentor-blend-gradient"></div>
           </div>
         </div>
@@ -102,7 +108,7 @@
       </section>
 
       <!-- ==================================================== -->
-      <!-- 4 RE-ENGINEERED RE-DESIGNED SERVICE GATEWAYS         -->
+      <!-- 4 RE-ENGINEERED SERVICE GATEWAYS                     -->
       <!-- Minimal Text • Bold CTAs • Radiant Interactive Hover -->
       <!-- ==================================================== -->
       <nav class="gateway-dock" id="gateways" aria-label="MOYA Primary Pathways">
@@ -166,7 +172,7 @@
             </div>
             <div class="gateway-card-footer">
               <a href="#" class="gateway-action-btn primary-gateway-btn" id="ctaWebinar" target="_blank" rel="noopener noreferrer">
-                <span>JOIN WEBINAR</span>
+                <span>JOIN WEBINAR &bull; ₹1,999</span>
                 <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                   <path d="M5 12h14"></path>
                   <path d="m12 5 7 7-7 7"></path>
