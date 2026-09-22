@@ -1,27 +1,26 @@
 /* ==========================================================================
-   MOYA GATEWAY HERO DESIGN SYSTEM
-   Inspired by Creative Studio Editorial Reference (Hirael)
+   MOYA GATEWAY HERO DESIGN SYSTEM — RE-ENGINEERED & DECLUTTERED
+   Minimal Editorial Language • Re-engineered 3D Spotlight Cards • High-Impact CTAs
    ========================================================================== */
 
 :root {
-  /* Editorial Color Palette from Reference */
+  /* Editorial Palette */
   --cs-cream: #e1e0cc;
   --cs-ink: #dedbc8;
   --cs-muted: #8b8a80;
   --cs-dark: #070707;
-  --cs-surface: #101010;
-  --cs-surface-glass: rgba(18, 18, 20, 0.72);
-  --cs-border: rgba(255, 255, 255, 0.08);
-  --cs-border-glow: rgba(225, 224, 204, 0.25);
+  --cs-surface: #0e0e10;
+  --cs-border: rgba(255, 255, 255, 0.07);
+  --cs-border-active: rgba(225, 224, 204, 0.4);
   
   /* MOYA Brand Undertones */
   --moya-violet: #4E2295;
-  --moya-violet-glow: rgba(78, 34, 149, 0.35);
   --moya-gold: #F5C518;
   --moya-gold-glow: rgba(245, 197, 24, 0.35);
-  --moya-green: #00c47a;
+  --moya-green: #25D366;
+  --moya-green-glow: rgba(37, 211, 102, 0.35);
 
-  /* Typography Stacks */
+  /* Typography */
   --font-display: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
   --font-serif: 'Instrument Serif', Georgia, serif;
   --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
@@ -80,7 +79,7 @@ body {
 
 @media (min-width: 1024px) {
   .hero-frame-container {
-    padding: 1.5rem;
+    padding: 1.25rem;
     height: 100vh;
     height: 100dvh;
     max-height: 100vh;
@@ -109,7 +108,7 @@ body {
 }
 
 /* ==========================================================================
-   2. ATMOSPHERIC BACKGROUND SYSTEM (Ambient Glows & Noise)
+   2. ATMOSPHERIC BACKGROUND SYSTEM
    ========================================================================== */
 
 .ambient-glow-layer {
@@ -126,7 +125,7 @@ body {
   background: 
     radial-gradient(45% 45% at 26% 28%, rgba(222, 219, 200, 0.13), transparent 70%),
     radial-gradient(40% 40% at 75% 65%, rgba(196, 162, 120, 0.16), transparent 72%),
-    radial-gradient(65% 55% at 50% 115%, rgba(78, 34, 149, 0.32), transparent 75%),
+    radial-gradient(65% 55% at 50% 115%, rgba(78, 34, 149, 0.3), transparent 75%),
     radial-gradient(35% 35% at 85% 20%, rgba(245, 197, 24, 0.08), transparent 70%),
     #070707;
   filter: blur(48px);
@@ -143,7 +142,7 @@ body {
 .film-grain-overlay {
   position: absolute;
   inset: 0;
-  opacity: 0.45;
+  opacity: 0.42;
   mix-blend-overlay: overlay;
   pointer-events: none;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.55 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
@@ -153,11 +152,11 @@ body {
 .depth-lighting {
   position: absolute;
   inset: 0;
-  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.4) 0%, transparent 22%, transparent 75%, rgba(0, 0, 0, 0.7) 100%);
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.35) 0%, transparent 22%, transparent 75%, rgba(0, 0, 0, 0.7) 100%);
 }
 
 /* ==========================================================================
-   3. TOP MINIMAL NAVIGATION BAR
+   3. TOP MINIMAL NAVIGATION BAR (Decluttered)
    ========================================================================== */
 
 .top-nav-bar {
@@ -172,7 +171,7 @@ body {
 
 @media (min-width: 768px) {
   .top-nav-bar {
-    padding: 1.5rem 2.5rem;
+    padding: 1.4rem 2.25rem;
   }
 }
 
@@ -188,7 +187,7 @@ body {
 }
 
 .brand-logo-img {
-  height: 34px;
+  height: 32px;
   width: auto;
   display: block;
   filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.4));
@@ -196,70 +195,24 @@ body {
 
 @media (min-width: 768px) {
   .brand-logo-img {
-    height: 40px;
+    height: 38px;
   }
-}
-
-/* System Status Tag (Center) */
-.nav-system-status {
-  display: none;
-  align-items: center;
-  gap: 0.5rem;
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.06);
-  padding: 0.35rem 0.85rem;
-  border-radius: 9999px;
-  backdrop-filter: blur(12px);
-}
-
-@media (min-width: 1024px) {
-  .nav-system-status {
-    display: inline-flex;
-  }
-}
-
-.status-indicator-dot {
-  width: 6px;
-  height: 6px;
-  background-color: var(--moya-green);
-  border-radius: 50%;
-  box-shadow: 0 0 8px var(--moya-green);
-  animation: pulseDot 2.2s infinite ease-in-out;
-}
-
-@keyframes pulseDot {
-  0%, 100% { opacity: 1; transform: scale(1); }
-  50% { opacity: 0.4; transform: scale(0.85); }
-}
-
-.status-indicator-text {
-  font-family: var(--font-mono);
-  font-size: 0.6875rem;
-  letter-spacing: 0.16em;
-  color: var(--cs-ink);
-  opacity: 0.85;
-}
-
-/* Quick Call CTA (Right) */
-.nav-actions {
-  display: flex;
-  align-items: center;
 }
 
 .quick-call-cta {
   display: inline-flex;
   align-items: center;
-  gap: 0.6rem;
-  background: rgba(255, 255, 255, 0.04);
+  gap: 0.65rem;
+  background: rgba(255, 255, 255, 0.05);
   color: var(--cs-cream);
   border: 1px solid rgba(255, 255, 255, 0.12);
-  padding: 0.5rem 1.15rem;
+  padding: 0.55rem 1.25rem;
   border-radius: 9999px;
   text-decoration: none;
   font-family: var(--font-sans);
   font-size: 0.75rem;
-  font-weight: 600;
-  letter-spacing: 0.06em;
+  font-weight: 700;
+  letter-spacing: 0.05em;
   backdrop-filter: blur(16px);
   transition: all 0.3s var(--ease-cinematic);
   position: relative;
@@ -269,29 +222,16 @@ body {
 @media (min-width: 640px) {
   .quick-call-cta {
     font-size: 0.8125rem;
-    padding: 0.6rem 1.4rem;
+    padding: 0.65rem 1.45rem;
   }
 }
 
-.quick-call-cta::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.08), transparent);
-  transform: translateX(-100%);
-  transition: transform 0.6s ease;
-}
-
-.quick-call-cta:hover::before {
-  transform: translateX(100%);
-}
-
 .quick-call-cta:hover {
-  background: rgba(255, 255, 255, 0.08);
-  border-color: var(--cs-cream);
-  color: #ffffff;
+  background: #ffffff;
+  border-color: #ffffff;
+  color: #000000;
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4), 0 0 15px rgba(225, 224, 204, 0.15);
+  box-shadow: 0 6px 25px rgba(255, 255, 255, 0.18);
 }
 
 .quick-call-dot {
@@ -320,30 +260,24 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  padding: 1.5rem 1.5rem 2rem 1.5rem;
+  padding: 1.25rem 1.5rem 1.5rem 1.5rem;
   z-index: 10;
 }
 
 @media (min-width: 768px) {
   .hero-composition {
-    padding: 2rem 2.5rem 2.5rem 2.5rem;
+    padding: 1.75rem 2.25rem 2rem 2.25rem;
   }
 }
 
-@media (min-width: 1024px) {
-  .hero-composition {
-    padding: 2rem 3rem 2.5rem 3rem;
-  }
-}
-
-/* MENTOR CENTRAL SILHOUETTE VISUAL */
+/* MENTOR SILHOUETTE VISUAL */
 .mentor-silhouette-wrap {
   position: absolute;
-  top: 5%;
+  top: 4%;
   right: 6%;
-  width: 280px;
-  max-width: 45vw;
-  height: 65%;
+  width: 270px;
+  max-width: 44vw;
+  height: 68%;
   display: flex;
   align-items: flex-end;
   justify-content: center;
@@ -354,29 +288,29 @@ body {
 
 @media (min-width: 768px) {
   .mentor-silhouette-wrap {
-    top: 4%;
+    top: 3%;
     right: 12%;
-    width: 360px;
-    height: 72%;
+    width: 350px;
+    height: 74%;
   }
 }
 
 @media (min-width: 1200px) {
   .mentor-silhouette-wrap {
     top: 2%;
-    right: 16%;
-    width: 440px;
-    height: 78%;
+    right: 15%;
+    width: 420px;
+    height: 80%;
   }
 }
 
 .mentor-ambient-halo {
   position: absolute;
-  width: 140%;
-  height: 140%;
+  width: 135%;
+  height: 135%;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(123, 79, 202, 0.28) 0%, rgba(245, 197, 24, 0.08) 50%, transparent 75%);
-  filter: blur(35px);
+  background: radial-gradient(circle, rgba(123, 79, 202, 0.25) 0%, rgba(245, 197, 24, 0.08) 50%, transparent 75%);
+  filter: blur(40px);
   z-index: -1;
 }
 
@@ -407,57 +341,8 @@ body {
   pointer-events: none;
 }
 
-/* Floating Mentor Verified Badge */
-.mentor-tag-pill {
-  position: absolute;
-  bottom: 12%;
-  left: -10%;
-  display: flex;
-  flex-direction: column;
-  gap: 0.15rem;
-  background: rgba(10, 10, 12, 0.85);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  padding: 0.5rem 0.9rem;
-  border-radius: 0.85rem;
-  backdrop-filter: blur(20px);
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.6);
-  pointer-events: auto;
-  transition: transform 0.3s ease;
-}
-
-.mentor-tag-pill:hover {
-  transform: translateY(-3px) scale(1.02);
-  border-color: rgba(225, 224, 204, 0.35);
-}
-
-.mentor-tag-dot {
-  position: absolute;
-  top: -3px;
-  right: -3px;
-  width: 8px;
-  height: 8px;
-  background-color: var(--moya-gold);
-  border-radius: 50%;
-  box-shadow: 0 0 10px var(--moya-gold);
-}
-
-.mentor-tag-name {
-  font-family: var(--font-display);
-  font-size: 0.75rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  color: #ffffff;
-}
-
-.mentor-tag-role {
-  font-family: var(--font-mono);
-  font-size: 0.625rem;
-  letter-spacing: 0.12em;
-  color: var(--cs-muted);
-}
-
 /* ==========================================================================
-   5. OVERSIZED TYPOGRAPHY (The Signature Visual Anchor)
+   5. OVERSIZED TYPOGRAPHY (MOYA*)
    ========================================================================== */
 
 .oversized-typography-container {
@@ -513,58 +398,30 @@ body {
 }
 
 /* ==========================================================================
-   6. FOREGROUND EDITORIAL CONTENT GRID
+   6. FOREGROUND MINIMAL CONTENT
    ========================================================================== */
 
 .hero-foreground-grid {
   position: relative;
   z-index: 25;
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 1.5rem;
-  align-items: end;
-  margin-top: 0.5rem;
-}
-
-@media (min-width: 1024px) {
-  .hero-foreground-grid {
-    grid-template-columns: 1.8fr 1fr;
-    gap: 2.5rem;
-  }
+  margin-top: 0.25rem;
 }
 
 .editorial-col {
-  max-width: 620px;
-}
-
-.meta-tag-label {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  font-family: var(--font-mono);
-  font-size: 0.6875rem;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: var(--cs-ink);
-  margin-bottom: 0.75rem;
-}
-
-.meta-tag-index {
-  color: var(--moya-gold);
-  font-weight: 600;
+  max-width: 580px;
 }
 
 .editorial-statement {
-  font-size: 1rem;
+  font-size: 1.05rem;
   line-height: 1.35;
-  color: rgba(222, 219, 200, 0.85);
-  margin-bottom: 1.25rem;
+  color: rgba(222, 219, 200, 0.9);
+  margin-bottom: 0.85rem;
   font-weight: 400;
 }
 
 @media (min-width: 640px) {
   .editorial-statement {
-    font-size: 1.125rem;
+    font-size: 1.2rem;
   }
 }
 
@@ -576,9 +433,8 @@ body {
   font-weight: 400;
 }
 
-/* Reference Signature Pill Button */
 .editorial-cta-wrap {
-  margin-top: 0.5rem;
+  margin-top: 0.25rem;
 }
 
 .reference-pill-cta {
@@ -589,35 +445,28 @@ body {
   color: #000000;
   text-decoration: none;
   font-family: var(--font-sans);
-  font-size: 0.875rem;
-  font-weight: 600;
-  padding: 0.35rem 0.35rem 0.35rem 1.4rem;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  padding: 0.35rem 0.35rem 0.35rem 1.35rem;
   border-radius: 9999px;
   transition: all 0.3s var(--ease-cinematic);
   cursor: pointer;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
-}
-
-@media (min-width: 640px) {
-  .reference-pill-cta {
-    font-size: 0.9375rem;
-    padding: 0.4rem 0.4rem 0.4rem 1.6rem;
-  }
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.4);
 }
 
 .reference-pill-cta:hover {
-  background-color: #f0ede0;
-  gap: 0.85rem;
+  background-color: #ffffff;
+  gap: 0.75rem;
   transform: translateY(-2px);
-  box-shadow: 0 8px 30px rgba(222, 219, 200, 0.25);
+  box-shadow: 0 6px 25px rgba(222, 219, 200, 0.3);
 }
 
 .pill-icon-circle {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 2.25rem;
-  height: 2.25rem;
+  width: 2rem;
+  height: 2rem;
   background-color: #000000;
   color: var(--cs-cream);
   border-radius: 50%;
@@ -625,58 +474,20 @@ body {
 }
 
 .reference-pill-cta:hover .pill-icon-circle {
-  transform: scale(1.1) rotate(-25deg);
-}
-
-/* Metric Column (Right) */
-.metric-col {
-  display: none;
-  gap: 1.5rem;
-  justify-content: flex-end;
-}
-
-@media (min-width: 1024px) {
-  .metric-col {
-    display: flex;
-  }
-}
-
-.metric-item {
-  background: rgba(16, 16, 18, 0.6);
-  border: 1px solid rgba(255, 255, 255, 0.07);
-  padding: 0.85rem 1.25rem;
-  border-radius: 1rem;
-  backdrop-filter: blur(16px);
-  text-align: right;
-  min-width: 160px;
-}
-
-.metric-number {
-  font-family: var(--font-display);
-  font-size: 1.35rem;
-  font-weight: 700;
-  color: var(--cs-cream);
-  line-height: 1.1;
-  margin-bottom: 0.25rem;
-}
-
-.metric-label {
-  font-family: var(--font-mono);
-  font-size: 0.625rem;
-  letter-spacing: 0.08em;
-  color: var(--cs-muted);
+  transform: translateY(2px);
 }
 
 /* ==========================================================================
-   7. THE 4 PRIMARY SERVICE GATEWAYS (FLOATING DOCK & CARDS)
+   7. RE-ENGINEERED 4 SERVICE GATEWAYS
+   Interactive 3D Tilt • Dynamic Cursor Spotlight • Bold High-Contrast CTAs
    ========================================================================== */
 
 .gateway-dock {
   position: relative;
   z-index: 30;
   width: 100%;
-  padding: 1rem 1.25rem 1.25rem 1.25rem;
-  background: rgba(8, 8, 10, 0.7);
+  padding: 0.85rem 1rem 1rem 1rem;
+  background: rgba(8, 8, 10, 0.75);
   border-top: 1px solid rgba(255, 255, 255, 0.06);
   backdrop-filter: blur(28px);
   -webkit-backdrop-filter: blur(28px);
@@ -684,14 +495,14 @@ body {
 
 @media (min-width: 768px) {
   .gateway-dock {
-    padding: 1.25rem 2rem 1.5rem 2rem;
+    padding: 1rem 1.75rem 1.25rem 1.75rem;
   }
 }
 
 .gateway-dock-inner {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 0.85rem;
+  gap: 0.75rem;
   max-width: 1400px;
   margin: 0 auto;
 }
@@ -705,104 +516,116 @@ body {
 @media (min-width: 1024px) {
   .gateway-dock-inner {
     grid-template-columns: repeat(4, 1fr);
-    gap: 1rem;
+    gap: 0.85rem;
   }
 }
 
-/* Individual Gateway Card */
+/* Re-engineered Individual Gateway Card */
 .gateway-card {
   position: relative;
-  background: rgba(18, 18, 22, 0.65);
+  background: rgba(14, 14, 18, 0.72);
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 1.15rem;
-  padding: 1.25rem 1.25rem 1rem 1.25rem;
+  padding: 1.15rem 1.15rem 0.95rem 1.15rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  min-height: 180px;
+  min-height: 165px;
   overflow: hidden;
-  transition: all 0.35s var(--ease-cinematic);
+  transition: transform 0.25s var(--ease-cinematic), border-color 0.3s ease, box-shadow 0.3s ease;
   cursor: pointer;
+  transform-style: preserve-3d;
+  will-change: transform;
 }
 
 .gateway-card:hover, .gateway-card:focus-visible {
-  background: rgba(28, 28, 34, 0.85);
-  border-color: rgba(225, 224, 204, 0.32);
-  transform: translateY(-4px);
-  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.6), 0 0 25px rgba(225, 224, 204, 0.06);
+  border-color: var(--cs-border-active);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.75), 0 0 30px rgba(225, 224, 204, 0.08);
   outline: none;
 }
 
-.gateway-card-glow {
+/* Ambient Cursor Spotlight Layer */
+.card-ambient-spotlight {
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 2px;
-  background: linear-gradient(90deg, transparent, rgba(225, 224, 204, 0.4), transparent);
+  inset: 0;
+  background: radial-gradient(300px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(225, 224, 204, 0.16), transparent 70%);
   opacity: 0;
   transition: opacity 0.35s ease;
+  pointer-events: none;
+  z-index: 1;
 }
 
-.gateway-card:hover .gateway-card-glow {
+.gateway-card:hover .card-ambient-spotlight {
   opacity: 1;
+}
+
+/* Sheen sweep line across card on hover */
+.card-sheen-line {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(110deg, transparent 35%, rgba(255, 255, 255, 0.06) 48%, rgba(255, 255, 255, 0.18) 50%, rgba(255, 255, 255, 0.06) 52%, transparent 65%);
+  transform: translateX(-100%);
+  transition: transform 0.8s ease;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.gateway-card:hover .card-sheen-line {
+  transform: translateX(100%);
 }
 
 /* Card Header */
 .gateway-card-header {
+  position: relative;
+  z-index: 3;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 0.75rem;
+  margin-bottom: 0.65rem;
 }
 
 .gateway-badge {
   font-family: var(--font-mono);
   font-size: 0.625rem;
-  letter-spacing: 0.18em;
-  font-weight: 600;
+  letter-spacing: 0.16em;
+  font-weight: 700;
   color: var(--cs-ink);
   background: rgba(255, 255, 255, 0.06);
-  padding: 0.2rem 0.5rem;
+  padding: 0.2rem 0.55rem;
   border-radius: 4px;
-}
-
-.gateway-step {
-  font-family: var(--font-mono);
-  font-size: 0.625rem;
-  color: var(--cs-muted);
 }
 
 .webinar-badge {
   color: var(--moya-gold);
-  background: rgba(245, 197, 24, 0.12);
-  border: 1px solid rgba(245, 197, 24, 0.25);
+  background: rgba(245, 197, 24, 0.14);
+  border: 1px solid rgba(245, 197, 24, 0.3);
 }
 
 .whatsapp-badge {
-  color: #25D366;
-  background: rgba(37, 211, 102, 0.1);
-  border: 1px solid rgba(37, 211, 102, 0.2);
+  color: var(--moya-green);
+  background: rgba(37, 211, 102, 0.12);
+  border: 1px solid rgba(37, 211, 102, 0.25);
 }
 
-/* Explicit ₹1,999 Tag for Webinar */
+/* Bold ₹1,999 Tag */
 .gateway-price-tag {
   font-family: var(--font-display);
   font-size: 0.9375rem;
-  font-weight: 700;
-  color: var(--moya-gold);
-  background: rgba(245, 197, 24, 0.15);
-  border: 1px solid rgba(245, 197, 24, 0.35);
-  padding: 0.15rem 0.55rem;
+  font-weight: 800;
+  color: #000000;
+  background: var(--moya-gold);
+  padding: 0.18rem 0.6rem;
   border-radius: 9999px;
   letter-spacing: 0.02em;
-  box-shadow: 0 0 12px rgba(245, 197, 24, 0.25);
+  box-shadow: 0 0 14px rgba(245, 197, 24, 0.4);
 }
 
 /* Card Body */
 .gateway-card-body {
+  position: relative;
+  z-index: 3;
   flex: 1;
-  margin-bottom: 1rem;
+  margin-bottom: 0.85rem;
 }
 
 .gateway-title {
@@ -812,7 +635,7 @@ body {
   line-height: 1.15;
   letter-spacing: -0.01em;
   color: #ffffff;
-  margin-bottom: 0.45rem;
+  margin-bottom: 0.35rem;
 }
 
 .gateway-description {
@@ -822,8 +645,10 @@ body {
   font-weight: 400;
 }
 
-/* Card Action Button */
+/* BOLD CALL TO ACTION BUTTON */
 .gateway-card-footer {
+  position: relative;
+  z-index: 3;
   margin-top: auto;
 }
 
@@ -832,59 +657,73 @@ body {
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  padding: 0.6rem 0.85rem;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 0.65rem;
+  padding: 0.65rem 0.95rem;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 0.75rem;
   color: var(--cs-cream);
   text-decoration: none;
   font-family: var(--font-sans);
   font-size: 0.75rem;
-  font-weight: 600;
-  letter-spacing: 0.04em;
-  transition: all 0.25s ease;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  transition: all 0.25s var(--ease-cinematic);
 }
 
-.gateway-action-btn:hover {
+.gateway-card:hover .gateway-action-btn {
   background: var(--cs-ink);
   color: #000000;
   border-color: var(--cs-ink);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
 }
 
 .gateway-action-btn svg {
-  transition: transform 0.2s ease;
+  transition: transform 0.25s var(--ease-spring);
 }
 
-.gateway-action-btn:hover svg {
-  transform: translateX(3px);
+.gateway-card:hover .gateway-action-btn svg {
+  transform: translateX(4px);
 }
 
 /* Featured Webinar Styling */
 .featured-gateway {
-  background: radial-gradient(circle at 80% 20%, rgba(245, 197, 24, 0.1) 0%, rgba(22, 18, 28, 0.8) 70%);
-  border-color: rgba(245, 197, 24, 0.28);
+  background: radial-gradient(circle at 85% 15%, rgba(245, 197, 24, 0.12) 0%, rgba(20, 18, 26, 0.8) 75%);
+  border-color: rgba(245, 197, 24, 0.35);
 }
 
 .featured-gateway:hover {
   border-color: var(--moya-gold);
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.8), 0 0 30px rgba(245, 197, 24, 0.15);
+  box-shadow: 0 16px 45px rgba(0, 0, 0, 0.85), 0 0 35px rgba(245, 197, 24, 0.2);
 }
 
 .primary-gateway-btn {
   background: var(--moya-gold);
   color: #000000;
   border-color: var(--moya-gold);
-  font-weight: 700;
+  font-weight: 800;
 }
 
-.primary-gateway-btn:hover {
+.featured-gateway:hover .primary-gateway-btn {
   background: #ffcc00;
   color: #000000;
-  box-shadow: 0 4px 18px rgba(245, 197, 24, 0.4);
+  box-shadow: 0 4px 20px rgba(245, 197, 24, 0.5);
+}
+
+/* WhatsApp Channel Accent */
+.whatsapp-action-btn {
+  border-color: rgba(37, 211, 102, 0.25);
+}
+
+.gateway-card[data-gateway="whatsapp"]:hover .whatsapp-action-btn {
+  background: var(--moya-green);
+  border-color: var(--moya-green);
+  color: #000000;
+  box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
 }
 
 /* ==========================================================================
-   8. BOTTOM LUXURY TICKER / SIGNATURE STRIP
+   8. MINIMAL FOOTER STRIP (Decluttered)
    ========================================================================== */
 
 .hero-signature-strip {
@@ -893,47 +732,40 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0.75rem 1.5rem;
+  padding: 0.65rem 1.5rem;
   background-color: #050505;
   border-top: 1px solid rgba(255, 255, 255, 0.04);
   font-family: var(--font-mono);
   font-size: 0.625rem;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.12em;
   color: var(--cs-muted);
 }
 
 @media (min-width: 768px) {
   .hero-signature-strip {
-    padding: 0.75rem 2.5rem;
+    padding: 0.65rem 2.25rem;
   }
 }
 
-.signature-center {
-  display: none;
-}
-
-@media (min-width: 768px) {
-  .signature-center {
-    display: block;
-  }
-}
-
-.quick-call-shortcut a {
+.footer-chat-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
   color: var(--cs-ink);
   text-decoration: none;
-  transition: color 0.2s ease;
+  font-weight: 600;
+  transition: all 0.2s ease;
 }
 
-.quick-call-shortcut a:hover {
+.footer-chat-link:hover {
   color: #ffffff;
-  text-decoration: underline;
+  transform: translateX(2px);
 }
 
 /* ==========================================================================
-   9. RESPONSIVE BREAKPOINTS (Desktop, Tablet, Mobile)
+   9. RESPONSIVE BREAKPOINTS
    ========================================================================== */
 
-/* Tablet Optimization (1024px & below) */
 @media (max-width: 1023px) {
   .hero-frame-container {
     height: auto;
@@ -950,23 +782,18 @@ body {
     position: relative;
     top: auto;
     right: auto;
-    margin: 1.5rem auto 0 auto;
-    width: 260px;
-    height: 320px;
-  }
-
-  .mentor-tag-pill {
-    left: -5%;
-    bottom: 5%;
+    margin: 1rem auto 0 auto;
+    width: 250px;
+    height: 300px;
   }
 
   .hero-composition {
     justify-content: center;
-    padding-top: 2rem;
+    padding-top: 1.5rem;
   }
 
   .oversized-title {
-    font-size: clamp(4.2rem, 20vw, 12rem);
+    font-size: clamp(4rem, 20vw, 11rem);
     text-align: center;
     justify-content: center;
   }
@@ -985,7 +812,6 @@ body {
   }
 }
 
-/* Mobile Optimization (390px - 640px) */
 @media (max-width: 639px) {
   .hero-frame-container {
     padding: 0.5rem;
@@ -996,7 +822,7 @@ body {
   }
 
   .top-nav-bar {
-    padding: 1rem;
+    padding: 0.85rem 1rem;
   }
 
   .brand-logo-img {
@@ -1006,17 +832,17 @@ body {
   .quick-call-cta {
     padding: 0.45rem 0.85rem;
     font-size: 0.7rem;
-    gap: 0.4rem;
+    gap: 0.35rem;
   }
 
   .mentor-silhouette-wrap {
-    width: 220px;
-    height: 260px;
+    width: 210px;
+    height: 250px;
     margin-top: 0.5rem;
   }
 
   .oversized-title {
-    font-size: clamp(3.8rem, 24vw, 6.5rem);
+    font-size: clamp(3.6rem, 23vw, 6rem);
     line-height: 0.88;
   }
 
@@ -1025,7 +851,7 @@ body {
   }
 
   .gateway-dock {
-    padding: 1rem 0.85rem;
+    padding: 0.85rem 0.75rem;
   }
 
   .gateway-card {
@@ -1035,13 +861,6 @@ body {
 
   .gateway-title {
     font-size: 0.9375rem;
-  }
-
-  .hero-signature-strip {
-    flex-direction: column;
-    gap: 0.35rem;
-    text-align: center;
-    padding: 0.75rem 1rem;
   }
 }
 
@@ -1071,6 +890,10 @@ body {
   }
 
   .mentor-silhouette-wrap {
+    transform: none !important;
+  }
+
+  .gateway-card {
     transform: none !important;
   }
 }

@@ -1,18 +1,23 @@
 /**
  * MOYA GATEWAY HERO CONTROLLER
- * Architectural Scripts & Micro-Interactions
+ * Architectural Scripts, WhatsApp Routing & Re-Engineered Card Interactions
  */
 
 // ==========================================================================
 // 1. CENTRAL URL CONFIGURATION
-// Add your live production URLs here. All CTAs read from this object.
+// Direct WhatsApp Click-to-Chat, AI Masterclass & Official Channel Links
 // ==========================================================================
 const MOYA_CONFIG = {
-  quickCallUrl: "https://calendly.com",
-  mentorshipUrl: "https://mentorship.moya.com",
-  productionsUrl: "https://productions.moya.com",
-  webinarUrl: "https://webinar.moya.com",
-  whatsappUrl: "https://whatsapp.com/channel/moya"
+  // WhatsApp direct click-to-chat (Phone: 9274359207)
+  quickCallUrl: "https://wa.me/919274359207?text=Hi%20Savan,%20I'd%20like%20to%20book%20a%20quick%20call.",
+  mentorshipUrl: "https://wa.me/919274359207?text=Hi%20Savan,%20I'm%20interested%20in%20MOYA%20One-to-One%20Mentorship.",
+  productionsUrl: "https://wa.me/919274359207?text=Hi%20Savan,%20I'm%20interested%20in%20MOYA%20Productions.",
+  
+  // YouTube Automation Masterclass
+  webinarUrl: "https://ai.mechanismofya.com",
+  
+  // Official WhatsApp Channel
+  whatsappUrl: "https://whatsapp.com/channel/0029VajcJRV2UPB940uoYv10"
 };
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -25,8 +30,8 @@ document.addEventListener('DOMContentLoaded', () => {
   // Magnetic hover effect on primary pill CTAs
   initMagneticButtons();
 
-  // Interactive spotlight card illumination
-  initGatewayCards();
+  // Re-engineered 3D Tilt & Dynamic Cursor Spotlight on Service Cards
+  initReEngineeredCards();
 
   // Year in signature footer
   const yearEl = document.getElementById('currentYear');
@@ -112,11 +117,11 @@ function initCursorParallax() {
     currentY += (targetY - currentY) * 0.06;
 
     if (mesh) {
-      mesh.style.transform = `translateX(${currentX * -25}px) translateY(${currentY * -20}px) scale(1.02)`;
+      mesh.style.transform = `translateX(${currentX * -22}px) translateY(${currentY * -18}px) scale(1.02)`;
     }
 
     if (mentor) {
-      mentor.style.transform = `translateX(${currentX * 18}px) translateY(${currentY * 12}px)`;
+      mentor.style.transform = `translateX(${currentX * 16}px) translateY(${currentY * 10}px)`;
     }
 
     if (Math.abs(targetX - currentX) > 0.001 || Math.abs(targetY - currentY) > 0.001) {
@@ -151,47 +156,56 @@ function initMagneticButtons() {
 }
 
 /**
- * Interactive card highlighting and keyboard trigger
+ * Re-Engineered 3D Tilt & Dynamic Spotlight on Service Cards
  */
-function initGatewayCards() {
+function initReEngineeredCards() {
   const cards = document.querySelectorAll('.gateway-card');
+  const isReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const isTouch = window.matchMedia('(pointer: coarse)').matches;
 
   cards.forEach(card => {
-    // Mouse radial spotlight effect
-    card.addEventListener('mousemove', (e) => {
-      const rect = card.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
-      const glow = card.querySelector('.gateway-card-glow');
-      if (glow) {
-        glow.style.background = `radial-gradient(180px circle at ${x}px ${y}px, rgba(225, 224, 204, 0.5), transparent 70%)`;
-        glow.style.opacity = '1';
+    const spotlight = card.querySelector('.card-ambient-spotlight');
+
+    if (!isReduced && !isTouch) {
+      card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+
+        // Dynamic Spotlight coordinate update
+        card.style.setProperty('--mouse-x', `${x}px`);
+        card.style.setProperty('--mouse-y', `${y}px`);
+
+        // Subtle 3D perspective tilt
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+        const rotateX = ((y - centerY) / centerY) * -6; // max 6 deg tilt
+        const rotateY = ((x - centerX) / centerX) * 6;
+
+        card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-6px) scale(1.015)`;
+      });
+
+      card.addEventListener('mouseleave', () => {
+        card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0) scale(1)';
+      });
+    }
+
+    // Direct card click redirects to action link
+    card.addEventListener('click', (e) => {
+      const actionBtn = card.querySelector('.gateway-action-btn');
+      if (actionBtn && !e.target.closest('.gateway-action-btn')) {
+        window.open(actionBtn.href, '_blank', 'noopener,noreferrer');
       }
     });
 
-    card.addEventListener('mouseleave', () => {
-      const glow = card.querySelector('.gateway-card-glow');
-      if (glow) {
-        glow.style.opacity = '0';
-      }
-    });
-
-    // Keyboard support: Enter / Space triggers CTA
+    // Keyboard navigation (Enter or Space)
     card.addEventListener('keydown', (e) => {
       if (e.key === 'Enter' || e.key === ' ') {
         e.preventDefault();
         const actionBtn = card.querySelector('.gateway-action-btn');
         if (actionBtn) {
-          actionBtn.click();
+          window.open(actionBtn.href, '_blank', 'noopener,noreferrer');
         }
-      }
-    });
-
-    // Clicking anywhere on card triggers the CTA button
-    card.addEventListener('click', (e) => {
-      const actionBtn = card.querySelector('.gateway-action-btn');
-      if (actionBtn && !e.target.closest('.gateway-action-btn')) {
-        actionBtn.click();
       }
     });
   });
