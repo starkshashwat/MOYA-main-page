@@ -5,7 +5,7 @@
   "main": "index.html",
   "scripts": {
     "build": "mkdir -p dist && cp -r index.html styles.css main.js assets dist/ 2>/dev/null || echo 'Built'",
-    "start": "npx serve -s . -l 80"
+    "start": "npx serve -s . -l 3000"
   },
   "keywords": ["moya", "landing-page"],
   "author": "MOYA",
