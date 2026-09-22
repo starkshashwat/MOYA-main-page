@@ -1,7 +1,7 @@
 /* ==========================================================================
-   MOYA GATEWAY — STUDIOVA-STYLE REDESIGN
-   Full-bleed dark canvas • Centered mentor • Bottom oversized typography
-   Floating side gateways • Minimal editorial aesthetic
+   MOYA GATEWAY — STUDIOVA-STYLE SEAMLESS DESIGN SYSTEM
+   Full-Bleed #000 Canvas • Zero-Separation Baseline • Centered Large Mentor
+   Foreground MOYA Typography • Floating Side Gateways • High-Impact Minimalist
    ========================================================================== */
 
 :root {
@@ -11,7 +11,7 @@
   --cs-muted: #8b8a80;
   --cs-dark: #000000;
   --cs-surface: #0a0a0a;
-  --cs-border: rgba(255, 255, 255, 0.07);
+  --cs-border: rgba(255, 255, 255, 0.08);
   --cs-border-active: rgba(225, 224, 204, 0.4);
   
   /* MOYA Brand Undertones */
@@ -60,7 +60,7 @@ body {
 }
 
 /* ==========================================================================
-   1. HERO ROOT — FULL BLEED (No frame, no border, no padding)
+   1. HERO ROOT — FULL BLEED (No frame, no border, zero padding)
    ========================================================================== */
 
 .hero-root {
@@ -70,6 +70,7 @@ body {
   height: 100dvh;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   background-color: #000000;
   overflow: hidden;
 }
@@ -88,11 +89,11 @@ body {
 
 .ambient-glow-mesh {
   position: absolute;
-  inset: -30%;
+  inset: -25%;
   background: 
-    radial-gradient(50% 50% at 50% 50%, rgba(123, 79, 202, 0.18) 0%, transparent 70%),
-    radial-gradient(40% 40% at 30% 70%, rgba(222, 219, 200, 0.06), transparent 65%),
-    radial-gradient(45% 40% at 70% 75%, rgba(196, 162, 120, 0.08), transparent 68%),
+    radial-gradient(55% 55% at 50% 45%, rgba(123, 79, 202, 0.22) 0%, transparent 70%),
+    radial-gradient(35% 35% at 25% 65%, rgba(222, 219, 200, 0.07), transparent 65%),
+    radial-gradient(40% 40% at 75% 65%, rgba(245, 197, 24, 0.08), transparent 70%),
     #000000;
   filter: blur(60px);
   will-change: transform;
@@ -103,13 +104,13 @@ body {
   position: absolute;
   inset: 0;
   background: 
-    radial-gradient(ellipse 80% 70% at 50% 50%, transparent 30%, rgba(0, 0, 0, 0.65) 100%);
+    radial-gradient(ellipse 85% 75% at 50% 50%, transparent 35%, rgba(0, 0, 0, 0.7) 100%);
 }
 
 .film-grain-overlay {
   position: absolute;
   inset: 0;
-  opacity: 0.35;
+  opacity: 0.32;
   mix-blend-mode: overlay;
   pointer-events: none;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.55 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
@@ -119,12 +120,12 @@ body {
 .depth-lighting {
   position: absolute;
   inset: 0;
-  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.5) 0%, transparent 15%, transparent 70%, rgba(0, 0, 0, 0.85) 100%);
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.5) 0%, transparent 18%, transparent 65%, rgba(0, 0, 0, 0.8) 100%);
 }
 
 /* ==========================================================================
    3. TOP MINIMAL NAVIGATION BAR
-   Logo left • Hamburger right (Studiova style)
+   Logo left • Hamburger right (Studiova reference style)
    ========================================================================== */
 
 .top-nav-bar {
@@ -161,7 +162,7 @@ body {
 }
 
 .brand-logo-img {
-  height: 30px;
+  height: 32px;
   width: auto;
   display: block;
   filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.4));
@@ -169,7 +170,7 @@ body {
 
 @media (min-width: 768px) {
   .brand-logo-img {
-    height: 36px;
+    height: 38px;
   }
 }
 
@@ -183,7 +184,7 @@ body {
   width: 44px;
   height: 44px;
   background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: 50%;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -191,8 +192,8 @@ body {
 }
 
 .nav-hamburger:hover {
-  background: rgba(255, 255, 255, 0.12);
-  border-color: rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.14);
+  border-color: rgba(255, 255, 255, 0.28);
 }
 
 .hamburger-line {
@@ -215,55 +216,69 @@ body {
 }
 
 /* ==========================================================================
-   4. CENTRAL HERO COMPOSITION — Centered Mentor + Side Gateways
+   4. MENTOR STAGE — ANCHORED DIRECTLY TO HERO BOTTOM (Zero Separation)
+   Large, prominent, centered. Positioned behind MOYA typography (z-index: 10)
    ========================================================================== */
 
-.hero-composition {
-  position: relative;
-  flex: 1;
+.mentor-stage {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 92vh;
+  max-height: 100vh;
   display: flex;
-  align-items: flex-end;
   justify-content: center;
+  align-items: flex-end;
+  pointer-events: none;
   z-index: 10;
-  padding: 0;
   overflow: hidden;
 }
 
-/* ------- MENTOR CENTRAL (Centered, anchored to bottom) ------- */
-.mentor-central {
-  position: relative;
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
-  width: auto;
-  max-width: 55vw;
-  height: 100%;
-  z-index: 15;
-  pointer-events: none;
-  transition: transform 0.4s var(--ease-cinematic);
-}
-
 @media (min-width: 1200px) {
-  .mentor-central {
-    max-width: 50vw;
+  .mentor-stage {
+    height: 94vh;
   }
 }
 
 @media (min-width: 1600px) {
-  .mentor-central {
-    max-width: 45vw;
+  .mentor-stage {
+    height: 95vh;
+  }
+}
+
+.mentor-wrap {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  height: 100%;
+  width: auto;
+  max-width: 76vw;
+  transition: transform 0.4s var(--ease-cinematic);
+}
+
+@media (min-width: 1200px) {
+  .mentor-wrap {
+    max-width: 68vw;
+  }
+}
+
+@media (min-width: 1600px) {
+  .mentor-wrap {
+    max-width: 62vw;
   }
 }
 
 .mentor-ambient-halo {
   position: absolute;
-  width: 130%;
-  height: 130%;
-  left: -15%;
-  bottom: -15%;
+  width: 140%;
+  height: 140%;
+  left: -20%;
+  bottom: -10%;
   border-radius: 50%;
-  background: radial-gradient(circle at 50% 60%, rgba(123, 79, 202, 0.2) 0%, rgba(245, 197, 24, 0.05) 45%, transparent 70%);
-  filter: blur(50px);
+  background: radial-gradient(circle at 50% 55%, rgba(123, 79, 202, 0.24) 0%, rgba(245, 197, 24, 0.06) 45%, transparent 70%);
+  filter: blur(55px);
   z-index: -1;
 }
 
@@ -283,44 +298,49 @@ body {
 }
 
 .mentor-hero-img {
-  width: 100%;
+  width: auto;
   height: 100%;
+  max-height: 100%;
   object-fit: contain;
   object-position: bottom center;
   display: block;
-  filter: drop-shadow(0 15px 45px rgba(0, 0, 0, 0.8));
-  /* Fade bottom edge into the dark background seamlessly */
-  mask-image: linear-gradient(to bottom, black 78%, transparent 100%);
-  -webkit-mask-image: linear-gradient(to bottom, black 78%, transparent 100%);
+  filter: drop-shadow(0 20px 60px rgba(0, 0, 0, 0.95));
+  /* NO mask-image gradient — touches the absolute baseline directly! */
 }
 
-/* ------- SIDE FLOATING GATEWAY BUTTONS ------- */
+/* ==========================================================================
+   5. SIDE FLOATING GATEWAYS (Negative Side Spaces)
+   Interactive frosted pills with bold high-contrast styling (z-index: 20)
+   ========================================================================== */
+
 .side-gateways {
   position: absolute;
-  z-index: 30;
+  z-index: 20;
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
+  gap: 0.85rem;
 }
 
 .side-gateways--left {
-  left: 2.5rem;
-  bottom: 20%;
+  left: 2rem;
+  top: 48%;
+  transform: translateY(-50%);
 }
 
 .side-gateways--right {
-  right: 2.5rem;
-  bottom: 20%;
+  right: 2rem;
+  top: 48%;
+  transform: translateY(-50%);
 }
 
 @media (min-width: 1200px) {
   .side-gateways--left {
     left: 3.5rem;
-    bottom: 22%;
+    top: 50%;
   }
   .side-gateways--right {
     right: 3.5rem;
-    bottom: 22%;
+    top: 50%;
   }
 }
 
@@ -328,15 +348,15 @@ body {
 .side-gateway-btn {
   display: flex;
   align-items: center;
-  gap: 0.6rem;
-  padding: 0.65rem 1.15rem;
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  gap: 0.65rem;
+  padding: 0.7rem 1.25rem;
+  background: rgba(18, 18, 22, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: 9999px;
   color: var(--cs-cream);
   text-decoration: none;
   font-family: var(--font-sans);
-  font-size: 0.6875rem;
+  font-size: 0.71875rem;
   font-weight: 700;
   letter-spacing: 0.08em;
   white-space: nowrap;
@@ -344,13 +364,14 @@ body {
   -webkit-backdrop-filter: blur(20px);
   transition: all 0.3s var(--ease-cinematic);
   cursor: pointer;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
 }
 
 .side-gateway-btn:hover {
-  background: rgba(255, 255, 255, 0.12);
-  border-color: rgba(255, 255, 255, 0.25);
+  background: rgba(28, 28, 34, 0.9);
+  border-color: rgba(255, 255, 255, 0.3);
   transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.65);
 }
 
 .sgw-icon {
@@ -362,6 +383,12 @@ body {
   background: rgba(255, 255, 255, 0.08);
   border-radius: 50%;
   flex-shrink: 0;
+  transition: all 0.25s ease;
+}
+
+.side-gateway-btn:hover .sgw-icon {
+  background: rgba(255, 255, 255, 0.18);
+  transform: scale(1.08);
 }
 
 .sgw-label {
@@ -380,42 +407,43 @@ body {
   transform: translateX(0);
 }
 
-/* Price tag for Webinar */
-.sgw-price {
-  font-family: var(--font-display);
-  font-size: 0.6875rem;
-  font-weight: 800;
-  color: #000;
-  background: var(--moya-gold);
-  padding: 0.1rem 0.5rem;
-  border-radius: 9999px;
-  letter-spacing: 0.02em;
-  box-shadow: 0 0 10px rgba(245, 197, 24, 0.35);
-}
-
-/* Featured variant (Webinar/Masterclass) */
+/* Masterclass with ₹1,999 */
 .side-gateway-btn--featured {
-  border-color: rgba(245, 197, 24, 0.3);
+  border-color: rgba(245, 197, 24, 0.4);
+  background: rgba(24, 22, 16, 0.8);
 }
 
 .side-gateway-btn--featured:hover {
-  background: rgba(245, 197, 24, 0.12);
-  border-color: rgba(245, 197, 24, 0.5);
-  box-shadow: 0 8px 24px rgba(245, 197, 24, 0.15);
+  background: rgba(35, 30, 18, 0.95);
+  border-color: var(--moya-gold);
+  box-shadow: 0 8px 30px rgba(245, 197, 24, 0.25);
 }
 
-/* WhatsApp variant */
+.sgw-price {
+  font-family: var(--font-display);
+  font-size: 0.75rem;
+  font-weight: 800;
+  color: #000000;
+  background: var(--moya-gold);
+  padding: 0.15rem 0.55rem;
+  border-radius: 9999px;
+  letter-spacing: 0.02em;
+  box-shadow: 0 0 12px rgba(245, 197, 24, 0.45);
+}
+
+/* WhatsApp Channel Accent */
 .side-gateway-btn--whatsapp {
-  border-color: rgba(37, 211, 102, 0.2);
+  border-color: rgba(37, 211, 102, 0.28);
+  background: rgba(14, 24, 18, 0.8);
 }
 
 .side-gateway-btn--whatsapp:hover {
-  background: rgba(37, 211, 102, 0.12);
-  border-color: rgba(37, 211, 102, 0.45);
-  box-shadow: 0 8px 24px rgba(37, 211, 102, 0.15);
+  background: rgba(18, 34, 24, 0.95);
+  border-color: var(--moya-green);
+  box-shadow: 0 8px 30px rgba(37, 211, 102, 0.25);
 }
 
-/* Hide side gateways on mobile/tablet — show mobile dock instead */
+/* Hide side floating gateways on smaller tablet / mobile */
 @media (max-width: 1023px) {
   .side-gateways {
     display: none;
@@ -423,15 +451,20 @@ body {
 }
 
 /* ==========================================================================
-   5. BOTTOM TYPOGRAPHY LAYER
-   Editorial text bottom-left • Oversized MOYA* spanning bottom
+   6. FOREGROUND OVERSIZED TYPOGRAPHY (z-index: 25)
+   MOYA IN FRONT, Mentor image visible BEHIND the bold letters
    ========================================================================== */
 
 .bottom-typography-layer {
-  position: relative;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
   z-index: 25;
-  flex-shrink: 0;
+  pointer-events: none;
   padding: 0 2rem 0.5rem 2rem;
+  display: flex;
+  flex-direction: column;
 }
 
 @media (min-width: 768px) {
@@ -451,8 +484,9 @@ body {
   display: flex;
   align-items: flex-start;
   gap: 0.65rem;
-  margin-bottom: 0.25rem;
+  margin-bottom: 0.15rem;
   max-width: 360px;
+  pointer-events: auto;
 }
 
 .editorial-asterisk {
@@ -471,8 +505,9 @@ body {
 .editorial-statement {
   font-size: 0.875rem;
   line-height: 1.45;
-  color: rgba(222, 219, 200, 0.75);
+  color: rgba(222, 219, 200, 0.8);
   font-weight: 400;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.9);
 }
 
 @media (min-width: 768px) {
@@ -484,12 +519,12 @@ body {
 .editorial-italic {
   font-family: var(--font-serif);
   font-style: italic;
-  font-size: 1.15em;
+  font-size: 1.18em;
   color: #ffffff;
   font-weight: 400;
 }
 
-/* OVERSIZED MOYA* TITLE — Spanning full width at bottom */
+/* OVERSIZED MOYA* TITLE — Spanning bottom in FRONT of image */
 .oversized-typography-container {
   position: relative;
   width: 100%;
@@ -501,7 +536,7 @@ body {
 
 .oversized-title {
   font-family: var(--font-display);
-  font-size: clamp(5rem, 18vw, 22rem);
+  font-size: clamp(5rem, 18.5vw, 22rem);
   font-weight: 500;
   line-height: 0.78;
   letter-spacing: -0.07em;
@@ -509,7 +544,8 @@ body {
   display: flex;
   align-items: baseline;
   user-select: none;
-  text-shadow: 0 10px 50px rgba(0, 0, 0, 0.9);
+  /* Strong shadow so letters pop over the mentor image behind them */
+  text-shadow: 0 12px 45px rgba(0, 0, 0, 0.95);
   white-space: nowrap;
 }
 
@@ -557,9 +593,9 @@ body {
   text-decoration: none;
   flex-shrink: 0;
   margin-bottom: 0.75rem;
-  pointer-events: all;
+  pointer-events: auto;
   transition: all 0.3s var(--ease-cinematic);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
   opacity: 0;
   animation: pillFadeIn 0.6s ease 0.7s forwards;
 }
@@ -572,60 +608,68 @@ body {
 
 .brand-pill-cta:hover {
   background: #ffffff;
-  transform: scale(1.1) rotate(5deg);
-  box-shadow: 0 6px 28px rgba(225, 224, 204, 0.35);
+  transform: scale(1.1) rotate(6deg);
+  box-shadow: 0 6px 30px rgba(225, 224, 204, 0.4);
 }
 
 @media (min-width: 768px) {
   .brand-pill-cta {
-    width: 3.5rem;
-    height: 3.5rem;
+    width: 3.6rem;
+    height: 3.6rem;
     margin-bottom: 1rem;
   }
 }
 
 @media (min-width: 1200px) {
   .brand-pill-cta {
-    width: 4rem;
-    height: 4rem;
-    margin-bottom: 1.5rem;
+    width: 4.2rem;
+    height: 4.2rem;
+    margin-bottom: 1.4rem;
   }
   .brand-pill-cta svg {
-    width: 22px;
-    height: 22px;
+    width: 24px;
+    height: 24px;
   }
 }
 
 /* ==========================================================================
-   6. MINIMAL FOOTER STRIP
+   7. SEAMLESS FLOATING FOOTER (Zero Border, Zero Background, Zero Separation)
    ========================================================================== */
 
 .hero-signature-strip {
-  position: relative;
+  position: absolute;
+  bottom: 0.65rem;
+  left: 0;
+  right: 0;
   z-index: 30;
+  pointer-events: none;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0.5rem 2rem;
-  background-color: transparent;
+  padding: 0 2rem;
+  background: transparent;
+  border: none;
   font-family: var(--font-mono);
   font-size: 0.5625rem;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.14em;
   color: var(--cs-muted);
-  flex-shrink: 0;
 }
 
 @media (min-width: 768px) {
   .hero-signature-strip {
-    padding: 0.65rem 2.75rem;
+    padding: 0 2.75rem;
     font-size: 0.625rem;
   }
 }
 
 @media (min-width: 1200px) {
   .hero-signature-strip {
-    padding: 0.75rem 3.5rem;
+    padding: 0 3.5rem;
   }
+}
+
+.signature-left {
+  opacity: 0.7;
 }
 
 .footer-chat-link {
@@ -635,17 +679,22 @@ body {
   color: var(--cs-ink);
   text-decoration: none;
   font-weight: 600;
+  pointer-events: auto;
   transition: all 0.2s ease;
+  background: rgba(0, 0, 0, 0.4);
+  padding: 0.25rem 0.65rem;
+  border-radius: 9999px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .footer-chat-link:hover {
   color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.25);
   transform: translateX(2px);
 }
 
 /* ==========================================================================
-   7. MOBILE GATEWAY DOCK (< 1024px only)
-   Horizontal scrollable pills at the bottom
+   8. MOBILE GATEWAY DOCK (< 1024px only)
    ========================================================================== */
 
 .mobile-gateway-dock {
@@ -659,11 +708,33 @@ body {
     min-height: 100dvh;
   }
 
+  .mentor-stage {
+    position: relative;
+    height: 60vh;
+    max-height: 520px;
+    margin-top: 1rem;
+  }
+
+  .mentor-wrap {
+    max-width: 85vw;
+  }
+
+  .bottom-typography-layer {
+    position: relative;
+    padding: 0 1.5rem 0.5rem 1.5rem;
+  }
+
+  .hero-signature-strip {
+    position: relative;
+    bottom: auto;
+    padding: 0.75rem 1.5rem;
+  }
+
   .mobile-gateway-dock {
     display: flex;
     flex-wrap: wrap;
     gap: 0.5rem;
-    padding: 0.75rem 1.25rem 1.25rem 1.25rem;
+    padding: 0.75rem 1.25rem 1.5rem 1.25rem;
     z-index: 35;
     position: relative;
     justify-content: center;
@@ -673,9 +744,9 @@ body {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    padding: 0.6rem 1.1rem;
-    background: rgba(255, 255, 255, 0.04);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 0.65rem 1.15rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.12);
     border-radius: 9999px;
     color: var(--cs-cream);
     text-decoration: none;
@@ -688,69 +759,57 @@ body {
   }
 
   .mobile-gw-btn:active {
-    background: rgba(255, 255, 255, 0.12);
+    background: rgba(255, 255, 255, 0.15);
     transform: scale(0.97);
   }
 
   .mobile-gw-btn--featured {
-    border-color: rgba(245, 197, 24, 0.35);
+    border-color: rgba(245, 197, 24, 0.45);
     color: var(--moya-gold);
+    background: rgba(245, 197, 24, 0.08);
   }
 
   .mobile-gw-btn--whatsapp {
-    border-color: rgba(37, 211, 102, 0.25);
+    border-color: rgba(37, 211, 102, 0.35);
     color: var(--moya-green);
+    background: rgba(37, 211, 102, 0.08);
   }
 }
 
-/* ==========================================================================
-   8. RESPONSIVE BREAKPOINTS
-   ========================================================================== */
-
-/* Tablet (768px - 1023px) */
-@media (max-width: 1023px) {
-  .mentor-central {
-    max-width: 65vw;
-  }
-
-  .bottom-editorial {
-    max-width: 280px;
-  }
-
-  .oversized-title {
-    font-size: clamp(4.5rem, 18vw, 12rem);
-  }
-}
-
-/* Mobile (< 640px) */
+/* Mobile Phone (< 640px) */
 @media (max-width: 639px) {
   .top-nav-bar {
     padding: 1rem 1.25rem;
   }
 
   .brand-logo-img {
-    height: 26px;
+    height: 28px;
   }
 
   .nav-hamburger {
-    width: 38px;
-    height: 38px;
+    width: 40px;
+    height: 40px;
   }
 
   .hamburger-line {
     width: 16px;
   }
 
-  .mentor-central {
-    max-width: 85vw;
+  .mentor-stage {
+    height: 52vh;
+    max-height: 440px;
+  }
+
+  .mentor-wrap {
+    max-width: 95vw;
   }
 
   .bottom-typography-layer {
-    padding: 0 1.25rem 0.35rem 1.25rem;
+    padding: 0 1.25rem 0.25rem 1.25rem;
   }
 
   .bottom-editorial {
-    max-width: 240px;
+    max-width: 260px;
     gap: 0.5rem;
   }
 
@@ -763,19 +822,19 @@ body {
   }
 
   .oversized-title {
-    font-size: clamp(3.5rem, 22vw, 6.5rem);
-    line-height: 0.85;
+    font-size: clamp(3.6rem, 23vw, 6.5rem);
+    line-height: 0.82;
   }
 
   .brand-pill-cta {
-    width: 2.5rem;
-    height: 2.5rem;
+    width: 2.6rem;
+    height: 2.6rem;
     margin-bottom: 0.5rem;
   }
 
   .brand-pill-cta svg {
-    width: 14px;
-    height: 14px;
+    width: 15px;
+    height: 15px;
   }
 
   .hero-signature-strip {
@@ -783,20 +842,20 @@ body {
   }
 
   .mobile-gateway-dock {
-    padding: 0.5rem 1rem 1rem 1rem;
-    gap: 0.4rem;
+    padding: 0.5rem 1rem 1.25rem 1rem;
+    gap: 0.45rem;
   }
 
   .mobile-gw-btn {
-    font-size: 0.625rem;
-    padding: 0.5rem 0.85rem;
+    font-size: 0.65rem;
+    padding: 0.55rem 0.95rem;
   }
 }
 
 /* Very small screens */
 @media (max-width: 380px) {
   .oversized-title {
-    font-size: clamp(3rem, 25vw, 5rem);
+    font-size: clamp(3rem, 25vw, 4.8rem);
   }
 
   .mobile-gateway-dock {
@@ -838,7 +897,7 @@ body {
     transform: none !important;
   }
 
-  .mentor-central {
+  .mentor-wrap {
     transform: none !important;
   }
 }
