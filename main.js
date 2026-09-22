@@ -1,6 +1,6 @@
 /**
  * MOYA GATEWAY — GSAP CINEMATIC INTERACTION CONTROLLER
- * High-End Awwwards-Level Hero Choreography, Curtain Reveal & Zero-Flicker Parallax
+ * High-End Awwwards-Level Hero Choreography, Text Reveals & Zero-Flicker Parallax
  */
 
 // ==========================================================================
@@ -71,7 +71,7 @@ function initUrlBindings() {
 /**
  * ==========================================================================
  * 2. MASTER GSAP HERO CHOREOGRAPHY
- * Staggered Entrance -> Text Reveals -> Unique Mentor Entrance -> Zero-Flicker Parallax
+ * Staggered Entrance -> Text Reveals -> Button Sibling Fade-Out
  * ==========================================================================
  */
 function initGSAPHeroChoreography() {
@@ -93,19 +93,15 @@ function initGSAPHeroChoreography() {
   const mobileButtons = document.querySelectorAll('.mobile-gateway-dock .mobile-gw-btn');
   const allGatewayButtons = document.querySelectorAll('.side-gateway-btn, .mobile-gw-btn');
   const footer = document.querySelector('.hero-signature-strip');
-  const mentorWrap = document.getElementById('mentorWrap');
-  const mentorImg = document.getElementById('mentorImg');
-  const mentorHalo = document.querySelector('.mentor-ambient-halo');
   const ambientMesh = document.getElementById('ambientMesh');
 
   // If reduced motion is requested, instantly reveal
   if (isReduced) {
-    gsap.set([topNav, letters, superscript, asterisk, editorialWords, pillCta, allGatewayButtons, footer, mentorWrap, mentorImg, mentorHalo], {
+    gsap.set([topNav, letters, superscript, asterisk, editorialWords, pillCta, allGatewayButtons, footer], {
       opacity: 1,
       y: 0,
       x: 0,
       scale: 1,
-      clipPath: 'none',
       filter: 'none'
     });
     return;
@@ -131,15 +127,9 @@ function initGSAPHeroChoreography() {
   const buttonArrows = document.querySelectorAll('.side-gateway-btn .sgw-arrow');
   gsap.set([buttonIcons, buttonLabels, buttonPrices, buttonArrows], { opacity: 0, x: -8 });
 
-  // Mentor & Halo initial state (Stands by for its grand reveal!)
-  if (mentorHalo) gsap.set(mentorHalo, { scale: 0.4, opacity: 0 });
-  if (mentorWrap) gsap.set(mentorWrap, { y: 70, scale: 1.08, opacity: 0 });
-  if (mentorImg) gsap.set(mentorImg, { clipPath: 'inset(100% 0% 0% 0%)' });
-
   // -------------------------------------------------------------
   // MASTER TIMELINE SEQUENCE
-  // Top nav & UI -> Grand MOYA text -> Buttons & Editorial ->
-  // THEN: UNIQUE MENTOR CURTAIN UNVEIL BEHIND MOYA
+  // Top nav & UI -> Grand MOYA text -> Buttons & Editorial cascade
   // -------------------------------------------------------------
   const masterTl = gsap.timeline({
     delay: 0.15,
@@ -180,7 +170,7 @@ function initGSAPHeroChoreography() {
     }, "-=0.8");
   }
 
-  // Stage 3: Grand MOYA* Typography Reveal (Foreground)
+  // Stage 3: Grand MOYA* Typography Reveal
   masterTl.to(letters, {
     yPercent: 0,
     opacity: 1,
@@ -273,49 +263,6 @@ function initGSAPHeroChoreography() {
     opacity: 1,
     duration: 0.6
   }, "-=0.3");
-
-  // -------------------------------------------------------------
-  // Stage 6: THE UNIQUE MENTOR GRAND REVEAL (Behind MOYA letters)
-  // "then the image should animate and show up. Show a unique animation here."
-  // -------------------------------------------------------------
-  // Luminous Halo expansion behind the letters
-  if (mentorHalo) {
-    masterTl.to(mentorHalo, {
-      scale: 1,
-      opacity: 1,
-      duration: 1.8,
-      ease: "power2.out"
-    }, "-=0.2");
-  }
-
-  // Mentor wrapper rises smoothly into place
-  if (mentorWrap) {
-    masterTl.to(mentorWrap, {
-      opacity: 1,
-      y: 0,
-      scale: 1,
-      duration: 1.6,
-      ease: "power3.out"
-    }, "<");
-  }
-
-  // Unique Vertical Curtain Unveil: Image unmasks upwards behind the MOYA letters
-  if (mentorImg) {
-    masterTl.to(mentorImg, {
-      clipPath: 'inset(0% 0% 0% 0%)',
-      duration: 1.5,
-      ease: "power3.inOut"
-    }, "<");
-
-    // Luminous bloom settling
-    masterTl.fromTo(mentorImg, {
-      filter: 'drop-shadow(0 0 45px rgba(123, 79, 202, 0.45)) drop-shadow(0 20px 60px rgba(0, 0, 0, 0.95))'
-    }, {
-      filter: 'drop-shadow(0 20px 60px rgba(0, 0, 0, 0.95))',
-      duration: 1.2,
-      ease: 'power2.out'
-    }, "-=0.4");
-  }
 }
 
 /**
@@ -355,8 +302,8 @@ function splitEditorialWords() {
 
 /**
  * ==========================================================================
- * 3. ZERO-FLICKER GSAP PARALLAX
- * High-Precision quickTo Interpolation (Eliminates CSS hover/transition flicker)
+ * 3. ZERO-FLICKER GSAP AMBIENT PARALLAX
+ * High-Precision quickTo Interpolation for Atmospheric Depth
  * ==========================================================================
  */
 function initGSAPParallax() {
@@ -366,41 +313,23 @@ function initGSAPParallax() {
 
   const canvas = document.getElementById('heroCanvas');
   const mesh = document.getElementById('ambientMesh');
-  const mentor = document.getElementById('mentorWrap');
-  if (!canvas || !mentor) return;
+  if (!canvas || !mesh) return;
 
-  // quickTo creates silky smooth 120 FPS transitions without transform matrix conflicts
-  const xToMentor = gsap.quickTo(mentor, "x", { duration: 0.75, ease: "power2.out" });
-  const yToMentor = gsap.quickTo(mentor, "y", { duration: 0.75, ease: "power2.out" });
-
-  let xToMesh, yToMesh;
-  if (mesh) {
-    xToMesh = gsap.quickTo(mesh, "x", { duration: 1.1, ease: "power2.out" });
-    yToMesh = gsap.quickTo(mesh, "y", { duration: 1.1, ease: "power2.out" });
-  }
+  const xToMesh = gsap.quickTo(mesh, "x", { duration: 1.1, ease: "power2.out" });
+  const yToMesh = gsap.quickTo(mesh, "y", { duration: 1.1, ease: "power2.out" });
 
   canvas.addEventListener('mousemove', (e) => {
     const rect = canvas.getBoundingClientRect();
     const normX = (e.clientX - rect.left) / rect.width - 0.5;
     const normY = (e.clientY - rect.top) / rect.height - 0.5;
 
-    // Subdued, elegant parallax offset
-    xToMentor(normX * 18);
-    yToMentor(normY * 12);
-
-    if (xToMesh && yToMesh) {
-      xToMesh(normX * -25);
-      yToMesh(normY * -18);
-    }
+    xToMesh(normX * -30);
+    yToMesh(normY * -22);
   });
 
   canvas.addEventListener('mouseleave', () => {
-    xToMentor(0);
-    yToMentor(0);
-    if (xToMesh && yToMesh) {
-      xToMesh(0);
-      yToMesh(0);
-    }
+    xToMesh(0);
+    yToMesh(0);
   });
 }
 
@@ -567,19 +496,19 @@ function initGSAPMagneticPill() {
 }
 
 /**
- * Ambient Breathing Motion on the Mentor Halo
+ * Ambient Breathing Motion on the Background Glow
  */
 function initAmbientBreathing() {
   const isReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if (isReduced) return;
 
-  const halo = document.querySelector('.mentor-ambient-halo');
-  if (!halo) return;
+  const mesh = document.getElementById('ambientMesh');
+  if (!mesh) return;
 
-  gsap.to(halo, {
-    scale: 1.08,
-    opacity: 0.85,
-    duration: 3.5,
+  gsap.to(mesh, {
+    scale: 1.06,
+    opacity: 0.9,
+    duration: 4.5,
     repeat: -1,
     yoyo: true,
     ease: "sine.inOut"
@@ -591,17 +520,17 @@ function initAmbientBreathing() {
  */
 function initFallbackParallax() {
   const canvas = document.getElementById('heroCanvas');
-  const mentor = document.getElementById('mentorWrap');
-  if (!canvas || !mentor) return;
+  const mesh = document.getElementById('ambientMesh');
+  if (!canvas || !mesh) return;
 
   canvas.addEventListener('mousemove', (e) => {
     const rect = canvas.getBoundingClientRect();
     const normX = (e.clientX - rect.left) / rect.width - 0.5;
     const normY = (e.clientY - rect.top) / rect.height - 0.5;
-    mentor.style.transform = `translate3d(${normX * 16}px, ${normY * 10}px, 0)`;
+    mesh.style.transform = `translate3d(${normX * -20}px, ${normY * -15}px, 0)`;
   });
 
   canvas.addEventListener('mouseleave', () => {
-    mentor.style.transform = 'translate3d(0, 0, 0)';
+    mesh.style.transform = 'translate3d(0, 0, 0)';
   });
 }
