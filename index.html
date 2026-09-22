@@ -19,210 +19,167 @@
 </head>
 <body>
 
-  <!-- ROOT FRAMED WRAPPER (Reference frame architecture: p-3 sm:p-4 md:p-6) -->
-  <main class="hero-frame-container">
-    <div class="hero-canvas" id="heroCanvas">
-      
-      <!-- ATMOSPHERIC BACKGROUND SYSTEM -->
-      <div class="ambient-glow-layer" aria-hidden="true">
-        <div class="ambient-glow-mesh" id="ambientMesh"></div>
-        <div class="vignette-radial"></div>
-        <div class="film-grain-overlay"></div>
-        <div class="depth-lighting"></div>
+  <!-- FULL-BLEED HERO (Studiova-style: no frame, 100vh dark canvas) -->
+  <main class="hero-root" id="heroCanvas">
+    
+    <!-- ATMOSPHERIC BACKGROUND SYSTEM -->
+    <div class="ambient-glow-layer" aria-hidden="true">
+      <div class="ambient-glow-mesh" id="ambientMesh"></div>
+      <div class="vignette-radial"></div>
+      <div class="film-grain-overlay"></div>
+      <div class="depth-lighting"></div>
+    </div>
+
+    <!-- TOP MINIMAL NAVIGATION BAR -->
+    <header class="top-nav-bar" id="topNav">
+      <!-- Brand Logo (Left) -->
+      <a href="#" class="brand-logo-link" aria-label="MOYA Home">
+        <img src="assets/moya-logo.webp" alt="MOYA Logo" class="brand-logo-img" width="135" height="34">
+      </a>
+
+      <!-- Hamburger Menu (Right) — Studiova reference style -->
+      <button class="nav-hamburger" id="navMenuBtn" aria-label="Menu">
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+      </button>
+    </header>
+
+    <!-- CENTRAL HERO COMPOSITION — CENTERED MENTOR DOMINANT -->
+    <section class="hero-composition">
+
+      <!-- LEFT FLOATING GATEWAYS (Side space utilization) -->
+      <div class="side-gateways side-gateways--left">
+        <a href="#" class="side-gateway-btn" id="ctaMentorship" target="_blank" rel="noopener noreferrer">
+          <span class="sgw-icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+              <circle cx="12" cy="7" r="4"></circle>
+            </svg>
+          </span>
+          <span class="sgw-label">1:1 MENTORSHIP</span>
+          <span class="sgw-arrow">→</span>
+        </a>
+        <a href="#" class="side-gateway-btn" id="ctaProductions" target="_blank" rel="noopener noreferrer">
+          <span class="sgw-icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="23 7 16 12 23 17 23 7"></polygon>
+              <rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect>
+            </svg>
+          </span>
+          <span class="sgw-label">PRODUCTIONS</span>
+          <span class="sgw-arrow">→</span>
+        </a>
       </div>
 
-      <!-- TOP MINIMAL NAVIGATION BAR -->
-      <header class="top-nav-bar" id="topNav">
-        <!-- Brand Logo (Left) -->
-        <a href="#" class="brand-logo-link" aria-label="MOYA Home">
-          <img src="assets/moya-logo.webp" alt="MOYA Logo" class="brand-logo-img" width="135" height="34">
+      <!-- MENTOR CENTRAL VISUAL — THE STAR -->
+      <div class="mentor-central" id="mentorWrap" aria-hidden="true">
+        <div class="mentor-ambient-halo"></div>
+        <div class="mentor-image-container">
+          <picture class="mentor-picture">
+            <source media="(max-width: 820px)" srcset="assets/mentor-mobile.png">
+            <img src="assets/mentor-desktop.png" 
+                 alt="MOYA Mentor Savan Matariya" 
+                 class="mentor-hero-img" 
+                 id="mentorImg"
+                 loading="eager"
+                 fetchpriority="high"
+                 width="1672"
+                 height="941">
+          </picture>
+        </div>
+      </div>
+
+      <!-- RIGHT FLOATING GATEWAYS (Side space utilization) -->
+      <div class="side-gateways side-gateways--right">
+        <a href="#" class="side-gateway-btn side-gateway-btn--featured" id="ctaWebinar" target="_blank" rel="noopener noreferrer">
+          <span class="sgw-icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="5 3 19 12 5 21 5 3"></polygon>
+            </svg>
+          </span>
+          <span class="sgw-label">MASTERCLASS</span>
+          <span class="sgw-price">₹1,999</span>
+          <span class="sgw-arrow">→</span>
         </a>
-
-        <!-- Quick Call Action (Right) -->
-        <div class="nav-actions">
-          <a href="#" class="quick-call-cta" id="navQuickCallBtn" target="_blank" rel="noopener noreferrer">
-            <span class="quick-call-dot"></span>
-            <span class="quick-call-text">BOOK A QUICK CALL</span>
-            <svg class="quick-call-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M5 12h14"></path>
-              <path d="m12 5 7 7-7 7"></path>
+        <a href="#" class="side-gateway-btn side-gateway-btn--whatsapp" id="ctaWhatsapp" target="_blank" rel="noopener noreferrer">
+          <span class="sgw-icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+              <path d="M12 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2 22l4.832-1.438A9.955 9.955 0 0 0 12 22c5.523 0 10-4.477 10-10S17.523 2 12 2zm0 18a8 8 0 0 1-4.293-1.248l-.307-.184-2.4.713.713-2.4-.184-.307A8 8 0 1 1 12 20z"/>
             </svg>
-          </a>
-        </div>
-      </header>
+          </span>
+          <span class="sgw-label">JOIN WHATSAPP</span>
+          <span class="sgw-arrow">→</span>
+        </a>
+      </div>
 
-      <!-- CENTRAL HERO COMPOSITION -->
-      <section class="hero-composition">
+    </section>
 
-        <!-- MENTOR CENTRAL VISUAL WITH DUAL VIEWPORT ASSETS -->
-        <!-- Desktop: 1672x941 landscape cutout | Mobile: 941x1672 vertical portrait cutout -->
-        <div class="mentor-silhouette-wrap" id="mentorWrap" aria-hidden="true">
-          <div class="mentor-ambient-halo"></div>
-          <div class="mentor-image-container">
-            <picture class="mentor-picture">
-              <source media="(max-width: 820px)" srcset="assets/mentor-mobile.png">
-              <img src="assets/mentor-desktop.png" 
-                   alt="MOYA Mentor Savan Matariya" 
-                   class="mentor-hero-img" 
-                   id="mentorImg"
-                   loading="eager"
-                   fetchpriority="high"
-                   width="1672"
-                   height="941">
-            </picture>
-            <div class="mentor-blend-gradient"></div>
-          </div>
-        </div>
+    <!-- BOTTOM TYPOGRAPHY LAYER — Studiova oversized brand at bottom -->
+    <div class="bottom-typography-layer">
+      
+      <!-- Bottom-left editorial statement (like Studiova's "We create..." text) -->
+      <div class="bottom-editorial">
+        <span class="editorial-asterisk">✦</span>
+        <p class="editorial-statement">
+          The digital gateway to <span class="editorial-italic">YouTube automation</span>.
+        </p>
+      </div>
 
-        <!-- OVERSIZED BACKGROUND TYPOGRAPHY OBJECT (Reference: text-[18vw-24vw] Hirael*) -->
-        <div class="oversized-typography-container" aria-hidden="true">
-          <h1 class="oversized-title" id="oversizedTitle">
-            <span class="letter-reveal" style="--char-index: 0">M</span>
-            <span class="letter-reveal" style="--char-index: 1">O</span>
-            <span class="letter-reveal" style="--char-index: 2">Y</span>
-            <span class="letter-reveal" style="--char-index: 3">A</span>
-            <span class="superscript-mark">*</span>
-          </h1>
-        </div>
+      <!-- OVERSIZED MOYA* TITLE — full width bottom -->
+      <div class="oversized-typography-container">
+        <h1 class="oversized-title" id="oversizedTitle">
+          <span class="letter-reveal" style="--char-index: 0">M</span>
+          <span class="letter-reveal" style="--char-index: 1">O</span>
+          <span class="letter-reveal" style="--char-index: 2">Y</span>
+          <span class="letter-reveal" style="--char-index: 3">A</span>
+          <span class="superscript-mark">*</span>
+        </h1>
 
-        <!-- HERO FOREGROUND MINIMAL CONTENT -->
-        <div class="hero-foreground-grid">
-          <div class="editorial-col">
-            <p class="editorial-statement">
-              The digital gateway to <span class="editorial-italic">YouTube automation</span>.
-            </p>
-            <div class="editorial-cta-wrap">
-              <a href="#gateways" class="reference-pill-cta" id="primaryExploreBtn">
-                <span class="pill-text">Explore Pathways</span>
-                <span class="pill-icon-circle">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M12 5v14"></path>
-                    <path d="m19 12-7 7-7-7"></path>
-                  </svg>
-                </span>
-              </a>
-            </div>
-          </div>
-        </div>
-
-      </section>
-
-      <!-- ==================================================== -->
-      <!-- 4 RE-ENGINEERED SERVICE GATEWAYS                     -->
-      <!-- Minimal Text • Bold CTAs • Radiant Interactive Hover -->
-      <!-- ==================================================== -->
-      <nav class="gateway-dock" id="gateways" aria-label="MOYA Primary Pathways">
-        <div class="gateway-dock-inner">
-
-          <!-- GATEWAY 1: ONE-TO-ONE MENTORSHIP (WHATSAPP REDIRECT, NO PRICE) -->
-          <article class="gateway-card" data-gateway="mentorship" tabindex="0">
-            <div class="card-ambient-spotlight"></div>
-            <div class="card-sheen-line"></div>
-            <div class="gateway-card-header">
-              <span class="gateway-badge">1-ON-1</span>
-            </div>
-            <div class="gateway-card-body">
-              <h2 class="gateway-title">ONE-TO-ONE<br>MENTORSHIP</h2>
-              <p class="gateway-description">Build your YouTube channel with direct guidance.</p>
-            </div>
-            <div class="gateway-card-footer">
-              <a href="#" class="gateway-action-btn" id="ctaMentorship" target="_blank" rel="noopener noreferrer">
-                <span>BOOK ONE-TO-ONE CALL</span>
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M5 12h14"></path>
-                  <path d="m12 5 7 7-7 7"></path>
-                </svg>
-              </a>
-            </div>
-          </article>
-
-          <!-- GATEWAY 2: PRODUCTIONS (WHATSAPP REDIRECT) -->
-          <article class="gateway-card" data-gateway="productions" tabindex="0">
-            <div class="card-ambient-spotlight"></div>
-            <div class="card-sheen-line"></div>
-            <div class="gateway-card-header">
-              <span class="gateway-badge">STUDIO</span>
-            </div>
-            <div class="gateway-card-body">
-              <h2 class="gateway-title">PRODUCTIONS</h2>
-              <p class="gateway-description">Content production built for your channel.</p>
-            </div>
-            <div class="gateway-card-footer">
-              <a href="#" class="gateway-action-btn" id="ctaProductions" target="_blank" rel="noopener noreferrer">
-                <span>EXPLORE PRODUCTIONS</span>
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M5 12h14"></path>
-                  <path d="m12 5 7 7-7 7"></path>
-                </svg>
-              </a>
-            </div>
-          </article>
-
-          <!-- GATEWAY 3: WEBINAR (ai.mechanismofya.com, EXACTLY ₹1,999) -->
-          <article class="gateway-card featured-gateway" data-gateway="webinar" tabindex="0">
-            <div class="card-ambient-spotlight"></div>
-            <div class="card-sheen-line"></div>
-            <div class="gateway-card-header">
-              <span class="gateway-badge webinar-badge">MASTERCLASS</span>
-              <span class="gateway-price-tag">₹1,999</span>
-            </div>
-            <div class="gateway-card-body">
-              <h2 class="gateway-title">YOUTUBE AUTOMATION<br>MASTERCLASS</h2>
-              <p class="gateway-description">Step-by-step systems to build and monetize channels.</p>
-            </div>
-            <div class="gateway-card-footer">
-              <a href="#" class="gateway-action-btn primary-gateway-btn" id="ctaWebinar" target="_blank" rel="noopener noreferrer">
-                <span>JOIN WEBINAR &bull; ₹1,999</span>
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M5 12h14"></path>
-                  <path d="m12 5 7 7-7 7"></path>
-                </svg>
-              </a>
-            </div>
-          </article>
-
-          <!-- GATEWAY 4: WHATSAPP CHANNEL (DIRECT CHANNEL LINK) -->
-          <article class="gateway-card" data-gateway="whatsapp" tabindex="0">
-            <div class="card-ambient-spotlight"></div>
-            <div class="card-sheen-line"></div>
-            <div class="gateway-card-header">
-              <span class="gateway-badge whatsapp-badge">COMMUNITY</span>
-            </div>
-            <div class="gateway-card-body">
-              <h2 class="gateway-title">JOIN WHATSAPP<br>CHANNEL</h2>
-              <p class="gateway-description">Get MOYA updates, insights and upcoming opportunities.</p>
-            </div>
-            <div class="gateway-card-footer">
-              <a href="#" class="gateway-action-btn whatsapp-action-btn" id="ctaWhatsapp" target="_blank" rel="noopener noreferrer">
-                <span>JOIN WHATSAPP</span>
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M5 12h14"></path>
-                  <path d="m12 5 7 7-7 7"></path>
-                </svg>
-              </a>
-            </div>
-          </article>
-
-        </div>
-      </nav>
-
-      <!-- MINIMAL FOOTER STRIP -->
-      <footer class="hero-signature-strip">
-        <div class="signature-left">
-          <span>&copy; <span id="currentYear">2026</span> MOYA</span>
-        </div>
-        <div class="signature-right">
-          <a href="#" id="footerQuickCall" target="_blank" rel="noopener noreferrer" class="footer-chat-link">
-            <span>DIRECT CHAT</span>
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-              <path d="M5 12h14"></path>
-              <path d="m12 5 7 7-7 7"></path>
-            </svg>
-          </a>
-        </div>
-      </footer>
+        <!-- Pill CTA next to brand name (like Studiova's arrow button) -->
+        <a href="#" class="brand-pill-cta" id="navQuickCallBtn" target="_blank" rel="noopener noreferrer">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M7 17L17 7"></path>
+            <path d="M7 7h10v10"></path>
+          </svg>
+        </a>
+      </div>
 
     </div>
+
+    <!-- MINIMAL FOOTER STRIP -->
+    <footer class="hero-signature-strip">
+      <div class="signature-left">
+        <span>&copy; <span id="currentYear">2026</span> MOYA</span>
+      </div>
+      <div class="signature-right">
+        <a href="#" id="footerQuickCall" target="_blank" rel="noopener noreferrer" class="footer-chat-link">
+          <span>DIRECT CHAT</span>
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <path d="M5 12h14"></path>
+            <path d="m12 5 7 7-7 7"></path>
+          </svg>
+        </a>
+      </div>
+    </footer>
+
+    <!-- MOBILE GATEWAY DOCK (Visible only on mobile/tablet) -->
+    <nav class="mobile-gateway-dock" id="mobileGateways" aria-label="MOYA Primary Pathways">
+      <a href="#" class="mobile-gw-btn" id="ctaMentorshipMobile" target="_blank" rel="noopener noreferrer">
+        <span class="mobile-gw-label">1:1 MENTORSHIP</span>
+      </a>
+      <a href="#" class="mobile-gw-btn" id="ctaProductionsMobile" target="_blank" rel="noopener noreferrer">
+        <span class="mobile-gw-label">PRODUCTIONS</span>
+      </a>
+      <a href="#" class="mobile-gw-btn mobile-gw-btn--featured" id="ctaWebinarMobile" target="_blank" rel="noopener noreferrer">
+        <span class="mobile-gw-label">MASTERCLASS • ₹1,999</span>
+      </a>
+      <a href="#" class="mobile-gw-btn mobile-gw-btn--whatsapp" id="ctaWhatsappMobile" target="_blank" rel="noopener noreferrer">
+        <span class="mobile-gw-label">JOIN WHATSAPP</span>
+      </a>
+    </nav>
+
   </main>
 
   <script src="main.js"></script>

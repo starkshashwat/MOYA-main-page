@@ -1,6 +1,6 @@
 /**
- * MOYA GATEWAY HERO CONTROLLER
- * Architectural Scripts, WhatsApp Routing & Re-Engineered Card Interactions
+ * MOYA GATEWAY HERO CONTROLLER — STUDIOVA LAYOUT
+ * Centered Composition, Side Gateways, Mobile Dock
  */
 
 // ==========================================================================
@@ -27,11 +27,11 @@ document.addEventListener('DOMContentLoaded', () => {
   // Subtle cursor parallax on hero ambient glow & mentor silhouette
   initCursorParallax();
 
-  // Magnetic hover effect on primary pill CTAs
+  // Magnetic hover effect on pill CTA
   initMagneticButtons();
 
-  // Re-engineered 3D Tilt & Dynamic Cursor Spotlight on Service Cards
-  initReEngineeredCards();
+  // Hover effects on side gateway buttons
+  initSideGatewayEffects();
 
   // Year in signature footer
   const yearEl = document.getElementById('currentYear');
@@ -42,15 +42,22 @@ document.addEventListener('DOMContentLoaded', () => {
 
 /**
  * Connect all anchor elements to MOYA_CONFIG
+ * Supports both desktop side gateways and mobile dock duplicates
  */
 function initUrlBindings() {
   const bindings = [
+    // Desktop side gateways
     { id: 'navQuickCallBtn', url: MOYA_CONFIG.quickCallUrl },
     { id: 'footerQuickCall', url: MOYA_CONFIG.quickCallUrl },
     { id: 'ctaMentorship', url: MOYA_CONFIG.mentorshipUrl },
     { id: 'ctaProductions', url: MOYA_CONFIG.productionsUrl },
     { id: 'ctaWebinar', url: MOYA_CONFIG.webinarUrl },
-    { id: 'ctaWhatsapp', url: MOYA_CONFIG.whatsappUrl }
+    { id: 'ctaWhatsapp', url: MOYA_CONFIG.whatsappUrl },
+    // Mobile dock duplicates
+    { id: 'ctaMentorshipMobile', url: MOYA_CONFIG.mentorshipUrl },
+    { id: 'ctaProductionsMobile', url: MOYA_CONFIG.productionsUrl },
+    { id: 'ctaWebinarMobile', url: MOYA_CONFIG.webinarUrl },
+    { id: 'ctaWhatsappMobile', url: MOYA_CONFIG.whatsappUrl }
   ];
 
   bindings.forEach(b => {
@@ -61,18 +68,6 @@ function initUrlBindings() {
       el.setAttribute('rel', 'noopener noreferrer');
     }
   });
-
-  // Primary Explore scroll-to-dock button
-  const exploreBtn = document.getElementById('primaryExploreBtn');
-  if (exploreBtn) {
-    exploreBtn.addEventListener('click', (e) => {
-      e.preventDefault();
-      const gateways = document.getElementById('gateways');
-      if (gateways) {
-        gateways.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-      }
-    });
-  }
 }
 
 /**
@@ -133,20 +128,20 @@ function initCursorParallax() {
 }
 
 /**
- * Magnetic button hover effect
+ * Magnetic button hover effect on pill CTA
  */
 function initMagneticButtons() {
   const isReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const isTouch = window.matchMedia('(pointer: coarse)').matches;
   if (isReduced || isTouch) return;
 
-  const buttons = document.querySelectorAll('.reference-pill-cta, .quick-call-cta');
+  const buttons = document.querySelectorAll('.brand-pill-cta');
   buttons.forEach(btn => {
     btn.addEventListener('mousemove', (e) => {
       const rect = btn.getBoundingClientRect();
       const x = e.clientX - rect.left - rect.width / 2;
       const y = e.clientY - rect.top - rect.height / 2;
-      btn.style.transform = `translate3d(${x * 0.22}px, ${y * 0.22}px, 0)`;
+      btn.style.transform = `translate3d(${x * 0.3}px, ${y * 0.3}px, 0) scale(1.1)`;
     });
 
     btn.addEventListener('mouseleave', () => {
@@ -156,56 +151,28 @@ function initMagneticButtons() {
 }
 
 /**
- * Re-Engineered 3D Tilt & Dynamic Spotlight on Service Cards
+ * Side gateway hover enhancements — subtle glow pulse on hover
  */
-function initReEngineeredCards() {
-  const cards = document.querySelectorAll('.gateway-card');
+function initSideGatewayEffects() {
   const isReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const isTouch = window.matchMedia('(pointer: coarse)').matches;
+  if (isReduced || isTouch) return;
 
-  cards.forEach(card => {
-    const spotlight = card.querySelector('.card-ambient-spotlight');
-
-    if (!isReduced && !isTouch) {
-      card.addEventListener('mousemove', (e) => {
-        const rect = card.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-
-        // Dynamic Spotlight coordinate update
-        card.style.setProperty('--mouse-x', `${x}px`);
-        card.style.setProperty('--mouse-y', `${y}px`);
-
-        // Subtle 3D perspective tilt
-        const centerX = rect.width / 2;
-        const centerY = rect.height / 2;
-        const rotateX = ((y - centerY) / centerY) * -6; // max 6 deg tilt
-        const rotateY = ((x - centerX) / centerX) * 6;
-
-        card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-6px) scale(1.015)`;
-      });
-
-      card.addEventListener('mouseleave', () => {
-        card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0) scale(1)';
-      });
-    }
-
-    // Direct card click redirects to action link
-    card.addEventListener('click', (e) => {
-      const actionBtn = card.querySelector('.gateway-action-btn');
-      if (actionBtn && !e.target.closest('.gateway-action-btn')) {
-        window.open(actionBtn.href, '_blank', 'noopener,noreferrer');
+  const gateways = document.querySelectorAll('.side-gateway-btn');
+  gateways.forEach(btn => {
+    btn.addEventListener('mouseenter', () => {
+      const icon = btn.querySelector('.sgw-icon');
+      if (icon) {
+        icon.style.background = 'rgba(255, 255, 255, 0.15)';
+        icon.style.transform = 'scale(1.1)';
       }
     });
 
-    // Keyboard navigation (Enter or Space)
-    card.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter' || e.key === ' ') {
-        e.preventDefault();
-        const actionBtn = card.querySelector('.gateway-action-btn');
-        if (actionBtn) {
-          window.open(actionBtn.href, '_blank', 'noopener,noreferrer');
-        }
+    btn.addEventListener('mouseleave', () => {
+      const icon = btn.querySelector('.sgw-icon');
+      if (icon) {
+        icon.style.background = 'rgba(255, 255, 255, 0.08)';
+        icon.style.transform = 'scale(1)';
       }
     });
   });
