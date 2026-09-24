@@ -198,67 +198,109 @@ function initCarouselScrollSync() {
   const dots = document.querySelectorAll('.carousel-dot');
   const prevBtn = document.getElementById('carouselPrevBtn');
   const nextBtn = document.getElementById('carouselNextBtn');
-  const cards = document.querySelectorAll('.intent-card');
+  const cards = Array.from(document.querySelectorAll('.intent-card'));
 
-  if (!grid) return;
+  if (!grid || !cards.length) return;
+
+  let currentActiveIndex = 0;
+
+  // Calculates which card is currently closest to the center of the mobile screen
+  function getClosestCardIndex() {
+    const gridCenter = grid.scrollLeft + grid.clientWidth / 2;
+    let closestIndex = 0;
+    let closestDistance = Infinity;
+
+    cards.forEach((card, idx) => {
+      const cardCenter = card.offsetLeft + card.offsetWidth / 2;
+      const dist = Math.abs(gridCenter - cardCenter);
+      if (dist < closestDistance) {
+        closestDistance = dist;
+        closestIndex = idx;
+      }
+    });
+
+    return closestIndex;
+  }
 
   function updateControlsState() {
-    const scrollLeft = grid.scrollLeft;
-    const maxScroll = grid.scrollWidth - grid.clientWidth;
-    if (maxScroll <= 0) return;
+    currentActiveIndex = getClosestCardIndex();
 
-    // Update dots based on scroll position
-    const progress = Math.max(0, Math.min(1, scrollLeft / maxScroll));
-    const activeIndex = Math.min(dots.length - 1, Math.round(progress * (dots.length - 1)));
-
+    // Update pagination dots
     dots.forEach((dot, idx) => {
-      dot.classList.toggle('is-active', idx === activeIndex);
+      dot.classList.toggle('is-active', idx === currentActiveIndex);
     });
 
-    // Update arrow button disabled status
+    // Arrow visual indicators (always clickable and functional, slightly dimmer at absolute edges)
+    const maxScroll = grid.scrollWidth - grid.clientWidth;
     if (prevBtn) {
-      prevBtn.classList.toggle('is-disabled', scrollLeft <= 8);
+      prevBtn.classList.toggle('is-disabled', currentActiveIndex === 0 && grid.scrollLeft <= 5);
     }
     if (nextBtn) {
-      nextBtn.classList.toggle('is-disabled', scrollLeft >= maxScroll - 8);
+      nextBtn.classList.toggle('is-disabled', currentActiveIndex === cards.length - 1 && grid.scrollLeft >= maxScroll - 5);
     }
   }
 
-  // Scroll listener
-  grid.addEventListener('scroll', updateControlsState, { passive: true });
-  // Initial check
-  updateControlsState();
+  // Smoothly center a specific card index in viewport
+  function scrollToCard(index) {
+    if (index < 0) index = cards.length - 1;
+    if (index >= cards.length) index = 0;
 
-  // Prev Button Click
-  if (prevBtn) {
-    prevBtn.addEventListener('click', () => {
-      pauseAutoScrollTemporarily();
-      const step = grid.firstElementChild ? grid.firstElementChild.offsetWidth + 10 : grid.clientWidth * 0.55;
-      grid.scrollBy({ left: -step, behavior: 'smooth' });
+    currentActiveIndex = index;
+    const targetCard = cards[index];
+    if (!targetCard) return;
+
+    // Calculate exact left offset to center the card on mobile
+    const targetLeft = targetCard.offsetLeft - grid.offsetLeft - (grid.clientWidth - targetCard.offsetWidth) / 2;
+
+    grid.scrollTo({
+      left: Math.max(0, targetLeft),
+      behavior: 'smooth'
+    });
+
+    // Instant dot update for crisp visual response
+    dots.forEach((dot, idx) => {
+      dot.classList.toggle('is-active', idx === index);
     });
   }
 
-  // Next Button Click
-  if (nextBtn) {
-    nextBtn.addEventListener('click', () => {
+  // Scroll listener with requestAnimationFrame
+  grid.addEventListener('scroll', () => {
+    window.requestAnimationFrame(updateControlsState);
+  }, { passive: true });
+
+  // Initial check after DOM paint
+  setTimeout(updateControlsState, 120);
+
+  // Prev Button Click - Moves 1 card left (or wraps around to the last card)
+  if (prevBtn) {
+    prevBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
       pauseAutoScrollTemporarily();
-      const maxScroll = grid.scrollWidth - grid.clientWidth;
-      const step = grid.firstElementChild ? grid.firstElementChild.offsetWidth + 10 : grid.clientWidth * 0.55;
-      if (grid.scrollLeft >= maxScroll - 10) {
-        grid.scrollTo({ left: 0, behavior: 'smooth' });
-      } else {
-        grid.scrollBy({ left: step, behavior: 'smooth' });
-      }
+      const current = getClosestCardIndex();
+      const prevIndex = current > 0 ? current - 1 : cards.length - 1;
+      scrollToCard(prevIndex);
+    });
+  }
+
+  // Next Button Click - Moves 1 card right (or wraps around to the first card)
+  if (nextBtn) {
+    nextBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      pauseAutoScrollTemporarily();
+      const current = getClosestCardIndex();
+      const nextIndex = current < cards.length - 1 ? current + 1 : 0;
+      scrollToCard(nextIndex);
     });
   }
 
   // Dot Click Navigation
   dots.forEach((dot, idx) => {
-    dot.addEventListener('click', () => {
+    dot.addEventListener('click', (e) => {
+      e.preventDefault();
       pauseAutoScrollTemporarily();
-      if (cards[idx]) {
-        cards[idx].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
-      }
+      scrollToCard(idx);
     });
   });
 
@@ -289,15 +331,9 @@ function initCarouselScrollSync() {
         return;
       }
 
-      const maxScroll = grid.scrollWidth - grid.clientWidth;
-      if (maxScroll <= 0) return;
-
-      const step = grid.firstElementChild ? grid.firstElementChild.offsetWidth + 10 : 160;
-      if (grid.scrollLeft >= maxScroll - 12) {
-        grid.scrollTo({ left: 0, behavior: 'smooth' });
-      } else {
-        grid.scrollBy({ left: step, behavior: 'smooth' });
-      }
+      const current = getClosestCardIndex();
+      const next = (current + 1) % cards.length;
+      scrollToCard(next);
     }, 3800);
   }
 
@@ -565,6 +601,7 @@ function initIntentCardHover() {
       // 1. Lift hovered card
       gsap.to(card, {
         scale: 1.025,
+        zIndex: 25,
         transformPerspective: 1000,
         duration: 0.35,
         ease: "power2.out",
@@ -613,6 +650,7 @@ function initIntentCardHover() {
         rotateY: 0,
         y: isSelected ? -4 : 0,
         scale: 1,
+        zIndex: isSelected ? 20 : 5,
         duration: 0.55,
         ease: "power3.out",
         overwrite: "auto"

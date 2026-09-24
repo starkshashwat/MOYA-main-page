@@ -558,6 +558,7 @@ body {
 /* Individual Intent Card (21st.dev Selectable Architectural Card) */
 .intent-card {
   position: relative;
+  z-index: 5;
   background: linear-gradient(180deg, rgba(16, 14, 25, 0.84) 0%, rgba(10, 9, 15, 0.95) 100%);
   border: 1px solid rgba(157, 101, 255, 0.18);
   border-radius: 18px;
@@ -576,13 +577,15 @@ body {
   transition: border-color 0.3s cubic-bezier(0.16, 1, 0.3, 1), 
               box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1), 
               background 0.3s cubic-bezier(0.16, 1, 0.3, 1), 
-              transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+              transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+              z-index 0.15s ease;
   will-change: transform, opacity;
   transform-style: preserve-3d;
 }
 
 /* Card Hover Elevation & Subtle Glow */
 .intent-card:hover {
+  z-index: 20;
   border-color: rgba(157, 101, 255, 0.6);
   background: linear-gradient(180deg, rgba(25, 20, 40, 0.9) 0%, rgba(13, 10, 22, 0.97) 100%);
   box-shadow: 0 16px 36px -8px rgba(157, 101, 255, 0.3), 0 0 16px rgba(157, 101, 255, 0.16), inset 0 1px 0 rgba(255, 255, 255, 0.14);
@@ -597,6 +600,7 @@ body {
 }
 
 .intent-card--featured:hover {
+  z-index: 20;
   border-color: rgba(245, 197, 24, 0.88);
   background: linear-gradient(180deg, rgba(38, 30, 14, 0.92) 0%, rgba(18, 14, 8, 0.98) 100%);
   box-shadow: 0 16px 36px -8px rgba(245, 197, 24, 0.35), 0 0 18px rgba(245, 197, 24, 0.2), inset 0 1px 0 rgba(245, 197, 24, 0.3);
@@ -605,6 +609,7 @@ body {
 
 /* ACTIVE / SELECTED CARD STATES */
 .intent-card.is-selected {
+  z-index: 20 !important;
   border-color: var(--accent-violet) !important;
   background: linear-gradient(180deg, rgba(36, 26, 62, 0.95) 0%, rgba(18, 14, 30, 0.98) 100%) !important;
   box-shadow: 0 0 30px rgba(157, 101, 255, 0.45), 0 16px 32px rgba(0, 0, 0, 0.7), inset 0 0 18px rgba(157, 101, 255, 0.2) !important;
@@ -618,6 +623,7 @@ body {
 }
 
 .intent-card--featured.is-selected {
+  z-index: 20 !important;
   border-color: var(--accent-gold) !important;
   background: linear-gradient(180deg, rgba(42, 34, 16, 0.95) 0%, rgba(20, 16, 10, 0.98) 100%) !important;
   box-shadow: 0 0 30px rgba(245, 197, 24, 0.45), 0 16px 32px rgba(0, 0, 0, 0.7), inset 0 0 18px rgba(245, 197, 24, 0.2) !important;
@@ -1027,6 +1033,8 @@ body {
    ========================================================================== */
 
 .dynamic-cta-stage {
+  position: relative;
+  z-index: 30;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -1046,7 +1054,9 @@ body {
 
 .dynamic-cta-stage.is-visible {
   opacity: 1;
-  max-height: 80px;
+  max-height: 100px;
+  padding: 0.5rem 0;
+  overflow: visible;
   transform: translateY(0) scale(1);
   pointer-events: auto;
 }
@@ -1202,7 +1212,8 @@ body {
   }
 
   .founder-backdrop-text {
-    font-size: clamp(1.85rem, 8.5vw, 2.75rem) !important;
+    font-size: clamp(2.35rem, 10.5vw, 3.25rem) !important;
+    line-height: 1;
     letter-spacing: -0.02em;
     max-width: 100%;
     display: block;
@@ -1251,6 +1262,8 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    position: relative;
+    z-index: 10;
   }
 
   .intent-header-wrap {
@@ -1276,16 +1289,18 @@ body {
 
   /* Horizontally Scrollable Cards Track (2 Cards Visible Side-by-Side) */
   .intent-cards-grid {
+    position: relative;
+    z-index: 10;
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
     overflow-x: auto;
-    overflow-y: visible; /* CRITICAL: Prevents top border/bracket clipping on elevation */
+    overflow-y: visible;
     gap: 0.6rem;
     width: 100%;
-    padding: 0.85rem 0.35rem 0.95rem 0.35rem; /* Generous headroom for translateY(-4px) and top glow */
+    padding: 1.15rem 0.5rem 1.65rem 0.5rem; /* Generous breathing room for bottom and top glows */
     margin-top: -0.35rem;
-    margin-bottom: -0.25rem;
+    margin-bottom: -1.0rem; /* Offsets padding so cards connect seamlessly with nav controls */
     scroll-snap-type: x mandatory;
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
@@ -1345,6 +1360,9 @@ body {
 
   /* Mobile Carousel Navigation Controls (Arrows + Dots) */
   .carousel-nav-control {
+    position: relative;
+    z-index: 15;
+    background: transparent;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1379,8 +1397,7 @@ body {
   }
 
   .carousel-nav-btn.is-disabled {
-    opacity: 0.3;
-    pointer-events: none;
+    opacity: 0.5;
   }
 
   .cards-carousel-dots {
@@ -1410,6 +1427,8 @@ body {
 
   /* Dynamic CTA Stage on Mobile */
   .dynamic-cta-stage {
+    position: relative;
+    z-index: 30;
     margin-top: 0.85rem;
     width: 100%;
   }
