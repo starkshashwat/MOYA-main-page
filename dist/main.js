@@ -39,10 +39,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // 4. Initialize Card mouse spotlight tracking (Linear style)
   initCardSpotlight();
 
-  // 5. Initialize Live Calendar of Events Modal
-  initEventsCalendarModal();
-
-  // 6. Initialize GSAP animations
+  // 5. Initialize GSAP animations
   if (typeof gsap !== 'undefined') {
     initGatewayEntrance();
     initBadgeFloatingMotion();
@@ -73,11 +70,8 @@ function initUrlBindings() {
     const el = document.getElementById(b.id);
     if (el) {
       el.href = b.url;
-      // Do not open modal trigger in new tab
-      if (b.id !== 'pathLive') {
-        el.setAttribute('target', '_blank');
-        el.setAttribute('rel', 'noopener noreferrer');
-      }
+      el.setAttribute('target', '_blank');
+      el.setAttribute('rel', 'noopener noreferrer');
     }
   });
 }
@@ -436,77 +430,5 @@ function initFounderParallax() {
     movePortraitY(0);
     if (moveTextX) moveTextX(0);
   });
-}
-
-/**
- * ==========================================================================
- * 8. LIVE CALENDAR OF EVENTS MODAL CONTROLLER
- * Handles modal open/close, focus trapping, ESC key listener, and hash routing
- * ==========================================================================
- */
-function initEventsCalendarModal() {
-  const modal = document.getElementById('eventsModal');
-  const openBtn = document.getElementById('pathLive');
-  const closeBtn = document.getElementById('eventsCloseBtn');
-  const backdrop = document.getElementById('eventsBackdrop');
-  const cohortApplyBtn = document.getElementById('cohortApplyBtn');
-
-  if (!modal) return;
-
-  function openModal(e) {
-    if (e) e.preventDefault();
-    modal.classList.add('is-active');
-    modal.setAttribute('aria-hidden', 'false');
-    document.body.style.overflow = 'hidden';
-
-    // GSAP entrance if available
-    if (typeof gsap !== 'undefined') {
-      const sheet = modal.querySelector('.events-modal-sheet');
-      if (sheet) {
-        gsap.fromTo(sheet, 
-          { scale: 0.94, y: 16, autoAlpha: 0 }, 
-          { scale: 1, y: 0, autoAlpha: 1, duration: 0.35, ease: "power3.out" }
-        );
-      }
-    }
-  }
-
-  function closeModal() {
-    modal.classList.remove('is-active');
-    modal.setAttribute('aria-hidden', 'true');
-    document.body.style.overflow = '';
-  }
-
-  // Trigger from Card 5 button
-  if (openBtn) {
-    openBtn.addEventListener('click', openModal);
-  }
-
-  // Close triggers
-  if (closeBtn) {
-    closeBtn.addEventListener('click', closeModal);
-  }
-
-  if (backdrop) {
-    backdrop.addEventListener('click', closeModal);
-  }
-
-  if (cohortApplyBtn) {
-    cohortApplyBtn.addEventListener('click', () => {
-      closeModal();
-    });
-  }
-
-  // ESC key listener
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && modal.classList.contains('is-active')) {
-      closeModal();
-    }
-  });
-
-  // Check URL hash on load (e.g. #events)
-  if (window.location.hash === '#events') {
-    setTimeout(openModal, 350);
-  }
 }
 
