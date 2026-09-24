@@ -982,24 +982,113 @@ body {
 }
 
 /* ==========================================================================
-   8. MOBILE VIEW AUDIT (2-Column Bento: All 5 Cards Visible Together)
+   8. RESPONSIVE VIEWPORT SYSTEM (Tablets & Mobile Netlify Fix)
    ========================================================================== */
 
-@media (max-width: 900px) {
+/* Tablet & Intermediate Screens (641px - 1024px) */
+@media (min-width: 641px) and (max-width: 1024px) {
   .gateway-container {
-    padding: 0.5rem 1rem 0.75rem 1rem;
+    padding: 0.75rem 1.5rem 1rem 1.5rem;
   }
 
   .founder-orbit-container {
-    min-height: 250px;
+    min-height: 290px;
   }
 
   .founder-portrait-frame {
-    height: 245px;
+    height: 290px;
   }
 
+  .intent-cards-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.85rem;
+  }
+
+  /* Card 5 Spans Full Width on 2-col tablet */
+  #cardLive {
+    grid-column: span 2;
+  }
+
+  .intent-card {
+    min-height: 195px;
+    padding: 1.15rem 1rem 1rem 1rem;
+  }
+}
+
+/* Mobile Screens (Phone Viewport: <= 640px) — Fixes Netlify Mobile Breakage */
+@media (max-width: 640px) {
+  html, body {
+    overflow-x: hidden;
+    width: 100%;
+  }
+
+  .gateway-root {
+    overflow-x: hidden;
+  }
+
+  .gateway-container {
+    padding: 0.4rem 0.85rem 1.5rem 0.85rem;
+    max-width: 100vw;
+  }
+
+  /* Top Nav Compact Sizing */
+  .top-nav-bar {
+    padding: 0.65rem 0.85rem;
+  }
+
+  .brand-logo-img {
+    width: 112px;
+    height: auto;
+  }
+
+  .social-icon-btn {
+    width: 32px;
+    height: 32px;
+  }
+
+  /* Founder Backdrop Name: Prevents canvas blowout */
+  .founder-backdrop-text {
+    font-size: clamp(1.85rem, 8.5vw, 2.9rem) !important;
+    letter-spacing: -0.02em;
+    max-width: 100vw;
+  }
+
+  .founder-orbit-container {
+    min-height: 235px;
+  }
+
+  .founder-portrait-frame {
+    height: 225px;
+  }
+
+  /* Floating Metric Badges: Compact, balanced sidelines */
+  .floating-metric-badge {
+    padding: 0.3rem 0.5rem;
+    border-radius: 9px;
+    gap: 0.35rem;
+    max-width: 128px;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.7);
+  }
+
+  .badge-icon {
+    font-size: 0.82rem;
+  }
+
+  .badge-value {
+    font-size: 0.72rem;
+  }
+
+  .badge-label {
+    font-size: 0.52rem;
+  }
+
+  .badge--top-left { top: 5%; left: 0%; }
+  .badge--bottom-left { bottom: 4%; left: 0%; }
+  .badge--top-right { top: 5%; right: 0%; }
+  .badge--bottom-right { bottom: 4%; right: 0%; }
+
   .architectural-divider {
-    margin: 0.4rem auto 1rem auto;
+    margin: 0.35rem auto 1rem auto;
   }
 
   .intent-header-wrap {
@@ -1007,50 +1096,80 @@ body {
   }
 
   .intent-main-title {
-    font-size: 1.35rem;
+    font-size: clamp(1.35rem, 5.5vw, 1.75rem);
+    line-height: 1.2;
+    gap: 0.35rem;
   }
 
+  .title-sub {
+    font-size: 0.8rem;
+  }
+
+  /* 1-Column Responsive Stream: Maximum clarity, no squeezed text */
   .intent-cards-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 0.65rem;
+    grid-template-columns: 1fr;
+    gap: 0.85rem;
+    perspective: none;
   }
 
   .intent-card {
-    min-height: 165px;
-    padding: 0.9rem 0.85rem 0.8rem 0.85rem;
-    border-radius: 14px;
+    min-height: auto;
+    padding: 1.15rem 1.1rem 1.1rem 1.1rem;
+    border-radius: 16px;
   }
 
-  /* Card 5 Spans Full Width */
   #cardLive {
-    grid-column: span 2;
+    grid-column: span 1;
   }
 
   .card-meta-bar {
-    margin-bottom: 0.65rem;
+    margin-bottom: 0.75rem;
   }
 
   .card-intent-heading {
-    font-size: 0.88rem;
-    margin-bottom: 0.25rem;
+    font-size: 1.05rem;
+    line-height: 1.25;
+    margin-bottom: 0.35rem;
   }
 
   .card-supporting-line {
-    font-size: 0.7rem;
+    font-size: 0.78rem;
+    line-height: 1.45;
     min-height: auto;
-    margin-bottom: 0.85rem;
+    margin-bottom: 1.05rem;
   }
 
+  /* Full-width touch friendly Hyperiux buttons */
   .arrow-fill-btn {
-    height: 38px;
-    font-size: 0.72rem;
-    padding-right: 38px;
+    height: 42px;
+    font-size: 0.78rem;
+    padding: 0 1rem;
+    padding-right: 42px;
   }
 
   .arrow-fill-btn::before,
   .arrow-fill-btn .btn-arrow-circle {
-    width: 28px;
-    height: 28px;
+    width: 32px;
+    height: 32px;
+  }
+}
+
+/* Extra small devices (<= 380px: iPhone SE, Galaxy Fold) */
+@media (max-width: 380px) {
+  .floating-metric-badge {
+    padding: 0.22rem 0.42rem;
+    max-width: 110px;
+  }
+
+  .badge-value { font-size: 0.65rem; }
+  .badge-label { font-size: 0.48rem; }
+  
+  .card-intent-heading {
+    font-size: 0.98rem;
+  }
+
+  .arrow-fill-btn {
+    font-size: 0.74rem;
   }
 }
 
