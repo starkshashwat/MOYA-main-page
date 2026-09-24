@@ -24,7 +24,7 @@ const MOYA_CONFIG = {
 };
 
 document.addEventListener('DOMContentLoaded', () => {
-  // 1. Bind URLs to clickable elements
+  // 1. Bind URLs to social channels
   initUrlBindings();
 
   // 2. Set current copyright year
@@ -33,13 +33,19 @@ document.addEventListener('DOMContentLoaded', () => {
     yearEl.textContent = new Date().getFullYear();
   }
 
-  // 3. Initialize Glitch Word Alternator ("Choose Your Goal / Path / System...")
+  // 3. Initialize Interactive Goal Card Selection & Dynamic CTA Button
+  initGoalSelection();
+
+  // 4. Initialize Mobile Horizontal Carousel Sync
+  initCarouselScrollSync();
+
+  // 5. Initialize Glitch Word Alternator ("Choose Your Goal / Path / System...")
   initGlitchWordRotator();
 
-  // 4. Initialize Card mouse spotlight tracking (Linear style)
+  // 6. Initialize Card mouse spotlight tracking (Linear style)
   initCardSpotlight();
 
-  // 5. Initialize GSAP animations
+  // 7. Initialize GSAP animations
   if (typeof gsap !== 'undefined') {
     initGatewayEntrance();
     initBadgeFloatingMotion();
@@ -49,17 +55,10 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 /**
- * Connect anchor elements to MOYA_CONFIG
+ * Connect social anchor elements to MOYA_CONFIG
  */
 function initUrlBindings() {
   const bindings = [
-    // 5 Intent Pathways
-    { id: 'pathStart', url: MOYA_CONFIG.webinarUrl },
-    { id: 'pathStuck', url: MOYA_CONFIG.mentorshipUrl },
-    { id: 'pathTeam', url: MOYA_CONFIG.productionsUrl },
-    { id: 'pathSystem', url: MOYA_CONFIG.courseUrl },
-    { id: 'pathLive', url: MOYA_CONFIG.eventsUrl },
-    
     // Social Media Icons
     { id: 'socialYoutube', url: MOYA_CONFIG.youtubeUrl },
     { id: 'socialInstagram', url: MOYA_CONFIG.instagramUrl },
@@ -74,6 +73,132 @@ function initUrlBindings() {
       el.setAttribute('rel', 'noopener noreferrer');
     }
   });
+}
+
+/**
+ * ==========================================================================
+ * 1B. DYNAMIC SELECTION PORTAL ENGINE
+ * Interactive choice cards + Dynamic action button below the cards
+ * ==========================================================================
+ */
+const GOAL_PORTALS = {
+  cardStart: {
+    label: "Launch My Channel",
+    url: MOYA_CONFIG.webinarUrl,
+    theme: "gold"
+  },
+  cardStuck: {
+    label: "Fix My Growth",
+    url: MOYA_CONFIG.mentorshipUrl,
+    theme: "violet"
+  },
+  cardTeam: {
+    label: "Build With Team",
+    url: MOYA_CONFIG.productionsUrl,
+    theme: "violet"
+  },
+  cardSystem: {
+    label: "Get The System",
+    url: MOYA_CONFIG.courseUrl,
+    theme: "violet"
+  },
+  cardLive: {
+    label: "Explore Events",
+    url: MOYA_CONFIG.eventsUrl,
+    theme: "violet"
+  }
+};
+
+function initGoalSelection() {
+  const cards = document.querySelectorAll('.intent-card');
+  const ctaStage = document.getElementById('dynamicCtaStage');
+  const actionBtn = document.getElementById('dynamicActionBtn');
+  const btnLabel = document.getElementById('dynamicBtnLabel');
+
+  if (!cards.length) return;
+
+  cards.forEach(card => {
+    function handleSelect() {
+      const goal = GOAL_PORTALS[card.id];
+      if (!goal) return;
+
+      // 1. Remove active state from all cards
+      cards.forEach(c => {
+        c.classList.remove('is-selected');
+        c.setAttribute('aria-checked', 'false');
+        if (typeof gsap !== 'undefined') {
+          gsap.to(c, { y: 0, duration: 0.3, ease: "power2.out" });
+        }
+      });
+
+      // 2. Activate selected card
+      card.classList.add('is-selected');
+      card.setAttribute('aria-checked', 'true');
+      if (typeof gsap !== 'undefined') {
+        gsap.to(card, { y: -4, duration: 0.35, ease: "back.out(2)" });
+      }
+
+      // 3. Update & reveal the dynamic action button
+      if (actionBtn && btnLabel && ctaStage) {
+        actionBtn.classList.remove('btn-gold', 'btn-violet');
+        actionBtn.classList.add(`btn-${goal.theme}`);
+        actionBtn.href = goal.url;
+        btnLabel.textContent = goal.label;
+
+        ctaStage.classList.add('is-visible');
+
+        // Micro punch entrance animation
+        if (typeof gsap !== 'undefined') {
+          gsap.fromTo(actionBtn,
+            { scale: 0.94, opacity: 0.8 },
+            { scale: 1, opacity: 1, duration: 0.28, ease: "back.out(2)" }
+          );
+        }
+      }
+
+      // 4. On mobile, smoothly center the selected card in horizontal view
+      if (window.innerWidth <= 640) {
+        card.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+      }
+    }
+
+    card.addEventListener('click', handleSelect);
+    card.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        handleSelect();
+      }
+    });
+  });
+}
+
+/**
+ * ==========================================================================
+ * 1C. MOBILE HORIZONTAL CAROUSEL SYNC
+ * Updates carousel pagination dots as user scrolls horizontally
+ * ==========================================================================
+ */
+function initCarouselScrollSync() {
+  const grid = document.getElementById('intentGrid');
+  const dots = document.querySelectorAll('.carousel-dot');
+  if (!grid || !dots.length) return;
+
+  grid.addEventListener('scroll', () => {
+    const scrollLeft = grid.scrollLeft;
+    const maxScroll = grid.scrollWidth - grid.clientWidth;
+    if (maxScroll <= 0) return;
+
+    const progress = scrollLeft / maxScroll;
+    const activeIndex = Math.min(dots.length - 1, Math.round(progress * (dots.length - 1)));
+
+    dots.forEach((dot, idx) => {
+      if (idx === activeIndex) {
+        dot.classList.add('is-active');
+      } else {
+        dot.classList.remove('is-active');
+      }
+    });
+  }, { passive: true });
 }
 
 /**
@@ -366,11 +491,12 @@ function initIntentCardHover() {
     });
 
     card.addEventListener('pointerleave', () => {
-      // Smoothly spring card back to neutral resting state
+      // Smoothly spring card back to neutral resting state (or active elevated state)
+      const isSelected = card.classList.contains('is-selected');
       gsap.to(card, {
         rotateX: 0,
         rotateY: 0,
-        y: 0,
+        y: isSelected ? -4 : 0,
         scale: 1,
         duration: 0.55,
         ease: "power3.out",

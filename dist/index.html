@@ -161,10 +161,11 @@
         </div>
 
         <!-- 5 Intent Pathways Grid (21st.dev Architectural Framing) -->
-        <div class="intent-cards-grid" id="intentGrid">
+        <!-- 5 Intent Selection Pathways (21st.dev Selectable Architectural Cards) -->
+        <div class="intent-cards-grid" id="intentGrid" role="radiogroup" aria-label="YouTube Intent Blueprints">
 
           <!-- CARD 1: I WANT TO START MY CHANNEL (Featured - Gold Accent) -->
-          <div class="intent-card intent-card--featured spotlight-card" id="cardStart">
+          <div class="intent-card intent-card--featured spotlight-card" id="cardStart" role="radio" tabindex="0" aria-checked="false" data-goal="start">
             <span class="card-bracket bracket-tl" aria-hidden="true"></span>
             <span class="card-bracket bracket-tr" aria-hidden="true"></span>
             <span class="card-bracket bracket-bl" aria-hidden="true"></span>
@@ -177,6 +178,11 @@
                 <span class="card-index-dot"></span>
                 <span class="card-index-text">// 01</span>
               </div>
+              <div class="card-select-indicator" aria-hidden="true">
+                <svg class="indicator-check" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+              </div>
             </div>
 
             <!-- Future Image Slot (Clean & Ready) -->
@@ -186,25 +192,10 @@
               <h2 class="card-intent-heading">I Want to Start My Channel</h2>
               <p class="card-supporting-line">I have the idea. I just need the right direction to begin.</p>
             </div>
-
-            <!-- Hyperiux ArrowFillButton: Launch My Channel -->
-            <a href="https://ai.mechanismofya.com" class="arrow-fill-btn btn-gold" id="pathStart" target="_blank" rel="noopener noreferrer">
-              <span class="btn-label">Launch My Channel</span>
-              <span class="btn-arrow-circle">
-                <svg class="arrow-icon arrow-icon-1" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M5 12h14"></path>
-                  <path d="m12 5 7 7-7 7"></path>
-                </svg>
-                <svg class="arrow-icon arrow-icon-2" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M5 12h14"></path>
-                  <path d="m12 5 7 7-7 7"></path>
-                </svg>
-              </span>
-            </a>
           </div>
 
           <!-- CARD 2: I’M STUCK WITH MY CHANNEL (Unified Violet Glow) -->
-          <div class="intent-card spotlight-card" id="cardStuck">
+          <div class="intent-card spotlight-card" id="cardStuck" role="radio" tabindex="0" aria-checked="false" data-goal="stuck">
             <span class="card-bracket bracket-tl" aria-hidden="true"></span>
             <span class="card-bracket bracket-tr" aria-hidden="true"></span>
             <span class="card-bracket bracket-bl" aria-hidden="true"></span>
@@ -217,6 +208,11 @@
                 <span class="card-index-dot"></span>
                 <span class="card-index-text">// 02</span>
               </div>
+              <div class="card-select-indicator" aria-hidden="true">
+                <svg class="indicator-check" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+              </div>
             </div>
 
             <!-- Future Image Slot (Clean & Ready) -->
@@ -226,25 +222,10 @@
               <h2 class="card-intent-heading">I’m Stuck With My Channel</h2>
               <p class="card-supporting-line">I’m creating, but the growth isn’t where I want it to be.</p>
             </div>
-
-            <!-- Hyperiux ArrowFillButton: Fix My Growth -->
-            <a href="#mentorship" class="arrow-fill-btn btn-violet" id="pathStuck" target="_blank" rel="noopener noreferrer">
-              <span class="btn-label">Fix My Growth</span>
-              <span class="btn-arrow-circle">
-                <svg class="arrow-icon arrow-icon-1" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M5 12h14"></path>
-                  <path d="m12 5 7 7-7 7"></path>
-                </svg>
-                <svg class="arrow-icon arrow-icon-2" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M5 12h14"></path>
-                  <path d="m12 5 7 7-7 7"></path>
-                </svg>
-              </span>
-            </a>
           </div>
 
           <!-- CARD 3: I WANT SOMEONE TO BUILD IT WITH ME (Unified Violet Glow) -->
-          <div class="intent-card spotlight-card" id="cardTeam">
+          <div class="intent-card spotlight-card" id="cardTeam" role="radio" tabindex="0" aria-checked="false" data-goal="team">
             <span class="card-bracket bracket-tl" aria-hidden="true"></span>
             <span class="card-bracket bracket-tr" aria-hidden="true"></span>
             <span class="card-bracket bracket-bl" aria-hidden="true"></span>
@@ -257,6 +238,11 @@
                 <span class="card-index-dot"></span>
                 <span class="card-index-text">// 03</span>
               </div>
+              <div class="card-select-indicator" aria-hidden="true">
+                <svg class="indicator-check" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+              </div>
             </div>
 
             <!-- Future Image Slot (Clean & Ready) -->
@@ -266,25 +252,10 @@
               <h2 class="card-intent-heading">I Want Someone to Build It With Me</h2>
               <p class="card-supporting-line">I don’t want to do everything myself. I need a team to execute.</p>
             </div>
-
-            <!-- Hyperiux ArrowFillButton: Build With Team -->
-            <a href="#production" class="arrow-fill-btn btn-violet" id="pathTeam" target="_blank" rel="noopener noreferrer">
-              <span class="btn-label">Build With Team</span>
-              <span class="btn-arrow-circle">
-                <svg class="arrow-icon arrow-icon-1" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M5 12h14"></path>
-                  <path d="m12 5 7 7-7 7"></path>
-                </svg>
-                <svg class="arrow-icon arrow-icon-2" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M5 12h14"></path>
-                  <path d="m12 5 7 7-7 7"></path>
-                </svg>
-              </span>
-            </a>
           </div>
 
           <!-- CARD 4: I WANT TO LEARN THE WHOLE SYSTEM (Unified Violet Glow) -->
-          <div class="intent-card spotlight-card" id="cardSystem">
+          <div class="intent-card spotlight-card" id="cardSystem" role="radio" tabindex="0" aria-checked="false" data-goal="system">
             <span class="card-bracket bracket-tl" aria-hidden="true"></span>
             <span class="card-bracket bracket-tr" aria-hidden="true"></span>
             <span class="card-bracket bracket-bl" aria-hidden="true"></span>
@@ -297,6 +268,11 @@
                 <span class="card-index-dot"></span>
                 <span class="card-index-text">// 04</span>
               </div>
+              <div class="card-select-indicator" aria-hidden="true">
+                <svg class="indicator-check" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+              </div>
             </div>
 
             <!-- Future Image Slot (Clean & Ready) -->
@@ -306,25 +282,10 @@
               <h2 class="card-intent-heading">I Want to Learn the Whole System</h2>
               <p class="card-supporting-line">Give me the complete roadmap so I can build it myself.</p>
             </div>
-
-            <!-- Hyperiux ArrowFillButton: Get The System -->
-            <a href="https://vsl.mechanismofya.com" class="arrow-fill-btn btn-violet" id="pathSystem" target="_blank" rel="noopener noreferrer">
-              <span class="btn-label">Get The System</span>
-              <span class="btn-arrow-circle">
-                <svg class="arrow-icon arrow-icon-1" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M5 12h14"></path>
-                  <path d="m12 5 7 7-7 7"></path>
-                </svg>
-                <svg class="arrow-icon arrow-icon-2" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M5 12h14"></path>
-                  <path d="m12 5 7 7-7 7"></path>
-                </svg>
-              </span>
-            </a>
           </div>
 
           <!-- CARD 5: I WANT TO JOIN YOUR EVENT (Unified Violet Glow) -->
-          <div class="intent-card spotlight-card" id="cardLive">
+          <div class="intent-card spotlight-card" id="cardLive" role="radio" tabindex="0" aria-checked="false" data-goal="live">
             <span class="card-bracket bracket-tl" aria-hidden="true"></span>
             <span class="card-bracket bracket-tr" aria-hidden="true"></span>
             <span class="card-bracket bracket-bl" aria-hidden="true"></span>
@@ -337,6 +298,11 @@
                 <span class="card-index-dot"></span>
                 <span class="card-index-text">// 05</span>
               </div>
+              <div class="card-select-indicator" aria-hidden="true">
+                <svg class="indicator-check" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+              </div>
             </div>
 
             <!-- Future Image Slot (Clean & Ready) -->
@@ -346,24 +312,37 @@
               <h2 class="card-intent-heading">I Want to Join Your Event</h2>
               <p class="card-supporting-line">I want to attend the live breakdown, learn current strategies, and connect in real time.</p>
             </div>
-
-            <!-- Hyperiux ArrowFillButton: Explore Events -->
-            <a href="#events" class="arrow-fill-btn btn-violet" id="pathLive" target="_blank" rel="noopener noreferrer">
-              <span class="btn-label">Explore Events</span>
-              <span class="btn-arrow-circle">
-                <svg class="arrow-icon arrow-icon-1" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M5 12h14"></path>
-                  <path d="m12 5 7 7-7 7"></path>
-                </svg>
-                <svg class="arrow-icon arrow-icon-2" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M5 12h14"></path>
-                  <path d="m12 5 7 7-7 7"></path>
-                </svg>
-              </span>
-            </a>
           </div>
 
         </div>
+
+        <!-- Mobile Carousel Pagination Dots (Horizontal Navigation Feedback) -->
+        <div class="cards-carousel-dots" id="carouselDots" aria-hidden="true">
+          <span class="carousel-dot is-active" data-index="0"></span>
+          <span class="carousel-dot" data-index="1"></span>
+          <span class="carousel-dot" data-index="2"></span>
+          <span class="carousel-dot" data-index="3"></span>
+          <span class="carousel-dot" data-index="4"></span>
+        </div>
+
+        <!-- DYNAMIC SELECTION ACTION BUTTON -->
+        <!-- Appears smoothly as soon as a card is selected, matching its intent and target URL -->
+        <div class="dynamic-cta-stage" id="dynamicCtaStage" aria-live="polite">
+          <a href="#" class="arrow-fill-btn btn-gold dynamic-action-btn" id="dynamicActionBtn" target="_blank" rel="noopener noreferrer">
+            <span class="btn-label" id="dynamicBtnLabel">Choose your goal above</span>
+            <span class="btn-arrow-circle">
+              <svg class="arrow-icon arrow-icon-1" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M5 12h14"></path>
+                <path d="m12 5 7 7-7 7"></path>
+              </svg>
+              <svg class="arrow-icon arrow-icon-2" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M5 12h14"></path>
+                <path d="m12 5 7 7-7 7"></path>
+              </svg>
+            </span>
+          </a>
+        </div>
+
       </section>
 
     </div>
