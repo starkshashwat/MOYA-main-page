@@ -14,7 +14,7 @@ const MOYA_CONFIG = {
   // Pathway Target Portals (Can be updated anytime)
   mentorshipUrl: "#mentorship",
   productionsUrl: "#production",
-  courseUrl: "#course",
+  courseUrl: "https://vsl.mechanismofya.com",
   eventsUrl: "#events",
 
   // Social Media Channels
