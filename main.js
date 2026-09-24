@@ -33,13 +33,17 @@ document.addEventListener('DOMContentLoaded', () => {
     yearEl.textContent = new Date().getFullYear();
   }
 
-  // 3. Initialize Glitch Word Alternator ("Choose Your Goal / Path / System...")
+  // 3. Initialize Audio Unlock & Sound Toggle Pill
+  initAudioUnlock();
+  initSoundToggle();
+
+  // 4. Initialize Glitch Word Alternator ("Choose Your Goal / Path / System...")
   initGlitchWordRotator();
 
-  // 4. Initialize Card mouse spotlight tracking (Linear style)
+  // 5. Initialize Card mouse spotlight tracking (Linear style)
   initCardSpotlight();
 
-  // 5. Initialize GSAP animations
+  // 6. Initialize GSAP animations
   if (typeof gsap !== 'undefined') {
     initGatewayEntrance();
     initBadgeFloatingMotion();
@@ -78,8 +82,149 @@ function initUrlBindings() {
 
 /**
  * ==========================================================================
- * 2. GLITCH WORD ROTATOR (YouTube Synonyms & High-Impact Terms)
- * Glitches every 2 seconds and smoothly transitions with character scramble
+ * 2. PROCEDURAL CYBER GLITCH SOUND EFFECT (Web Audio API)
+ * Zero external audio files • Bandpass white noise micro-burst + frequency chirp
+ * Compliant with modern browser autoplay policies (resumes on user gesture)
+ * ==========================================================================
+ */
+let audioCtx = null;
+let isSoundMuted = false;
+
+// Check persistent muted preference
+try {
+  isSoundMuted = localStorage.getItem('moya_sfx_muted') === 'true';
+} catch (e) {
+  isSoundMuted = false;
+}
+
+function getAudioContext() {
+  if (!audioCtx) {
+    const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+    if (AudioContextClass) {
+      audioCtx = new AudioContextClass();
+    }
+  }
+  if (audioCtx && audioCtx.state === 'suspended') {
+    audioCtx.resume().catch(() => {});
+  }
+  return audioCtx;
+}
+
+function initAudioUnlock() {
+  const unlockEvents = ['pointerdown', 'keydown', 'scroll', 'touchstart'];
+  const unlockHandler = () => {
+    try {
+      const ctx = getAudioContext();
+      if (ctx && ctx.state === 'suspended') {
+        ctx.resume().catch(() => {});
+      }
+    } catch (e) {}
+    unlockEvents.forEach(evt => window.removeEventListener(evt, unlockHandler));
+  };
+  unlockEvents.forEach(evt => window.addEventListener(evt, unlockHandler, { once: true, passive: true }));
+}
+
+function initSoundToggle() {
+  const toggleBtn = document.getElementById('soundToggleBtn');
+  const statusText = document.getElementById('soundStatusText');
+  if (!toggleBtn) return;
+
+  if (isSoundMuted) {
+    toggleBtn.setAttribute('data-muted', 'true');
+    if (statusText) statusText.textContent = 'MUTED';
+  } else {
+    toggleBtn.setAttribute('data-muted', 'false');
+    if (statusText) statusText.textContent = 'SFX ON';
+  }
+
+  toggleBtn.addEventListener('click', () => {
+    const ctx = getAudioContext();
+    if (ctx && ctx.state === 'suspended') {
+      ctx.resume().catch(() => {});
+    }
+
+    isSoundMuted = !isSoundMuted;
+    try {
+      localStorage.setItem('moya_sfx_muted', isSoundMuted ? 'true' : 'false');
+    } catch (e) {}
+
+    if (isSoundMuted) {
+      toggleBtn.setAttribute('data-muted', 'true');
+      if (statusText) statusText.textContent = 'MUTED';
+    } else {
+      toggleBtn.setAttribute('data-muted', 'false');
+      if (statusText) statusText.textContent = 'SFX ON';
+      playCyberGlitchSound();
+    }
+  });
+}
+
+function playCyberGlitchSound() {
+  if (isSoundMuted) return;
+
+  try {
+    const ctx = getAudioContext();
+    if (!ctx || ctx.state !== 'running') return;
+
+    const now = ctx.currentTime;
+
+    // Layer 1: Bandpassed White Noise Micro-Burst (~35ms)
+    const noiseDuration = 0.035;
+    const bufferSize = Math.floor(ctx.sampleRate * noiseDuration);
+    const buffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
+    const data = buffer.getChannelData(0);
+    for (let i = 0; i < bufferSize; i++) {
+      data[i] = (Math.random() * 2 - 1) * Math.exp(-i / (bufferSize * 0.35));
+    }
+
+    const noiseSource = ctx.createBufferSource();
+    noiseSource.buffer = buffer;
+
+    const bandpass = ctx.createBiquadFilter();
+    bandpass.type = 'bandpass';
+    bandpass.frequency.setValueAtTime(2800, now);
+    bandpass.Q.setValueAtTime(3.2, now);
+
+    const noiseGain = ctx.createGain();
+    noiseGain.gain.setValueAtTime(0.045, now);
+    noiseGain.gain.exponentialRampToValueAtTime(0.0005, now + noiseDuration);
+
+    noiseSource.connect(bandpass);
+    bandpass.connect(noiseGain);
+    noiseGain.connect(ctx.destination);
+    noiseSource.start(now);
+
+    // Layer 2: Cyber micro-pip (Modulated frequency chirp ~40ms)
+    const osc = ctx.createOscillator();
+    const oscGain = ctx.createGain();
+    osc.type = 'sawtooth';
+
+    // Fast frequency sweep down from 2100Hz to 650Hz
+    osc.frequency.setValueAtTime(2100, now);
+    osc.frequency.exponentialRampToValueAtTime(650, now + 0.04);
+
+    const oscFilter = ctx.createBiquadFilter();
+    oscFilter.type = 'lowpass';
+    oscFilter.frequency.setValueAtTime(2600, now);
+
+    oscGain.gain.setValueAtTime(0.022, now);
+    oscGain.gain.exponentialRampToValueAtTime(0.0001, now + 0.04);
+
+    osc.connect(oscFilter);
+    oscFilter.connect(oscGain);
+    oscFilter.connect(ctx.destination);
+
+    osc.start(now);
+    osc.stop(now + 0.042);
+  } catch (err) {
+    // Non-critical audio failure, degrade silently
+  }
+}
+
+/**
+ * ==========================================================================
+ * 3. GLITCH WORD ROTATOR (YouTube Synonyms & High-Impact Terms)
+ * Glitches every ~2.2s with sound effect and character scramble
  * ==========================================================================
  */
 function initGlitchWordRotator() {
@@ -94,6 +239,9 @@ function initGlitchWordRotator() {
     currentIndex = (currentIndex + 1) % words.length;
     const targetWord = words[currentIndex];
     
+    // Play cyber glitch sound effect when word glitch begins
+    playCyberGlitchSound();
+
     // Add glitching class
     el.classList.add('is-glitching');
 
