@@ -87,7 +87,7 @@ function initGatewayEntrance() {
   const backdropText = document.getElementById('founderBackdropText');
   const portrait = document.getElementById('founderPortrait');
   const badges = document.querySelectorAll('.floating-metric-badge');
-  const statement = document.getElementById('founderStatement');
+  const designation = document.getElementById('founderDesignation');
   const intentHeader = document.getElementById('intentHeader');
   const intentCards = document.querySelectorAll('.intent-card');
   const footer = document.getElementById('gatewayFooter');
@@ -98,7 +98,7 @@ function initGatewayEntrance() {
   if (backdropText) gsap.set(backdropText, { scale: 0.92, autoAlpha: 0, y: 15 });
   if (portrait) gsap.set(portrait, { y: 25, autoAlpha: 0 });
   gsap.set(badges, { scale: 0.75, autoAlpha: 0 });
-  if (statement) gsap.set(statement, { y: 15, autoAlpha: 0 });
+  if (designation) gsap.set(designation, { y: 15, autoAlpha: 0 });
   if (intentHeader) gsap.set(intentHeader, { y: 15, autoAlpha: 0 });
   gsap.set(intentCards, { y: 25, autoAlpha: 0, scale: 0.96 });
   if (footer) gsap.set(footer, { y: 15, autoAlpha: 0 });
@@ -158,9 +158,9 @@ function initGatewayEntrance() {
     ease: "back.out(1.8)"
   }, 0.28);
 
-  // 6. Proof statement
-  if (statement) {
-    tl.to(statement, {
+  // 6. Designation strip resolves
+  if (designation) {
+    tl.to(designation, {
       y: 0,
       autoAlpha: 1,
       duration: 0.45,

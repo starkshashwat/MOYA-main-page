@@ -1,13 +1,13 @@
 /* ==========================================================================
-   MOYA ACADEMY GATEWAY — INTENT & FOUNDER PROOF DESIGN SYSTEM
-   High-Contrast Luxury Dark Canvas • Linear-Grade Spotlight • Savan Matariya Proof
+   MOYA ACADEMY GATEWAY — CLEAN ARCHITECTURE & MOTION CARDS
+   Seamless Mask Blending • Crisp Section Separation • 5 SVG Motion Cards
    ========================================================================== */
 
 :root {
   /* Core Color Palette */
   --bg-black: #000000;
   --bg-card: rgba(14, 14, 18, 0.72);
-  --bg-card-hover: rgba(22, 22, 28, 0.92);
+  --bg-card-hover: rgba(22, 22, 30, 0.94);
   
   --border-subtle: rgba(255, 255, 255, 0.08);
   --border-hover: rgba(255, 255, 255, 0.28);
@@ -97,9 +97,9 @@ body {
   position: absolute;
   inset: -20%;
   background: 
-    radial-gradient(55% 50% at 50% 32%, rgba(100, 52, 190, 0.22) 0%, transparent 68%),
-    radial-gradient(40% 40% at 75% 50%, rgba(245, 197, 24, 0.08) 0%, transparent 65%),
-    radial-gradient(35% 35% at 25% 65%, rgba(56, 189, 248, 0.06) 0%, transparent 60%);
+    radial-gradient(50% 45% at 50% 28%, rgba(98, 48, 190, 0.22) 0%, transparent 68%),
+    radial-gradient(40% 40% at 78% 45%, rgba(245, 197, 24, 0.07) 0%, transparent 65%),
+    radial-gradient(35% 35% at 22% 65%, rgba(56, 189, 248, 0.05) 0%, transparent 60%);
   filter: blur(75px);
   will-change: transform;
 }
@@ -107,7 +107,7 @@ body {
 .vignette-radial {
   position: absolute;
   inset: 0;
-  background: radial-gradient(ellipse 90% 85% at 50% 50%, transparent 35%, rgba(0, 0, 0, 0.85) 100%);
+  background: radial-gradient(ellipse 90% 85% at 50% 50%, transparent 40%, rgba(0, 0, 0, 0.85) 100%);
 }
 
 .subtle-grid-lines {
@@ -117,7 +117,7 @@ body {
   background-image: 
     linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
     linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
-  opacity: 0.7;
+  opacity: 0.65;
   mask-image: radial-gradient(ellipse 80% 65% at 50% 45%, black 20%, transparent 80%);
   -webkit-mask-image: radial-gradient(ellipse 80% 65% at 50% 45%, black 20%, transparent 80%);
 }
@@ -125,7 +125,7 @@ body {
 .film-grain-overlay {
   position: absolute;
   inset: 0;
-  opacity: 0.25;
+  opacity: 0.22;
   mix-blend-mode: overlay;
   pointer-events: none;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.5 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
@@ -138,7 +138,7 @@ body {
 }
 
 /* ==========================================================================
-   2. TOP NAVIGATION BAR (Social Media Group — Zero WhatsApp)
+   2. TOP NAVIGATION BAR (Clean & Decluttered: Logo Left, Socials Right)
    ========================================================================== */
 
 .top-nav-bar {
@@ -147,7 +147,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 1.15rem 1.5rem;
+  padding: 1.1rem 1.5rem;
   flex-shrink: 0;
   border-bottom: 1px solid rgba(255, 255, 255, 0.05);
   background: rgba(0, 0, 0, 0.4);
@@ -184,42 +184,7 @@ body {
   }
 }
 
-/* Center status indicator */
-.nav-system-status {
-  display: none;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.35rem 0.85rem;
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 9999px;
-  font-family: var(--font-mono);
-  font-size: 0.65625rem;
-  letter-spacing: 0.08em;
-  color: var(--text-secondary);
-}
-
-@media (min-width: 768px) {
-  .nav-system-status {
-    display: inline-flex;
-  }
-}
-
-.status-pulse-dot {
-  width: 6px;
-  height: 6px;
-  background-color: var(--accent-green);
-  border-radius: 50%;
-  box-shadow: 0 0 8px var(--accent-green-glow);
-  animation: pulseDot 2s infinite ease-in-out;
-}
-
-@keyframes pulseDot {
-  0%, 100% { opacity: 1; transform: scale(1); }
-  50% { opacity: 0.4; transform: scale(0.85); }
-}
-
-/* Right Social Media Group */
+/* Right Social Media Channels */
 .nav-social-group {
   display: flex;
   align-items: center;
@@ -257,8 +222,8 @@ body {
   z-index: 20;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  padding: 1rem 1.25rem;
+  justify-content: space-between;
+  padding: 0.75rem 1.25rem;
   max-width: 1440px;
   margin: 0 auto;
   width: 100%;
@@ -267,13 +232,13 @@ body {
 
 @media (min-width: 1024px) {
   .gateway-container {
-    padding: 1.5rem 3.5rem 1rem 3.5rem;
+    padding: 1rem 3.5rem 0.75rem 3.5rem;
   }
 }
 
 /* ==========================================================================
-   4. SECTION 1: FOUNDER PROOF STAGE (Savan Matariya)
-   Oversized Backdrop Name + Centered Portrait + 4 Floating Badges
+   4. UPPER SECTION: FOUNDER PROOF STAGE (Savan Matariya)
+   Seamless Alpha-Mask Blending + Clean Backdrop Name + 4 Floating Badges
    ========================================================================== */
 
 .founder-proof-stage {
@@ -283,13 +248,13 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin-bottom: 1.25rem;
+  margin-bottom: 0.75rem;
 }
 
 /* Massive Backdrop Name Behind Portrait */
 .founder-backdrop-wrap {
   position: absolute;
-  top: 42%;
+  top: 40%;
   left: 50%;
   transform: translate(-50%, -50%);
   width: 100%;
@@ -301,24 +266,24 @@ body {
 
 .founder-backdrop-text {
   font-family: var(--font-display);
-  font-size: clamp(3.2rem, 9.5vw, 8.8rem);
+  font-size: clamp(3.2rem, 9.8vw, 9.2rem);
   font-weight: 900;
   letter-spacing: -0.04em;
   color: rgba(255, 255, 255, 0.14);
   text-transform: uppercase;
   white-space: nowrap;
   display: inline-block;
-  line-height: 0.9;
-  text-shadow: 0 0 60px rgba(100, 52, 190, 0.35);
+  line-height: 0.88;
+  text-shadow: 0 0 50px rgba(98, 48, 190, 0.35);
   will-change: transform, opacity;
 }
 
-/* Orbit Container holding image & 4 floating badges */
+/* Orbit Container holding portrait & 4 floating badges */
 .founder-orbit-container {
   position: relative;
   width: 100%;
   max-width: 980px;
-  min-height: 240px;
+  min-height: 220px;
   display: flex;
   align-items: flex-end;
   justify-content: center;
@@ -327,37 +292,37 @@ body {
 
 @media (min-width: 768px) {
   .founder-orbit-container {
-    min-height: 290px;
+    min-height: 260px;
   }
 }
 
 @media (min-width: 1200px) {
   .founder-orbit-container {
-    min-height: 320px;
+    min-height: 290px;
   }
 }
 
-/* Portrait Visual Frame */
+/* Portrait Frame with Direct Non-Destructive CSS Alpha Mask */
 .founder-portrait-frame {
   position: relative;
   z-index: 6;
   display: flex;
   align-items: flex-end;
   justify-content: center;
-  height: 230px;
+  height: 215px;
   width: auto;
   max-width: 100%;
 }
 
 @media (min-width: 768px) {
   .founder-portrait-frame {
-    height: 290px;
+    height: 265px;
   }
 }
 
 @media (min-width: 1200px) {
   .founder-portrait-frame {
-    height: 330px;
+    height: 295px;
   }
 }
 
@@ -367,6 +332,7 @@ body {
   width: auto;
 }
 
+/* Zero Black Box Artifact: mask applied directly on image pixels! */
 .founder-img {
   height: 100%;
   width: auto;
@@ -375,30 +341,21 @@ body {
   object-position: bottom center;
   display: block;
   filter: drop-shadow(0 15px 35px rgba(0, 0, 0, 0.95));
+  mask-image: linear-gradient(to bottom, black 65%, transparent 98%);
+  -webkit-mask-image: linear-gradient(to bottom, black 65%, transparent 98%);
 }
 
 .portrait-ambient-glow {
   position: absolute;
-  width: 140%;
+  width: 130%;
   height: 120%;
-  left: -20%;
-  bottom: -10%;
+  left: -15%;
+  bottom: -5%;
   border-radius: 50%;
-  background: radial-gradient(circle at 50% 60%, rgba(100, 52, 190, 0.28) 0%, rgba(245, 197, 24, 0.08) 50%, transparent 75%);
-  filter: blur(45px);
+  background: radial-gradient(circle at 50% 60%, rgba(98, 48, 190, 0.26) 0%, rgba(245, 197, 24, 0.06) 50%, transparent 75%);
+  filter: blur(40px);
   z-index: -1;
   pointer-events: none;
-}
-
-.portrait-base-blend {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 30px;
-  background: linear-gradient(to top, rgba(0, 0, 0, 0.95) 0%, transparent 100%);
-  pointer-events: none;
-  z-index: 7;
 }
 
 /* 4 Floating Orbiting Achievement Badges */
@@ -407,13 +364,13 @@ body {
   z-index: 8;
   display: flex;
   align-items: center;
-  gap: 0.55rem;
-  padding: 0.5rem 0.85rem;
+  gap: 0.5rem;
+  padding: 0.45rem 0.8rem;
   background: rgba(18, 18, 24, 0.82);
   border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: 12px;
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
   white-space: nowrap;
   pointer-events: auto;
@@ -427,10 +384,10 @@ body {
 }
 
 .badge-icon {
-  font-size: 0.95rem;
-  color: var(--accent-violet);
+  font-size: 0.9rem;
 }
 
+.badge-icon--violet { color: var(--accent-violet); }
 .badge-icon--amber { color: var(--accent-gold); }
 .badge-icon--cyan { color: var(--accent-cyan); }
 .badge-icon--green { color: var(--accent-green); }
@@ -451,7 +408,7 @@ body {
 
 .badge-label {
   font-family: var(--font-sans);
-  font-size: 0.59375rem;
+  font-size: 0.58rem;
   font-weight: 500;
   color: var(--text-muted);
   letter-spacing: 0.02em;
@@ -459,53 +416,36 @@ body {
 
 /* Badge Desktop Positioning */
 @media (min-width: 900px) {
-  .badge--top-left {
-    top: 18%;
-    left: 4%;
-  }
-
-  .badge--bottom-left {
-    bottom: 12%;
-    left: 8%;
-  }
-
-  .badge--top-right {
-    top: 18%;
-    right: 4%;
-  }
-
-  .badge--bottom-right {
-    bottom: 12%;
-    right: 8%;
-  }
+  .badge--top-left { top: 18%; left: 4%; }
+  .badge--bottom-left { bottom: 8%; left: 8%; }
+  .badge--top-right { top: 18%; right: 4%; }
+  .badge--bottom-right { bottom: 8%; right: 8%; }
 }
 
-/* Badge Tablet Positioning (640px to 899px) */
 @media (min-width: 640px) and (max-width: 899px) {
   .badge--top-left { top: 8%; left: 2%; }
-  .badge--bottom-left { bottom: 6%; left: 3%; }
+  .badge--bottom-left { bottom: 4%; left: 3%; }
   .badge--top-right { top: 8%; right: 2%; }
-  .badge--bottom-right { bottom: 6%; right: 3%; }
+  .badge--bottom-right { bottom: 4%; right: 3%; }
 }
 
-/* Badge Mobile Positioning (< 640px) */
 @media (max-width: 639px) {
   .founder-orbit-container {
-    min-height: 250px;
-    padding-bottom: 2.8rem;
+    min-height: 200px;
+    padding-bottom: 0.5rem;
   }
 
   .founder-portrait-frame {
-    height: 200px;
+    height: 180px;
   }
 
   .floating-metric-badge {
-    padding: 0.35rem 0.65rem;
+    padding: 0.3rem 0.55rem;
     border-radius: 9px;
   }
 
-  .badge-value { font-size: 0.72rem; }
-  .badge-label { font-size: 0.53rem; }
+  .badge-value { font-size: 0.6875rem; }
+  .badge-label { font-size: 0.5rem; }
 
   .badge--top-left { top: 4%; left: 0%; }
   .badge--bottom-left { bottom: 2%; left: 1%; }
@@ -513,75 +453,82 @@ body {
   .badge--bottom-right { bottom: 2%; right: 1%; }
 }
 
-/* Founder Proof Quote Statement */
-.founder-proof-statement {
+/* Clean Designation Strip (Zero Fluff) */
+.founder-designation-strip {
   display: flex;
-  flex-direction: column;
   align-items: center;
-  text-align: center;
-  margin-top: 0.5rem;
+  justify-content: center;
+  gap: 0.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.625rem;
+  letter-spacing: 0.14em;
+  color: var(--text-muted);
+  margin-top: 0.35rem;
   z-index: 10;
 }
 
-.statement-quote {
-  font-family: var(--font-serif);
-  font-style: italic;
-  font-size: clamp(0.95rem, 1.8vw, 1.25rem);
+.founder-name-label {
   color: var(--text-primary);
-  line-height: 1.35;
-  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.9);
+  font-weight: 700;
 }
 
-.quote-symbol {
-  color: var(--accent-gold);
-  font-style: normal;
-}
-
-.founder-designation {
-  font-family: var(--font-mono);
-  font-size: 0.5625rem;
-  letter-spacing: 0.14em;
-  color: var(--text-muted);
-  margin-top: 0.2rem;
+.founder-sep {
+  color: var(--accent-violet);
+  opacity: 0.8;
 }
 
 /* ==========================================================================
-   5. SECTION 2: CHOOSE YOUR GOAL INTENT MATRIX
-   5 Intent-Driven Conversion Pathways
+   5. CRISP ARCHITECTURAL SECTION DIVIDER
+   ========================================================================== */
+
+.architectural-divider {
+  position: relative;
+  width: 100%;
+  max-width: 1280px;
+  margin: 0.65rem auto 0.95rem auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 15;
+}
+
+.divider-line {
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, 
+    transparent 0%, 
+    rgba(255, 255, 255, 0.08) 25%, 
+    rgba(255, 255, 255, 0.18) 50%, 
+    rgba(255, 255, 255, 0.08) 75%, 
+    transparent 100%
+  );
+}
+
+.divider-center-node {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent-violet);
+  box-shadow: 0 0 10px var(--accent-violet-glow);
+}
+
+/* ==========================================================================
+   6. LOWER SECTION: CHOOSE YOUR GOAL INTENT MATRIX
    ========================================================================== */
 
 .intent-selection-section {
   width: 100%;
-  margin-top: 0.75rem;
 }
 
 .intent-header-wrap {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   text-align: center;
-  margin-bottom: 0.95rem;
-}
-
-.intent-eyebrow {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4rem;
-  font-family: var(--font-mono);
-  font-size: 0.625rem;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  color: var(--accent-gold);
-  margin-bottom: 0.25rem;
-}
-
-.eyebrow-sparkle {
-  font-size: 0.75rem;
+  margin-bottom: 0.85rem;
 }
 
 .intent-main-title {
   font-family: var(--font-display);
-  font-size: clamp(1.2rem, 2.2vw, 1.75rem);
+  font-size: clamp(1.2rem, 2vw, 1.65rem);
   font-weight: 700;
   letter-spacing: -0.02em;
   color: #ffffff;
@@ -603,22 +550,9 @@ body {
 /* 5 Intent Pathways Grid */
 .intent-cards-grid {
   display: grid;
-  grid-template-columns: 1fr;
-  gap: 0.75rem;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 0.85rem;
   width: 100%;
-}
-
-@media (min-width: 640px) {
-  .intent-cards-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (min-width: 1024px) {
-  .intent-cards-grid {
-    grid-template-columns: repeat(5, 1fr);
-    gap: 0.85rem;
-  }
 }
 
 /* Individual Intent Card */
@@ -633,7 +567,7 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  min-height: 195px;
+  min-height: 205px;
   backdrop-filter: blur(18px);
   -webkit-backdrop-filter: blur(18px);
   overflow: hidden;
@@ -643,17 +577,10 @@ body {
   will-change: transform, opacity;
 }
 
-@media (min-width: 1024px) {
-  .intent-card {
-    min-height: 215px;
-    padding: 1.25rem 1.05rem 1rem 1.05rem;
-  }
-}
-
 .intent-card:hover {
   transform: translateY(-4px);
   border-color: var(--border-hover);
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.7);
+  box-shadow: 0 14px 32px rgba(0, 0, 0, 0.7);
   background: var(--bg-card-hover);
 }
 
@@ -675,57 +602,156 @@ body {
   opacity: 1;
 }
 
-/* Card Top Row */
-.card-top-row {
+/* Card Motion Header */
+.card-motion-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
   margin-bottom: 0.75rem;
 }
 
-.card-intent-badge {
-  display: inline-flex;
-  align-items: center;
-  padding: 0.2rem 0.55rem;
-  border-radius: 9999px;
-  font-family: var(--font-mono);
-  font-size: 0.5625rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+/* Micro-Motion Graphic Box */
+.motion-graphic-box {
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
   background: rgba(255, 255, 255, 0.04);
-  color: var(--text-secondary);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px;
+  transition: transform 0.25s ease;
 }
 
-.badge-gold {
-  border-color: rgba(245, 197, 24, 0.3);
-  color: var(--accent-gold);
-  background: var(--accent-gold-bg);
+.intent-card:hover .motion-graphic-box {
+  transform: scale(1.1);
 }
 
-.badge-violet {
-  border-color: rgba(157, 101, 255, 0.3);
-  color: var(--accent-violet);
-  background: rgba(157, 101, 255, 0.08);
+.motion-gold { color: var(--accent-gold); border-color: rgba(245, 197, 24, 0.25); background: rgba(245, 197, 24, 0.08); }
+.motion-violet { color: var(--accent-violet); border-color: rgba(157, 101, 255, 0.25); background: rgba(157, 101, 255, 0.08); }
+.motion-silver { color: var(--accent-silver); border-color: rgba(255, 255, 255, 0.15); background: rgba(255, 255, 255, 0.06); }
+.motion-cyan { color: var(--accent-cyan); border-color: rgba(56, 189, 248, 0.25); background: rgba(56, 189, 248, 0.08); }
+.motion-green { color: var(--accent-green); border-color: rgba(37, 211, 102, 0.25); background: rgba(37, 211, 102, 0.08); }
+
+.motion-svg {
+  width: 100%;
+  height: 100%;
+  display: block;
 }
 
-.badge-silver {
-  border-color: rgba(255, 255, 255, 0.15);
-  color: var(--accent-silver);
+/* Motion Graphic Keyframes */
+
+/* 1. Rocket Thrust & Radar */
+.wave-1 {
+  transform-origin: 18px 18px;
+  animation: radarPing 2.5s ease-out infinite;
+}
+.wave-2 {
+  transform-origin: 18px 18px;
+  animation: radarPing 2.5s ease-out infinite 0.7s;
+}
+.rocket-core {
+  animation: rocketVibrate 1.2s ease-in-out infinite alternate;
+}
+.thrust-particle {
+  animation: particleDrop 0.8s ease-out infinite;
 }
 
-.badge-cyan {
-  border-color: rgba(56, 189, 248, 0.3);
-  color: var(--accent-cyan);
-  background: rgba(56, 189, 248, 0.08);
+@keyframes radarPing {
+  0% { transform: scale(0.7); opacity: 0.8; }
+  100% { transform: scale(1.35); opacity: 0; }
 }
 
-.badge-green {
-  border-color: rgba(37, 211, 102, 0.3);
-  color: var(--accent-green);
-  background: rgba(37, 211, 102, 0.08);
+@keyframes rocketVibrate {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-2px); }
 }
 
+@keyframes particleDrop {
+  0% { opacity: 1; transform: translateY(0); }
+  100% { opacity: 0; transform: translateY(4px); }
+}
+
+/* 2. Plateau Breakout */
+.breakout-curve {
+  stroke-dasharray: 40;
+  stroke-dashoffset: 40;
+  animation: drawCurve 2.2s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+}
+.breakout-burst {
+  animation: burstPulse 2.2s ease-out infinite;
+}
+
+@keyframes drawCurve {
+  0% { stroke-dashoffset: 40; opacity: 0.3; }
+  50%, 100% { stroke-dashoffset: 0; opacity: 1; }
+}
+
+@keyframes burstPulse {
+  0%, 40% { transform: scale(0); opacity: 0; }
+  60% { transform: scale(1.6); opacity: 1; }
+  100% { transform: scale(1); opacity: 0.7; }
+}
+
+/* 3. Studio Video Timeline */
+.timeline-laser {
+  animation: laserScan 2.4s ease-in-out infinite alternate;
+}
+.tb-1, .tb-2, .tb-3, .tb-4 {
+  animation: blockGlow 2.4s ease-in-out infinite;
+}
+
+@keyframes laserScan {
+  0% { transform: translateX(-9px); }
+  100% { transform: translateX(9px); }
+}
+
+@keyframes blockGlow {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 0.95; }
+}
+
+/* 4. 3D Holographic System Architecture */
+.system-ring {
+  transform-origin: 18px 18px;
+  animation: ringSpin 9s linear infinite;
+}
+.orbit-node {
+  animation: nodeBlink 1.8s ease-in-out infinite alternate;
+}
+
+@keyframes ringSpin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes nodeBlink {
+  0% { opacity: 0.4; transform: scale(0.85); }
+  100% { opacity: 1; transform: scale(1.15); }
+}
+
+/* 5. Live Equalizer & Beacon */
+.live-dot {
+  animation: livePing 1.2s ease-in-out infinite alternate;
+}
+.bar-1 { animation: eqBounce 1s ease-in-out infinite alternate 0.1s; }
+.bar-2 { animation: eqBounce 1s ease-in-out infinite alternate 0.3s; }
+.bar-3 { animation: eqBounce 1s ease-in-out infinite alternate 0.0s; }
+.bar-4 { animation: eqBounce 1s ease-in-out infinite alternate 0.4s; }
+.bar-5 { animation: eqBounce 1s ease-in-out infinite alternate 0.2s; }
+
+@keyframes livePing {
+  0% { opacity: 0.4; transform: scale(0.8); }
+  100% { opacity: 1; transform: scale(1.2); }
+}
+
+@keyframes eqBounce {
+  0% { transform: scaleY(0.4); transform-origin: bottom; }
+  100% { transform: scaleY(1.2); transform-origin: bottom; }
+}
+
+/* Card Price & Arrow */
 .card-price-pill {
   display: inline-flex;
   align-items: center;
@@ -814,29 +840,54 @@ body {
   color: var(--accent-gold);
 }
 
-/* Mobile Layout for 5 Cards */
-@media (max-width: 639px) {
+/* ==========================================================================
+   7. MOBILE OPTIMIZATION — ALL 5 CARDS VISIBLE SIMULTANEOUSLY
+   Row 1: Cards 1 & 2 | Row 2: Cards 3 & 4 | Row 3: Card 5 (Full Width)
+   Fits cleanly within ~300px height on mobile screen!
+   ========================================================================== */
+
+@media (max-width: 900px) {
   .intent-cards-grid {
-    grid-template-columns: 1fr;
-    gap: 0.65rem;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.6rem;
   }
 
   .intent-card {
-    min-height: 155px;
-    padding: 1rem 0.95rem 0.85rem 0.95rem;
+    min-height: 140px;
+    padding: 0.75rem 0.75rem 0.65rem 0.75rem;
+    border-radius: 13px;
+  }
+
+  /* Card 5 Spans Full Width in Row 3 */
+  #pathLive {
+    grid-column: span 2;
+  }
+
+  .motion-graphic-box {
+    width: 32px;
+    height: 32px;
   }
 
   .card-intent-heading {
-    font-size: 0.92rem;
+    font-size: 0.85rem;
+    line-height: 1.2;
+    margin-bottom: 0.25rem;
   }
 
   .card-supporting-line {
-    font-size: 0.7rem;
+    font-size: 0.68rem;
+    line-height: 1.35;
+  }
+
+  .card-action-strip {
+    margin-top: 0.5rem;
+    padding-top: 0.45rem;
+    font-size: 0.6rem;
   }
 }
 
 /* ==========================================================================
-   6. SEAMLESS MINIMAL FOOTER STRIP
+   8. SEAMLESS MINIMAL FOOTER STRIP
    ========================================================================== */
 
 .gateway-footer-strip {
@@ -845,7 +896,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0.95rem 1.5rem;
+  padding: 0.85rem 1.5rem;
   border-top: 1px solid rgba(255, 255, 255, 0.05);
   font-family: var(--font-mono);
   font-size: 0.625rem;
@@ -855,7 +906,7 @@ body {
 
 @media (min-width: 1024px) {
   .gateway-footer-strip {
-    padding: 1rem 3.5rem;
+    padding: 0.95rem 3.5rem;
   }
 }
 
@@ -871,14 +922,14 @@ body {
 @media (max-width: 767px) {
   .gateway-footer-strip {
     flex-direction: column;
-    gap: 0.4rem;
+    gap: 0.35rem;
     text-align: center;
-    padding: 0.85rem 1rem;
+    padding: 0.75rem 1rem;
   }
 }
 
 /* ==========================================================================
-   7. ACCESSIBILITY & PREFERS-REDUCED-MOTION
+   9. ACCESSIBILITY & PREFERS-REDUCED-MOTION
    ========================================================================== */
 
 @media (prefers-reduced-motion: reduce) {
