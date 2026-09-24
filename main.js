@@ -1,22 +1,26 @@
 /**
- * MOYA GATEWAY — FAST CINEMATIC GSAP INTERACTION ENGINE
- * Sub-Second Entrance • Interactive Bento Grid • Linear Spotlight • Zero-Flicker Micro-Interactions
+ * MOYA ACADEMY GATEWAY — FAST GSAP INTERACTION ENGINE
+ * Founder Proof Orbiting Badges • 5 Intent Pathways • Zero-Flicker Micro-Interactions
  */
 
 // ==========================================================================
-// 1. CENTRAL ROUTING & URL BINDINGS
+// 1. CENTRAL CONFIGURATION & ROUTING
+// Zero WhatsApp Links — Pure Portal & Social Routing
 // ==========================================================================
 const MOYA_CONFIG = {
-  // WhatsApp direct click-to-chat (Phone: 9274359207)
-  quickCallUrl: "https://wa.me/919274359207?text=Hi%20Savan,%20I'd%20like%20to%20connect%20with%20MOYA.",
-  mentorshipUrl: "https://wa.me/919274359207?text=Hi%20Savan,%20I'm%20interested%20in%20MOYA%20One-to-One%20Mentorship.",
-  productionsUrl: "https://wa.me/919274359207?text=Hi%20Savan,%20I'm%20interested%20in%20MOYA%20Productions.",
-  
-  // YouTube Automation Masterclass (Price: ₹199)
+  // Flagship Webinar / Masterclass
   webinarUrl: "https://ai.mechanismofya.com",
   
-  // Official WhatsApp Channel
-  whatsappUrl: "https://whatsapp.com/channel/0029VajcJRV2UPB940uoYv10"
+  // Pathway Target Portals (Can be updated anytime)
+  mentorshipUrl: "#mentorship",
+  productionsUrl: "#production",
+  courseUrl: "#course",
+  eventsUrl: "#events",
+
+  // Social Media Channels
+  youtubeUrl: "https://www.youtube.com",
+  instagramUrl: "https://www.instagram.com",
+  facebookUrl: "https://www.facebook.com"
 };
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -29,14 +33,15 @@ document.addEventListener('DOMContentLoaded', () => {
     yearEl.textContent = new Date().getFullYear();
   }
 
-  // 3. Initialize Bento card mouse spotlight tracking (Linear style)
-  initBentoSpotlight();
+  // 3. Initialize Card mouse spotlight tracking (Linear style)
+  initCardSpotlight();
 
-  // 4. Initialize GSAP animations (Fast, sub-second entrance)
+  // 4. Initialize GSAP animations
   if (typeof gsap !== 'undefined') {
-    initFastHeroEntrance();
-    initBentoInteractions();
-    initAmbientMotion();
+    initGatewayEntrance();
+    initBadgeFloatingMotion();
+    initIntentCardHover();
+    initFounderParallax();
   }
 });
 
@@ -45,13 +50,17 @@ document.addEventListener('DOMContentLoaded', () => {
  */
 function initUrlBindings() {
   const bindings = [
-    { id: 'navQuickCallBtn', url: MOYA_CONFIG.quickCallUrl },
-    { id: 'heroCircularCta', url: MOYA_CONFIG.webinarUrl },
-    { id: 'cardMentorship', url: MOYA_CONFIG.mentorshipUrl },
-    { id: 'cardProductions', url: MOYA_CONFIG.productionsUrl },
-    { id: 'cardMasterclass', url: MOYA_CONFIG.webinarUrl },
-    { id: 'cardWhatsapp', url: MOYA_CONFIG.whatsappUrl },
-    { id: 'footerChatLink', url: MOYA_CONFIG.quickCallUrl }
+    // 5 Intent Pathways
+    { id: 'pathStart', url: MOYA_CONFIG.webinarUrl },
+    { id: 'pathStuck', url: MOYA_CONFIG.mentorshipUrl },
+    { id: 'pathTeam', url: MOYA_CONFIG.productionsUrl },
+    { id: 'pathSystem', url: MOYA_CONFIG.courseUrl },
+    { id: 'pathLive', url: MOYA_CONFIG.eventsUrl },
+    
+    // Social Media Icons
+    { id: 'socialYoutube', url: MOYA_CONFIG.youtubeUrl },
+    { id: 'socialInstagram', url: MOYA_CONFIG.instagramUrl },
+    { id: 'socialFacebook', url: MOYA_CONFIG.facebookUrl }
   ];
 
   bindings.forEach(b => {
@@ -66,32 +75,34 @@ function initUrlBindings() {
 
 /**
  * ==========================================================================
- * 2. FAST SUB-SECOND GSAP ENTRANCE TIMELINE
+ * 2. FAST SUB-SECOND ENTRANCE TIMELINE
  * Total duration: ~0.85s - Snappy, modern, zero delay
  * ==========================================================================
  */
-function initFastHeroEntrance() {
+function initGatewayEntrance() {
   const isReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if (isReduced) return;
 
   const topNav = document.getElementById('topNav');
-  const eyebrow = document.getElementById('heroEyebrow');
-  const letters = document.querySelectorAll('#oversizedTitle .char-inner');
-  const asterisk = document.getElementById('superscriptMark');
-  const circularCta = document.getElementById('heroCircularCta');
-  const bentoCards = document.querySelectorAll('.bento-card');
-  const footer = document.getElementById('heroFooter');
+  const backdropText = document.getElementById('founderBackdropText');
+  const portrait = document.getElementById('founderPortrait');
+  const badges = document.querySelectorAll('.floating-metric-badge');
+  const statement = document.getElementById('founderStatement');
+  const intentHeader = document.getElementById('intentHeader');
+  const intentCards = document.querySelectorAll('.intent-card');
+  const footer = document.getElementById('gatewayFooter');
   const ambientMesh = document.getElementById('ambientMesh');
 
   // Pre-set initial states cleanly with autoAlpha to prevent any FOUC
   gsap.set(topNav, { y: -25, autoAlpha: 0 });
-  gsap.set(eyebrow, { y: 15, autoAlpha: 0 });
-  gsap.set(letters, { yPercent: 115, autoAlpha: 0 });
-  if (asterisk) gsap.set(asterisk, { scale: 0, autoAlpha: 0, rotate: -30 });
-  if (circularCta) gsap.set(circularCta, { scale: 0, autoAlpha: 0, rotate: -45 });
-  gsap.set(bentoCards, { y: 30, autoAlpha: 0, scale: 0.95 });
-  gsap.set(footer, { y: 15, autoAlpha: 0 });
-  if (ambientMesh) gsap.set(ambientMesh, { opacity: 0.6, scale: 0.98 });
+  if (backdropText) gsap.set(backdropText, { scale: 0.92, autoAlpha: 0, y: 15 });
+  if (portrait) gsap.set(portrait, { y: 25, autoAlpha: 0 });
+  gsap.set(badges, { scale: 0.75, autoAlpha: 0 });
+  if (statement) gsap.set(statement, { y: 15, autoAlpha: 0 });
+  if (intentHeader) gsap.set(intentHeader, { y: 15, autoAlpha: 0 });
+  gsap.set(intentCards, { y: 25, autoAlpha: 0, scale: 0.96 });
+  if (footer) gsap.set(footer, { y: 15, autoAlpha: 0 });
+  if (ambientMesh) gsap.set(ambientMesh, { opacity: 0.5, scale: 0.98 });
 
   // Master timeline with tight, overlapping timing
   const tl = gsap.timeline({
@@ -99,7 +110,7 @@ function initFastHeroEntrance() {
     defaults: { force3D: true }
   });
 
-  // 1. Top Nav slides down (0.4s)
+  // 1. Top Nav slides down
   tl.to(topNav, {
     y: 0,
     autoAlpha: 1,
@@ -107,81 +118,130 @@ function initFastHeroEntrance() {
     ease: "power3.out"
   }, 0);
 
-  // 2. Eyebrow fades in (0.35s)
-  tl.to(eyebrow, {
-    y: 0,
-    autoAlpha: 1,
-    duration: 0.4,
-    ease: "power2.out"
-  }, 0.08);
-
-  // 3. Letters slide up through mask with high initial velocity (0.6s)
-  tl.to(letters, {
-    yPercent: 0,
-    autoAlpha: 1,
-    duration: 0.55,
-    stagger: 0.04,
-    ease: "power4.out"
-  }, 0.12);
-
-  // 4. Superscript mark & Circular CTA pop in (0.45s)
-  if (asterisk) {
-    tl.to(asterisk, {
-      scale: 1,
-      autoAlpha: 1,
-      rotate: 0,
-      duration: 0.4,
-      ease: "back.out(2)"
-    }, 0.28);
-  }
-
-  if (circularCta) {
-    tl.to(circularCta, {
-      scale: 1,
-      autoAlpha: 1,
-      rotate: 0,
-      duration: 0.45,
-      ease: "back.out(1.8)"
-    }, 0.32);
-  }
-
-  // 5. Bento cards cascade in cleanly (0.5s)
-  tl.to(bentoCards, {
-    y: 0,
-    autoAlpha: 1,
-    scale: 1,
-    duration: 0.5,
-    stagger: 0.05,
-    ease: "power3.out",
-    clearProps: "transform,opacity,visibility"
-  }, 0.3);
-
-  // 6. Ambient background bloom settles
+  // 2. Background mesh awakens
   if (ambientMesh) {
     tl.to(ambientMesh, {
       opacity: 1,
       scale: 1,
       duration: 0.8,
       ease: "power2.out"
-    }, 0.2);
+    }, 0.1);
   }
 
-  // 7. Minimal footer resolves
-  tl.to(footer, {
+  // 3. Savan Matariya Backdrop Name resolves
+  if (backdropText) {
+    tl.to(backdropText, {
+      scale: 1,
+      y: 0,
+      autoAlpha: 1,
+      duration: 0.6,
+      ease: "power3.out"
+    }, 0.1);
+  }
+
+  // 4. Founder portrait rises smoothly
+  if (portrait) {
+    tl.to(portrait, {
+      y: 0,
+      autoAlpha: 1,
+      duration: 0.65,
+      ease: "power3.out"
+    }, 0.18);
+  }
+
+  // 5. 4 Floating achievement badges pop in
+  tl.to(badges, {
+    scale: 1,
+    autoAlpha: 1,
+    duration: 0.5,
+    stagger: 0.06,
+    ease: "back.out(1.8)"
+  }, 0.28);
+
+  // 6. Proof statement
+  if (statement) {
+    tl.to(statement, {
+      y: 0,
+      autoAlpha: 1,
+      duration: 0.45,
+      ease: "power2.out"
+    }, 0.38);
+  }
+
+  // 7. Intent Header & 5 Intent Cards cascade in
+  if (intentHeader) {
+    tl.to(intentHeader, {
+      y: 0,
+      autoAlpha: 1,
+      duration: 0.4,
+      ease: "power2.out"
+    }, 0.4);
+  }
+
+  tl.to(intentCards, {
     y: 0,
     autoAlpha: 1,
-    duration: 0.4,
-    ease: "power2.out"
-  }, 0.45);
+    scale: 1,
+    duration: 0.45,
+    stagger: 0.04,
+    ease: "power3.out",
+    clearProps: "transform,opacity,visibility"
+  }, 0.46);
+
+  // 8. Footer resolves
+  if (footer) {
+    tl.to(footer, {
+      y: 0,
+      autoAlpha: 1,
+      duration: 0.4,
+      ease: "power2.out"
+    }, 0.6);
+  }
 }
 
 /**
  * ==========================================================================
- * 3. LINEAR-STYLE MOUSE-TRACKING SPOTLIGHT
- * High performance via pointermove & CSS variables
+ * 3. CONTINUOUS FLOATING MOTION FOR 4 ACHIEVEMENT BADGES
+ * Subtle, elegant levitation physics
  * ==========================================================================
  */
-function initBentoSpotlight() {
+function initBadgeFloatingMotion() {
+  const isReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (isReduced) return;
+
+  const b1 = document.getElementById('badge1');
+  const b2 = document.getElementById('badge2');
+  const b3 = document.getElementById('badge3');
+  const b4 = document.getElementById('badge4');
+
+  if (b1 && b3) {
+    gsap.to([b1, b3], {
+      y: -6,
+      duration: 2.6,
+      repeat: -1,
+      yoyo: true,
+      ease: "sine.inOut"
+    });
+  }
+
+  if (b2 && b4) {
+    gsap.to([b2, b4], {
+      y: 6,
+      duration: 3.1,
+      repeat: -1,
+      yoyo: true,
+      ease: "sine.inOut",
+      delay: 0.5
+    });
+  }
+}
+
+/**
+ * ==========================================================================
+ * 4. LINEAR-STYLE MOUSE-TRACKING SPOTLIGHT
+ * ==========================================================================
+ */
+function initCardSpotlight() {
   const cards = document.querySelectorAll('.spotlight-card');
   if (!cards.length) return;
 
@@ -198,25 +258,18 @@ function initBentoSpotlight() {
 
 /**
  * ==========================================================================
- * 4. BENTO CARD HOVER & SIBLING DIMMING
- * Elevate hovered card + gently dim neighboring cards
+ * 5. INTENT CARDS HOVER & SIBLING DIMMING
  * ==========================================================================
  */
-function initBentoInteractions() {
+function initIntentCardHover() {
   const isReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const isTouch = window.matchMedia('(pointer: coarse)').matches;
   if (isReduced || isTouch) return;
 
-  const cards = document.querySelectorAll('.bento-card');
+  const cards = document.querySelectorAll('.intent-card');
   if (!cards.length) return;
 
   cards.forEach(card => {
-    // 3D perspective micro-tilt setup
-    const tiltX = gsap.quickTo(card, "rotateX", { duration: 0.35, ease: "power2.out" });
-    const tiltY = gsap.quickTo(card, "rotateY", { duration: 0.35, ease: "power2.out" });
-
-    gsap.set(card, { transformPerspective: 1000, transformStyle: "preserve-3d" });
-
     card.addEventListener('mouseenter', () => {
       // Dim siblings
       cards.forEach(sibling => {
@@ -232,19 +285,7 @@ function initBentoInteractions() {
       });
     });
 
-    card.addEventListener('pointermove', (e) => {
-      const rect = card.getBoundingClientRect();
-      const normX = (e.clientX - rect.left) / rect.width - 0.5;
-      const normY = (e.clientY - rect.top) / rect.height - 0.5;
-
-      tiltY(normX * 6); // Max 3deg tilt
-      tiltX(-normY * 6);
-    });
-
     card.addEventListener('mouseleave', () => {
-      tiltX(0);
-      tiltY(0);
-
       // Restore all cards
       gsap.to(cards, {
         opacity: 1,
@@ -259,47 +300,43 @@ function initBentoInteractions() {
 
 /**
  * ==========================================================================
- * 5. ATMOSPHERIC AMBIENT MOTION & PARALLAX
+ * 6. SUBTLE DESKTOP FOUNDER PARALLAX
  * ==========================================================================
  */
-function initAmbientMotion() {
+function initFounderParallax() {
   const isReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const isTouch = window.matchMedia('(pointer: coarse)').matches;
-  if (isReduced) return;
+  if (isReduced || isTouch) return;
 
-  const mesh = document.getElementById('ambientMesh');
-  if (!mesh) return;
+  const root = document.getElementById('gatewayRoot');
+  const portrait = document.getElementById('founderPortrait');
+  const backdropText = document.getElementById('founderBackdropText');
+  if (!root || !portrait) return;
 
-  // Gentle breathing glow
-  gsap.to(mesh, {
-    scale: 1.05,
-    opacity: 0.85,
-    duration: 5,
-    repeat: -1,
-    yoyo: true,
-    ease: "sine.inOut"
-  });
+  const movePortraitX = gsap.quickTo(portrait, "x", { duration: 0.9, ease: "power2.out" });
+  const movePortraitY = gsap.quickTo(portrait, "y", { duration: 0.9, ease: "power2.out" });
 
-  if (isTouch) return;
+  let moveTextX;
+  if (backdropText) {
+    moveTextX = gsap.quickTo(backdropText, "x", { duration: 1.2, ease: "power2.out" });
+  }
 
-  // Desktop subtle mouse parallax
-  const canvas = document.getElementById('heroCanvas');
-  if (!canvas) return;
-
-  const moveX = gsap.quickTo(mesh, "x", { duration: 1.2, ease: "power2.out" });
-  const moveY = gsap.quickTo(mesh, "y", { duration: 1.2, ease: "power2.out" });
-
-  canvas.addEventListener('pointermove', (e) => {
-    const rect = canvas.getBoundingClientRect();
+  root.addEventListener('pointermove', (e) => {
+    const rect = root.getBoundingClientRect();
     const normX = (e.clientX - rect.left) / rect.width - 0.5;
     const normY = (e.clientY - rect.top) / rect.height - 0.5;
 
-    moveX(normX * -25);
-    moveY(normY * -18);
+    movePortraitX(normX * 14);
+    movePortraitY(normY * 8);
+
+    if (moveTextX) {
+      moveTextX(normX * -20);
+    }
   });
 
-  canvas.addEventListener('mouseleave', () => {
-    moveX(0);
-    moveY(0);
+  root.addEventListener('mouseleave', () => {
+    movePortraitX(0);
+    movePortraitY(0);
+    if (moveTextX) moveTextX(0);
   });
 }

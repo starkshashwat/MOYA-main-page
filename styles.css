@@ -1,34 +1,36 @@
 /* ==========================================================================
-   MOYA GATEWAY — MODERN BENTO HERO & EDITORIAL DESIGN SYSTEM
-   Linear-grade Dark Aesthetic • Fast-load GSAP Transitions • High-Contrast Luxury
+   MOYA ACADEMY GATEWAY — INTENT & FOUNDER PROOF DESIGN SYSTEM
+   High-Contrast Luxury Dark Canvas • Linear-Grade Spotlight • Savan Matariya Proof
    ========================================================================== */
 
 :root {
   /* Core Color Palette */
   --bg-black: #000000;
-  --bg-card: rgba(13, 13, 16, 0.72);
-  --bg-card-hover: rgba(20, 20, 26, 0.9);
+  --bg-card: rgba(14, 14, 18, 0.72);
+  --bg-card-hover: rgba(22, 22, 28, 0.92);
   
   --border-subtle: rgba(255, 255, 255, 0.08);
-  --border-hover: rgba(255, 255, 255, 0.24);
+  --border-hover: rgba(255, 255, 255, 0.28);
   
   --text-primary: #f2f1e8;
   --text-secondary: rgba(222, 219, 200, 0.75);
-  --text-muted: #80807b;
+  --text-muted: #82827d;
   
   /* Brand Accents */
   --accent-gold: #f5c518;
-  --accent-gold-glow: rgba(245, 197, 24, 0.3);
-  --accent-gold-bg: rgba(245, 197, 24, 0.08);
+  --accent-gold-glow: rgba(245, 197, 24, 0.35);
+  --accent-gold-bg: rgba(245, 197, 24, 0.09);
   
-  --accent-violet: #8e54e9;
-  --accent-violet-glow: rgba(142, 84, 233, 0.3);
+  --accent-violet: #9d65ff;
+  --accent-violet-glow: rgba(157, 101, 255, 0.35);
+  
+  --accent-cyan: #38bdf8;
+  --accent-cyan-glow: rgba(56, 189, 248, 0.35);
   
   --accent-green: #25d366;
-  --accent-green-glow: rgba(37, 211, 102, 0.3);
-  --accent-green-bg: rgba(37, 211, 102, 0.08);
+  --accent-green-glow: rgba(37, 211, 102, 0.35);
   
-  --accent-silver: #d1d5db;
+  --accent-silver: #e2e8f0;
 
   /* Typography */
   --font-display: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
@@ -40,7 +42,7 @@
   --ease-snappy: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* Reset & Box Sizing */
+/* Reset & Global Base */
 *, *::before, *::after {
   box-sizing: border-box;
   margin: 0;
@@ -68,10 +70,10 @@ body {
 }
 
 /* ==========================================================================
-   1. FULL BLEED HERO ROOT & ATMOSPHERE
+   1. FULL BLEED ROOT & ATMOSPHERIC CANVAS
    ========================================================================== */
 
-.hero-root {
+.gateway-root {
   position: relative;
   width: 100%;
   min-height: 100vh;
@@ -95,35 +97,35 @@ body {
   position: absolute;
   inset: -20%;
   background: 
-    radial-gradient(55% 50% at 50% 40%, rgba(98, 54, 180, 0.2) 0%, transparent 68%),
-    radial-gradient(40% 40% at 80% 65%, rgba(245, 197, 24, 0.08) 0%, transparent 65%),
-    radial-gradient(35% 35% at 20% 70%, rgba(37, 211, 102, 0.06) 0%, transparent 60%);
-  filter: blur(70px);
+    radial-gradient(55% 50% at 50% 32%, rgba(100, 52, 190, 0.22) 0%, transparent 68%),
+    radial-gradient(40% 40% at 75% 50%, rgba(245, 197, 24, 0.08) 0%, transparent 65%),
+    radial-gradient(35% 35% at 25% 65%, rgba(56, 189, 248, 0.06) 0%, transparent 60%);
+  filter: blur(75px);
   will-change: transform;
 }
 
 .vignette-radial {
   position: absolute;
   inset: 0;
-  background: radial-gradient(ellipse 85% 80% at 50% 50%, transparent 40%, rgba(0, 0, 0, 0.8) 100%);
+  background: radial-gradient(ellipse 90% 85% at 50% 50%, transparent 35%, rgba(0, 0, 0, 0.85) 100%);
 }
 
 .subtle-grid-lines {
   position: absolute;
   inset: 0;
-  background-size: 60px 60px;
+  background-size: 55px 55px;
   background-image: 
     linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
     linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
-  opacity: 0.8;
-  mask-image: radial-gradient(ellipse 80% 60% at 50% 50%, black 20%, transparent 80%);
-  -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 50%, black 20%, transparent 80%);
+  opacity: 0.7;
+  mask-image: radial-gradient(ellipse 80% 65% at 50% 45%, black 20%, transparent 80%);
+  -webkit-mask-image: radial-gradient(ellipse 80% 65% at 50% 45%, black 20%, transparent 80%);
 }
 
 .film-grain-overlay {
   position: absolute;
   inset: 0;
-  opacity: 0.28;
+  opacity: 0.25;
   mix-blend-mode: overlay;
   pointer-events: none;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.5 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
@@ -132,11 +134,11 @@ body {
 .depth-lighting {
   position: absolute;
   inset: 0;
-  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.4) 0%, transparent 20%, transparent 70%, rgba(0, 0, 0, 0.9) 100%);
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.5) 0%, transparent 18%, transparent 70%, rgba(0, 0, 0, 0.95) 100%);
 }
 
 /* ==========================================================================
-   2. TOP NAVIGATION BAR
+   2. TOP NAVIGATION BAR (Social Media Group — Zero WhatsApp)
    ========================================================================== */
 
 .top-nav-bar {
@@ -145,17 +147,17 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 1.25rem 1.75rem;
+  padding: 1.15rem 1.5rem;
   flex-shrink: 0;
   border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-  background: rgba(0, 0, 0, 0.35);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
 }
 
 @media (min-width: 1024px) {
   .top-nav-bar {
-    padding: 1.5rem 3.5rem;
+    padding: 1.25rem 3.5rem;
   }
 }
 
@@ -171,28 +173,28 @@ body {
 }
 
 .brand-logo-img {
-  height: 30px;
+  height: 28px;
   width: auto;
   display: block;
 }
 
 @media (min-width: 768px) {
   .brand-logo-img {
-    height: 34px;
+    height: 32px;
   }
 }
 
-/* Center status pill */
+/* Center status indicator */
 .nav-system-status {
   display: none;
   align-items: center;
-  gap: 0.55rem;
-  padding: 0.4rem 0.9rem;
+  gap: 0.5rem;
+  padding: 0.35rem 0.85rem;
   background: rgba(255, 255, 255, 0.04);
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 9999px;
   font-family: var(--font-mono);
-  font-size: 0.6875rem;
+  font-size: 0.65625rem;
   letter-spacing: 0.08em;
   color: var(--text-secondary);
 }
@@ -217,48 +219,46 @@ body {
   50% { opacity: 0.4; transform: scale(0.85); }
 }
 
-.nav-actions-group {
+/* Right Social Media Group */
+.nav-social-group {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
+  gap: 0.5rem;
 }
 
-.nav-chat-pill {
+.social-icon-btn {
   display: inline-flex;
   align-items: center;
-  gap: 0.45rem;
-  padding: 0.55rem 1.15rem;
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.16);
-  border-radius: 9999px;
-  color: var(--text-primary);
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: var(--text-secondary);
   text-decoration: none;
-  font-family: var(--font-sans);
-  font-size: 0.75rem;
-  font-weight: 700;
-  letter-spacing: 0.06em;
   transition: all 0.25s ease;
 }
 
-.nav-chat-pill:hover {
-  background: var(--text-primary);
-  color: #000000;
-  border-color: var(--text-primary);
-  transform: translateY(-1px);
-  box-shadow: 0 4px 18px rgba(255, 255, 255, 0.2);
+.social-icon-btn:hover {
+  background: rgba(255, 255, 255, 0.15);
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.3);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 14px rgba(255, 255, 255, 0.15);
 }
 
 /* ==========================================================================
-   3. MAIN HERO STAGE & TYPOGRAPHY
+   3. MAIN GATEWAY CONTAINER
    ========================================================================== */
 
-.hero-stage-container {
+.gateway-container {
   position: relative;
   z-index: 20;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 1.5rem 1.5rem 1rem 1.5rem;
+  padding: 1rem 1.25rem;
   max-width: 1440px;
   margin: 0 auto;
   width: 100%;
@@ -266,198 +266,404 @@ body {
 }
 
 @media (min-width: 1024px) {
-  .hero-stage-container {
-    padding: 2.25rem 3.5rem 1.5rem 3.5rem;
-  }
-}
-
-/* Editorial Eyebrow */
-.editorial-eyebrow {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  margin-bottom: 0.35rem;
-}
-
-.eyebrow-symbol {
-  color: var(--accent-gold);
-  font-size: 1.1rem;
-  line-height: 1;
-}
-
-.eyebrow-text {
-  font-family: var(--font-sans);
-  font-size: 0.875rem;
-  color: var(--text-secondary);
-  font-weight: 400;
-  letter-spacing: 0.02em;
-}
-
-@media (min-width: 768px) {
-  .eyebrow-text {
-    font-size: 1rem;
-  }
-}
-
-.eyebrow-italic {
-  font-family: var(--font-serif);
-  font-style: italic;
-  font-size: 1.25em;
-  color: #ffffff;
-}
-
-/* Oversized Title Wrap */
-.oversized-typography-wrap {
-  position: relative;
-  display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-  gap: 1rem;
-  margin-bottom: 1.75rem;
-}
-
-@media (min-width: 1024px) {
-  .oversized-typography-wrap {
-    margin-bottom: 2.25rem;
-  }
-}
-
-.oversized-title {
-  font-family: var(--font-display);
-  font-size: clamp(3.75rem, 16vw, 12.5rem);
-  font-weight: 800;
-  line-height: 0.82;
-  letter-spacing: -0.06em;
-  color: var(--text-primary);
-  display: flex;
-  align-items: baseline;
-  user-select: none;
-  text-shadow: 0 10px 40px rgba(0, 0, 0, 0.8);
-}
-
-.char-mask {
-  overflow: hidden;
-  display: inline-block;
-  vertical-align: bottom;
-}
-
-.char-inner {
-  display: inline-block;
-  will-change: transform;
-}
-
-.superscript-asterisk {
-  font-size: 0.35em;
-  color: var(--accent-gold);
-  vertical-align: super;
-  margin-left: 0.08em;
-  display: inline-block;
-  will-change: transform;
-}
-
-/* Circular Fast Action Pill */
-.circular-action-pill {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 3.25rem;
-  height: 3.25rem;
-  border-radius: 50%;
-  background: var(--text-primary);
-  color: #000000;
-  text-decoration: none;
-  flex-shrink: 0;
-  margin-bottom: 0.5rem;
-  transition: transform 0.3s var(--ease-snappy), background-color 0.3s ease, box-shadow 0.3s ease;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
-}
-
-.circular-action-pill:hover {
-  background: #ffffff;
-  transform: scale(1.12) rotate(8deg);
-  box-shadow: 0 8px 30px rgba(255, 255, 255, 0.35);
-}
-
-@media (min-width: 768px) {
-  .circular-action-pill {
-    width: 4rem;
-    height: 4rem;
-    margin-bottom: 0.85rem;
+  .gateway-container {
+    padding: 1.5rem 3.5rem 1rem 3.5rem;
   }
 }
 
 /* ==========================================================================
-   4. INTERACTIVE BENTO GRID OF PATHWAYS
+   4. SECTION 1: FOUNDER PROOF STAGE (Savan Matariya)
+   Oversized Backdrop Name + Centered Portrait + 4 Floating Badges
    ========================================================================== */
 
-.bento-grid-section {
+.founder-proof-stage {
+  position: relative;
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.25rem;
 }
 
-.bento-grid {
+/* Massive Backdrop Name Behind Portrait */
+.founder-backdrop-wrap {
+  position: absolute;
+  top: 42%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  text-align: center;
+  pointer-events: none;
+  z-index: 1;
+  user-select: none;
+}
+
+.founder-backdrop-text {
+  font-family: var(--font-display);
+  font-size: clamp(3.2rem, 9.5vw, 8.8rem);
+  font-weight: 900;
+  letter-spacing: -0.04em;
+  color: rgba(255, 255, 255, 0.14);
+  text-transform: uppercase;
+  white-space: nowrap;
+  display: inline-block;
+  line-height: 0.9;
+  text-shadow: 0 0 60px rgba(100, 52, 190, 0.35);
+  will-change: transform, opacity;
+}
+
+/* Orbit Container holding image & 4 floating badges */
+.founder-orbit-container {
+  position: relative;
+  width: 100%;
+  max-width: 980px;
+  min-height: 240px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  z-index: 5;
+}
+
+@media (min-width: 768px) {
+  .founder-orbit-container {
+    min-height: 290px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .founder-orbit-container {
+    min-height: 320px;
+  }
+}
+
+/* Portrait Visual Frame */
+.founder-portrait-frame {
+  position: relative;
+  z-index: 6;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  height: 230px;
+  width: auto;
+  max-width: 100%;
+}
+
+@media (min-width: 768px) {
+  .founder-portrait-frame {
+    height: 290px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .founder-portrait-frame {
+    height: 330px;
+  }
+}
+
+.founder-picture {
+  display: block;
+  height: 100%;
+  width: auto;
+}
+
+.founder-img {
+  height: 100%;
+  width: auto;
+  max-height: 100%;
+  object-fit: contain;
+  object-position: bottom center;
+  display: block;
+  filter: drop-shadow(0 15px 35px rgba(0, 0, 0, 0.95));
+}
+
+.portrait-ambient-glow {
+  position: absolute;
+  width: 140%;
+  height: 120%;
+  left: -20%;
+  bottom: -10%;
+  border-radius: 50%;
+  background: radial-gradient(circle at 50% 60%, rgba(100, 52, 190, 0.28) 0%, rgba(245, 197, 24, 0.08) 50%, transparent 75%);
+  filter: blur(45px);
+  z-index: -1;
+  pointer-events: none;
+}
+
+.portrait-base-blend {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 30px;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.95) 0%, transparent 100%);
+  pointer-events: none;
+  z-index: 7;
+}
+
+/* 4 Floating Orbiting Achievement Badges */
+.floating-metric-badge {
+  position: absolute;
+  z-index: 8;
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.5rem 0.85rem;
+  background: rgba(18, 18, 24, 0.82);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 12px;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
+  white-space: nowrap;
+  pointer-events: auto;
+  transition: transform 0.25s ease, border-color 0.25s ease;
+  will-change: transform;
+}
+
+.floating-metric-badge:hover {
+  transform: scale(1.05);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.badge-icon {
+  font-size: 0.95rem;
+  color: var(--accent-violet);
+}
+
+.badge-icon--amber { color: var(--accent-gold); }
+.badge-icon--cyan { color: var(--accent-cyan); }
+.badge-icon--green { color: var(--accent-green); }
+
+.badge-text-wrap {
+  display: flex;
+  flex-direction: column;
+}
+
+.badge-value {
+  font-family: var(--font-display);
+  font-size: 0.8125rem;
+  font-weight: 800;
+  color: #ffffff;
+  letter-spacing: -0.01em;
+  line-height: 1.15;
+}
+
+.badge-label {
+  font-family: var(--font-sans);
+  font-size: 0.59375rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  letter-spacing: 0.02em;
+}
+
+/* Badge Desktop Positioning */
+@media (min-width: 900px) {
+  .badge--top-left {
+    top: 18%;
+    left: 4%;
+  }
+
+  .badge--bottom-left {
+    bottom: 12%;
+    left: 8%;
+  }
+
+  .badge--top-right {
+    top: 18%;
+    right: 4%;
+  }
+
+  .badge--bottom-right {
+    bottom: 12%;
+    right: 8%;
+  }
+}
+
+/* Badge Tablet Positioning (640px to 899px) */
+@media (min-width: 640px) and (max-width: 899px) {
+  .badge--top-left { top: 8%; left: 2%; }
+  .badge--bottom-left { bottom: 6%; left: 3%; }
+  .badge--top-right { top: 8%; right: 2%; }
+  .badge--bottom-right { bottom: 6%; right: 3%; }
+}
+
+/* Badge Mobile Positioning (< 640px) */
+@media (max-width: 639px) {
+  .founder-orbit-container {
+    min-height: 250px;
+    padding-bottom: 2.8rem;
+  }
+
+  .founder-portrait-frame {
+    height: 200px;
+  }
+
+  .floating-metric-badge {
+    padding: 0.35rem 0.65rem;
+    border-radius: 9px;
+  }
+
+  .badge-value { font-size: 0.72rem; }
+  .badge-label { font-size: 0.53rem; }
+
+  .badge--top-left { top: 4%; left: 0%; }
+  .badge--bottom-left { bottom: 2%; left: 1%; }
+  .badge--top-right { top: 4%; right: 0%; }
+  .badge--bottom-right { bottom: 2%; right: 1%; }
+}
+
+/* Founder Proof Quote Statement */
+.founder-proof-statement {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-top: 0.5rem;
+  z-index: 10;
+}
+
+.statement-quote {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: clamp(0.95rem, 1.8vw, 1.25rem);
+  color: var(--text-primary);
+  line-height: 1.35;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.9);
+}
+
+.quote-symbol {
+  color: var(--accent-gold);
+  font-style: normal;
+}
+
+.founder-designation {
+  font-family: var(--font-mono);
+  font-size: 0.5625rem;
+  letter-spacing: 0.14em;
+  color: var(--text-muted);
+  margin-top: 0.2rem;
+}
+
+/* ==========================================================================
+   5. SECTION 2: CHOOSE YOUR GOAL INTENT MATRIX
+   5 Intent-Driven Conversion Pathways
+   ========================================================================== */
+
+.intent-selection-section {
+  width: 100%;
+  margin-top: 0.75rem;
+}
+
+.intent-header-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-bottom: 0.95rem;
+}
+
+.intent-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: var(--font-mono);
+  font-size: 0.625rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: var(--accent-gold);
+  margin-bottom: 0.25rem;
+}
+
+.eyebrow-sparkle {
+  font-size: 0.75rem;
+}
+
+.intent-main-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.2rem, 2.2vw, 1.75rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: #ffffff;
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: center;
+  gap: 0.4rem;
+}
+
+.title-sub {
+  font-family: var(--font-sans);
+  font-size: 0.8125rem;
+  font-weight: 400;
+  color: var(--text-muted);
+  letter-spacing: 0.01em;
+}
+
+/* 5 Intent Pathways Grid */
+.intent-cards-grid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 0.85rem;
+  gap: 0.75rem;
   width: 100%;
 }
 
 @media (min-width: 640px) {
-  .bento-grid {
+  .intent-cards-grid {
     grid-template-columns: repeat(2, 1fr);
-    gap: 1rem;
   }
 }
 
 @media (min-width: 1024px) {
-  .bento-grid {
-    grid-template-columns: 1fr 1fr 1.35fr 1fr;
-    gap: 1.15rem;
+  .intent-cards-grid {
+    grid-template-columns: repeat(5, 1fr);
+    gap: 0.85rem;
   }
 }
 
-/* Individual Bento Card */
-.bento-card {
+/* Individual Intent Card */
+.intent-card {
   position: relative;
   background: var(--bg-card);
   border: 1px solid var(--border-subtle);
-  border-radius: 18px;
-  padding: 1.35rem 1.25rem;
+  border-radius: 16px;
+  padding: 1.15rem 1rem 0.95rem 1rem;
   text-decoration: none;
   color: var(--text-primary);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  min-height: 190px;
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  min-height: 195px;
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
   overflow: hidden;
   cursor: pointer;
-  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
   transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s var(--ease-snappy), opacity 0.3s ease;
   will-change: transform, opacity;
 }
 
 @media (min-width: 1024px) {
-  .bento-card {
-    min-height: 220px;
-    padding: 1.5rem 1.4rem;
+  .intent-card {
+    min-height: 215px;
+    padding: 1.25rem 1.05rem 1rem 1.05rem;
   }
 }
 
-.bento-card:hover {
+.intent-card:hover {
   transform: translateY(-4px);
   border-color: var(--border-hover);
-  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.6);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.7);
   background: var(--bg-card-hover);
 }
 
-/* Spotlight layer following cursor */
+/* Spotlight layer */
 .card-spotlight-layer {
   position: absolute;
   inset: 0;
   pointer-events: none;
   background: radial-gradient(
-    380px circle at var(--mouse-x, -999px) var(--mouse-y, -999px),
+    320px circle at var(--mouse-x, -999px) var(--mouse-y, -999px),
     rgba(255, 255, 255, 0.08),
     transparent 55%
   );
@@ -465,279 +671,214 @@ body {
   transition: opacity 0.4s ease;
 }
 
-.bento-card:hover .card-spotlight-layer {
+.intent-card:hover .card-spotlight-layer {
   opacity: 1;
 }
 
-/* Card Header */
-.card-header {
+/* Card Top Row */
+.card-top-row {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 0.9rem;
+  margin-bottom: 0.75rem;
 }
 
-.card-badge {
+.card-intent-badge {
   display: inline-flex;
   align-items: center;
-  gap: 0.4rem;
-  padding: 0.25rem 0.65rem;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 0.2rem 0.55rem;
   border-radius: 9999px;
   font-family: var(--font-mono);
-  font-size: 0.625rem;
-  font-weight: 600;
+  font-size: 0.5625rem;
+  font-weight: 700;
   letter-spacing: 0.08em;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.04);
   color: var(--text-secondary);
 }
 
-.badge-dot {
-  width: 5px;
-  height: 5px;
-  border-radius: 50%;
-  background: var(--accent-silver);
+.badge-gold {
+  border-color: rgba(245, 197, 24, 0.3);
+  color: var(--accent-gold);
+  background: var(--accent-gold-bg);
 }
 
-.badge-dot--violet { background: var(--accent-violet); box-shadow: 0 0 6px var(--accent-violet-glow); }
-.badge-dot--silver { background: var(--accent-silver); }
-.badge-dot--gold { background: var(--accent-gold); box-shadow: 0 0 6px var(--accent-gold-glow); }
-.badge-dot--green { background: var(--accent-green); box-shadow: 0 0 6px var(--accent-green-glow); }
+.badge-violet {
+  border-color: rgba(157, 101, 255, 0.3);
+  color: var(--accent-violet);
+  background: rgba(157, 101, 255, 0.08);
+}
 
-.card-arrow-pill {
-  width: 28px;
-  height: 28px;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.06);
-  display: flex;
+.badge-silver {
+  border-color: rgba(255, 255, 255, 0.15);
+  color: var(--accent-silver);
+}
+
+.badge-cyan {
+  border-color: rgba(56, 189, 248, 0.3);
+  color: var(--accent-cyan);
+  background: rgba(56, 189, 248, 0.08);
+}
+
+.badge-green {
+  border-color: rgba(37, 211, 102, 0.3);
+  color: var(--accent-green);
+  background: rgba(37, 211, 102, 0.08);
+}
+
+.card-price-pill {
+  display: inline-flex;
   align-items: center;
-  justify-content: center;
-  color: var(--text-secondary);
-  transition: all 0.25s ease;
+  padding: 0.15rem 0.55rem;
+  background: var(--accent-gold);
+  color: #000000;
+  border-radius: 9999px;
+  font-family: var(--font-display);
+  font-size: 0.6875rem;
+  font-weight: 800;
+  box-shadow: 0 0 10px var(--accent-gold-glow);
 }
 
-.bento-card:hover .card-arrow-pill {
-  background: rgba(255, 255, 255, 0.2);
+.card-mini-arrow {
+  color: var(--text-muted);
+  font-size: 0.8125rem;
+  transition: transform 0.25s ease, color 0.25s ease;
+}
+
+.intent-card:hover .card-mini-arrow {
+  transform: translate(2px, -2px);
   color: #ffffff;
-  transform: scale(1.1);
 }
 
-/* Card Body */
-.card-body {
+/* Card Content */
+.card-content {
   flex: 1;
   display: flex;
   flex-direction: column;
 }
 
-.card-icon-wrap {
-  width: 36px;
-  height: 36px;
-  border-radius: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 0.75rem;
-  background: rgba(255, 255, 255, 0.06);
-  color: var(--text-primary);
-  transition: transform 0.25s ease;
-}
-
-.bento-card:hover .card-icon-wrap {
-  transform: scale(1.08);
-}
-
-.card-icon-wrap--violet { background: rgba(142, 84, 233, 0.15); color: #c4a1ff; }
-.card-icon-wrap--silver { background: rgba(255, 255, 255, 0.08); color: var(--text-primary); }
-.card-icon-wrap--gold { background: rgba(245, 197, 24, 0.15); color: var(--accent-gold); }
-.card-icon-wrap--green { background: rgba(37, 211, 102, 0.15); color: var(--accent-green); }
-
-.card-title {
+.card-intent-heading {
   font-family: var(--font-display);
-  font-size: 1.15rem;
+  font-size: 0.98rem;
   font-weight: 700;
-  letter-spacing: -0.02em;
+  line-height: 1.25;
   color: #ffffff;
-  margin-bottom: 0.35rem;
+  letter-spacing: -0.01em;
+  margin-bottom: 0.4rem;
 }
 
-.card-desc {
+.card-supporting-line {
   font-family: var(--font-sans);
-  font-size: 0.775rem;
+  font-size: 0.73rem;
   line-height: 1.45;
   color: var(--text-muted);
   font-weight: 400;
 }
 
-/* Card Footer Action */
-.card-footer-action {
+/* Card Action Strip */
+.card-action-strip {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-top: 1rem;
-  padding-top: 0.75rem;
+  margin-top: 0.85rem;
+  padding-top: 0.65rem;
   border-top: 1px solid rgba(255, 255, 255, 0.06);
   font-family: var(--font-sans);
-  font-size: 0.6875rem;
+  font-size: 0.65625rem;
   font-weight: 700;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.07em;
   color: var(--text-secondary);
 }
 
-.card-action-arrow {
+.card-cta-arrow {
   transition: transform 0.25s ease;
 }
 
-.bento-card:hover .card-action-arrow {
+.intent-card:hover .card-cta-arrow {
   transform: translateX(4px);
   color: #ffffff;
 }
 
-/* Card 3: Featured Masterclass Card Accent */
-.bento-card--masterclass {
+/* Featured Card Accent (Masterclass ₹199) */
+.intent-card--featured {
   border-color: rgba(245, 197, 24, 0.32);
-  background: radial-gradient(circle at 80% 20%, rgba(245, 197, 24, 0.06) 0%, rgba(18, 17, 13, 0.85) 100%);
+  background: radial-gradient(circle at 85% 15%, rgba(245, 197, 24, 0.07) 0%, rgba(18, 17, 13, 0.85) 100%);
 }
 
-.bento-card--masterclass:hover {
+.intent-card--featured:hover {
   border-color: var(--accent-gold);
-  box-shadow: 0 16px 40px rgba(245, 197, 24, 0.2);
+  box-shadow: 0 14px 34px rgba(245, 197, 24, 0.22);
 }
 
-.card-badge--gold {
-  border-color: rgba(245, 197, 24, 0.3);
+.action-strip--gold {
   color: var(--accent-gold);
 }
 
-.card-price-tag {
-  display: inline-flex;
-  align-items: center;
-  padding: 0.25rem 0.75rem;
-  background: var(--accent-gold);
-  color: #000000;
-  border-radius: 9999px;
-  font-family: var(--font-display);
-  font-size: 0.875rem;
-  font-weight: 800;
-  box-shadow: 0 0 14px var(--accent-gold-glow);
-}
-
-.card-footer-action--gold {
-  color: var(--accent-gold);
-}
-
-/* Card 4: WhatsApp Channel Card Accent */
-.bento-card--whatsapp {
-  border-color: rgba(37, 211, 102, 0.25);
-  background: radial-gradient(circle at 80% 20%, rgba(37, 211, 102, 0.05) 0%, rgba(13, 19, 15, 0.85) 100%);
-}
-
-.bento-card--whatsapp:hover {
-  border-color: var(--accent-green);
-  box-shadow: 0 16px 40px rgba(37, 211, 102, 0.2);
-}
-
-.card-badge--green {
-  border-color: rgba(37, 211, 102, 0.28);
-  color: var(--accent-green);
-}
-
-.card-arrow-pill--green {
-  background: rgba(37, 211, 102, 0.12);
-  color: var(--accent-green);
-}
-
-.card-footer-action--green {
-  color: var(--accent-green);
-}
-
-/* Mobile adjustments for Bento */
+/* Mobile Layout for 5 Cards */
 @media (max-width: 639px) {
-  .bento-grid {
-    grid-template-columns: repeat(2, 1fr);
+  .intent-cards-grid {
+    grid-template-columns: 1fr;
     gap: 0.65rem;
   }
 
-  .bento-card {
-    min-height: 165px;
-    padding: 1.1rem 0.95rem;
-    border-radius: 14px;
+  .intent-card {
+    min-height: 155px;
+    padding: 1rem 0.95rem 0.85rem 0.95rem;
   }
 
-  .bento-card--masterclass,
-  .bento-card--whatsapp {
-    grid-column: span 2;
+  .card-intent-heading {
+    font-size: 0.92rem;
   }
 
-  .card-title {
-    font-size: 1rem;
-  }
-
-  .card-desc {
-    font-size: 0.72rem;
-    line-height: 1.35;
+  .card-supporting-line {
+    font-size: 0.7rem;
   }
 }
 
 /* ==========================================================================
-   5. SEAMLESS MINIMAL FOOTER STRIP
+   6. SEAMLESS MINIMAL FOOTER STRIP
    ========================================================================== */
 
-.hero-signature-strip {
+.gateway-footer-strip {
   position: relative;
   z-index: 30;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 1rem 1.75rem;
+  padding: 0.95rem 1.5rem;
   border-top: 1px solid rgba(255, 255, 255, 0.05);
   font-family: var(--font-mono);
   font-size: 0.625rem;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.1em;
   color: var(--text-muted);
 }
 
 @media (min-width: 1024px) {
-  .hero-signature-strip {
-    padding: 1.25rem 3.5rem;
+  .gateway-footer-strip {
+    padding: 1rem 3.5rem;
   }
 }
 
-.signature-left {
-  opacity: 0.8;
+.footer-left {
+  opacity: 0.75;
 }
 
-.footer-chat-pill {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.45rem;
-  color: var(--text-secondary);
-  text-decoration: none;
-  transition: color 0.2s ease;
+.footer-tagline {
+  letter-spacing: 0.15em;
+  opacity: 0.6;
 }
 
-.footer-chat-pill:hover {
-  color: var(--accent-green);
-}
-
-.status-live-dot {
-  width: 5px;
-  height: 5px;
-  border-radius: 50%;
-  background-color: var(--accent-green);
-}
-
-/* Responsive Footer Mobile */
 @media (max-width: 767px) {
-  .hero-signature-strip {
+  .gateway-footer-strip {
     flex-direction: column;
-    gap: 0.6rem;
+    gap: 0.4rem;
     text-align: center;
-    padding: 1rem;
+    padding: 0.85rem 1rem;
   }
 }
 
 /* ==========================================================================
-   6. ACCESSIBILITY & PREFERS-REDUCED-MOTION
+   7. ACCESSIBILITY & PREFERS-REDUCED-MOTION
    ========================================================================== */
 
 @media (prefers-reduced-motion: reduce) {
@@ -748,7 +889,7 @@ body {
     scroll-behavior: auto !important;
   }
 
-  .char-inner, .superscript-asterisk, .bento-card {
+  .floating-metric-badge, .intent-card, .founder-backdrop-text {
     opacity: 1 !important;
     transform: none !important;
   }
