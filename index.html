@@ -316,13 +316,27 @@
 
         </div>
 
-        <!-- Mobile Carousel Pagination Dots (Horizontal Navigation Feedback) -->
-        <div class="cards-carousel-dots" id="carouselDots" aria-hidden="true">
-          <span class="carousel-dot is-active" data-index="0"></span>
-          <span class="carousel-dot" data-index="1"></span>
-          <span class="carousel-dot" data-index="2"></span>
-          <span class="carousel-dot" data-index="3"></span>
-          <span class="carousel-dot" data-index="4"></span>
+        <!-- Mobile Carousel Navigation Controls (Prev / Next Buttons + Pagination Feedback) -->
+        <div class="carousel-nav-control" id="carouselNavControl" aria-label="Card Navigation">
+          <button type="button" class="carousel-nav-btn btn--prev" id="carouselPrevBtn" aria-label="Previous goals">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="m15 18-6-6 6-6"/>
+            </svg>
+          </button>
+
+          <div class="cards-carousel-dots" id="carouselDots" aria-label="Carousel pagination">
+            <button type="button" class="carousel-dot is-active" data-index="0" aria-label="Go to slide 1"></button>
+            <button type="button" class="carousel-dot" data-index="1" aria-label="Go to slide 2"></button>
+            <button type="button" class="carousel-dot" data-index="2" aria-label="Go to slide 3"></button>
+            <button type="button" class="carousel-dot" data-index="3" aria-label="Go to slide 4"></button>
+            <button type="button" class="carousel-dot" data-index="4" aria-label="Go to slide 5"></button>
+          </div>
+
+          <button type="button" class="carousel-nav-btn btn--next" id="carouselNextBtn" aria-label="Next goals">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="m9 18 6-6-6-6"/>
+            </svg>
+          </button>
         </div>
 
         <!-- DYNAMIC SELECTION ACTION BUTTON -->

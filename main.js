@@ -156,7 +156,8 @@ function initGoalSelection() {
         }
       }
 
-      // 4. On mobile, smoothly center the selected card in horizontal view
+      // 4. On mobile, smoothly center the selected card in horizontal view & stop auto-scroll
+      stopMobileAutoScroll();
       if (window.innerWidth <= 640) {
         card.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
       }
@@ -174,31 +175,145 @@ function initGoalSelection() {
 
 /**
  * ==========================================================================
- * 1C. MOBILE HORIZONTAL CAROUSEL SYNC
- * Updates carousel pagination dots as user scrolls horizontally
+ * 1C. MOBILE HORIZONTAL CAROUSEL SYNC & CONTROLS
+ * Provides Prev/Next arrows, dot indicators, dot navigation, and auto-scroll
  * ==========================================================================
  */
+let mobileAutoScrollTimer = null;
+let autoScrollResumeTimeout = null;
+
+function stopMobileAutoScroll() {
+  if (mobileAutoScrollTimer) {
+    clearInterval(mobileAutoScrollTimer);
+    mobileAutoScrollTimer = null;
+  }
+  if (autoScrollResumeTimeout) {
+    clearTimeout(autoScrollResumeTimeout);
+    autoScrollResumeTimeout = null;
+  }
+}
+
 function initCarouselScrollSync() {
   const grid = document.getElementById('intentGrid');
   const dots = document.querySelectorAll('.carousel-dot');
-  if (!grid || !dots.length) return;
+  const prevBtn = document.getElementById('carouselPrevBtn');
+  const nextBtn = document.getElementById('carouselNextBtn');
+  const cards = document.querySelectorAll('.intent-card');
 
-  grid.addEventListener('scroll', () => {
+  if (!grid) return;
+
+  function updateControlsState() {
     const scrollLeft = grid.scrollLeft;
     const maxScroll = grid.scrollWidth - grid.clientWidth;
     if (maxScroll <= 0) return;
 
-    const progress = scrollLeft / maxScroll;
+    // Update dots based on scroll position
+    const progress = Math.max(0, Math.min(1, scrollLeft / maxScroll));
     const activeIndex = Math.min(dots.length - 1, Math.round(progress * (dots.length - 1)));
 
     dots.forEach((dot, idx) => {
-      if (idx === activeIndex) {
-        dot.classList.add('is-active');
+      dot.classList.toggle('is-active', idx === activeIndex);
+    });
+
+    // Update arrow button disabled status
+    if (prevBtn) {
+      prevBtn.classList.toggle('is-disabled', scrollLeft <= 8);
+    }
+    if (nextBtn) {
+      nextBtn.classList.toggle('is-disabled', scrollLeft >= maxScroll - 8);
+    }
+  }
+
+  // Scroll listener
+  grid.addEventListener('scroll', updateControlsState, { passive: true });
+  // Initial check
+  updateControlsState();
+
+  // Prev Button Click
+  if (prevBtn) {
+    prevBtn.addEventListener('click', () => {
+      pauseAutoScrollTemporarily();
+      const step = grid.firstElementChild ? grid.firstElementChild.offsetWidth + 10 : grid.clientWidth * 0.55;
+      grid.scrollBy({ left: -step, behavior: 'smooth' });
+    });
+  }
+
+  // Next Button Click
+  if (nextBtn) {
+    nextBtn.addEventListener('click', () => {
+      pauseAutoScrollTemporarily();
+      const maxScroll = grid.scrollWidth - grid.clientWidth;
+      const step = grid.firstElementChild ? grid.firstElementChild.offsetWidth + 10 : grid.clientWidth * 0.55;
+      if (grid.scrollLeft >= maxScroll - 10) {
+        grid.scrollTo({ left: 0, behavior: 'smooth' });
       } else {
-        dot.classList.remove('is-active');
+        grid.scrollBy({ left: step, behavior: 'smooth' });
       }
     });
-  }, { passive: true });
+  }
+
+  // Dot Click Navigation
+  dots.forEach((dot, idx) => {
+    dot.addEventListener('click', () => {
+      pauseAutoScrollTemporarily();
+      if (cards[idx]) {
+        cards[idx].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+      }
+    });
+  });
+
+  // User Touch / Manual Interaction: pause auto-scroll
+  function pauseAutoScrollTemporarily() {
+    stopMobileAutoScroll();
+    // Don't resume if user has an active card selection
+    if (document.querySelector('.intent-card.is-selected')) return;
+
+    // Resume after 5 seconds of idle
+    autoScrollResumeTimeout = setTimeout(() => {
+      startMobileAutoScroll();
+    }, 5000);
+  }
+
+  grid.addEventListener('touchstart', pauseAutoScrollTemporarily, { passive: true });
+  grid.addEventListener('pointerdown', pauseAutoScrollTemporarily, { passive: true });
+
+  // Mobile Auto-Scroll Loop
+  function startMobileAutoScroll() {
+    if (window.innerWidth > 640) return;
+    if (mobileAutoScrollTimer) return;
+    if (document.querySelector('.intent-card.is-selected')) return;
+
+    mobileAutoScrollTimer = setInterval(() => {
+      if (window.innerWidth > 640 || document.querySelector('.intent-card.is-selected')) {
+        stopMobileAutoScroll();
+        return;
+      }
+
+      const maxScroll = grid.scrollWidth - grid.clientWidth;
+      if (maxScroll <= 0) return;
+
+      const step = grid.firstElementChild ? grid.firstElementChild.offsetWidth + 10 : 160;
+      if (grid.scrollLeft >= maxScroll - 12) {
+        grid.scrollTo({ left: 0, behavior: 'smooth' });
+      } else {
+        grid.scrollBy({ left: step, behavior: 'smooth' });
+      }
+    }, 3800);
+  }
+
+  // Start auto scroll if on mobile
+  if (window.innerWidth <= 640) {
+    startMobileAutoScroll();
+  }
+
+  // Handle window resize
+  window.addEventListener('resize', () => {
+    if (window.innerWidth > 640) {
+      stopMobileAutoScroll();
+    } else if (!document.querySelector('.intent-card.is-selected')) {
+      startMobileAutoScroll();
+    }
+  });
 }
 
 /**

@@ -1070,27 +1070,28 @@ body {
   box-shadow: 0 0 28px rgba(157, 101, 255, 0.35), 0 8px 24px rgba(0, 0, 0, 0.6);
 }
 
-/* Mobile Carousel Dots (Hidden on Desktop & Tablet) */
+/* Mobile Carousel Navigation Controls (Hidden on Desktop & Tablet) */
+.carousel-nav-control,
 .cards-carousel-dots {
   display: none;
 }
 
 /* ==========================================================================
-   8. RESPONSIVE VIEWPORT SYSTEM (Tablets & Mobile Netlify Single-Screen View)
+   8. RESPONSIVE VIEWPORT SYSTEM (Tablets & Mobile View)
    ========================================================================== */
 
 /* Tablet & Intermediate Screens (641px - 1024px) */
 @media (min-width: 641px) and (max-width: 1024px) {
   .gateway-container {
-    padding: 0.75rem 1.5rem 1rem 1.5rem;
+    padding: 0.75rem 1.5rem 1.5rem 1.5rem;
   }
 
   .founder-orbit-container {
-    min-height: 270px;
+    min-height: 290px;
   }
 
   .founder-portrait-frame {
-    height: 270px;
+    height: 290px;
   }
 
   .intent-cards-grid {
@@ -1108,66 +1109,92 @@ body {
   }
 }
 
-/* Mobile Screens (Phone Viewport: <= 640px) — Fits Entire Experience in Single Screen */
+/* Mobile Screens (Phone Viewport: <= 640px) */
 @media (max-width: 640px) {
   html, body {
     overflow-x: hidden;
     width: 100%;
-    height: 100%;
   }
 
   .gateway-root {
     min-height: 100dvh;
-    height: 100dvh;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    overflow: hidden; /* Fits in 1 viewport with zero page scrolling */
+    justify-content: flex-start;
+    overflow-x: hidden;
   }
 
   .gateway-container {
     flex: 1;
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
-    padding: 0.25rem 0.75rem 0.35rem 0.75rem;
+    justify-content: flex-start;
+    padding: 0.5rem 0.85rem 1.75rem 0.85rem;
     max-width: 100vw;
-    overflow: hidden;
   }
 
   /* Top Nav Compact Sizing */
   .top-nav-bar {
-    padding: 0.35rem 0.75rem;
+    padding: 0.45rem 0.85rem;
     flex-shrink: 0;
   }
 
   .brand-logo-img {
-    width: 95px;
+    width: 105px;
     height: auto;
   }
 
   .social-icon-btn {
-    width: 28px;
-    height: 28px;
+    width: 30px;
+    height: 30px;
   }
 
-  /* Founder Proof Stage: Scaled for single-screen mobile presence */
+  /* Founder Proof Stage: Prominent, Commanding & Beautifully Anchored */
   .founder-proof-stage {
-    flex-shrink: 0;
+    position: relative;
     width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    flex-shrink: 0;
   }
 
   .founder-orbit-container {
-    min-height: 160px;
-    height: 165px;
+    min-height: 240px;
+    height: 245px;
+    width: 100%;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    position: relative;
+    z-index: 5;
   }
 
   .founder-portrait-frame {
-    height: 160px;
+    height: 235px;
+    position: relative;
+    z-index: 10;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    margin-bottom: 0;
+  }
+
+  .founder-img {
+    height: 100%;
+    width: auto;
+    max-height: 100%;
+    object-fit: contain;
+    object-position: bottom center;
+    display: block;
+    filter: drop-shadow(0 16px 36px rgba(0, 0, 0, 0.95));
+    mask-image: linear-gradient(to bottom, black 75%, transparent 99%);
+    -webkit-mask-image: linear-gradient(to bottom, black 75%, transparent 99%);
   }
 
   .founder-backdrop-wrap {
-    top: 40%;
+    top: 45%;
     width: 100%;
     max-width: 100vw;
     padding: 0 0.5rem;
@@ -1175,49 +1202,49 @@ body {
   }
 
   .founder-backdrop-text {
-    font-size: clamp(1.15rem, 5.8vw, 1.65rem) !important;
-    letter-spacing: -0.03em;
+    font-size: clamp(1.85rem, 8.5vw, 2.75rem) !important;
+    letter-spacing: -0.02em;
     max-width: 100%;
     display: block;
     text-align: center;
     white-space: nowrap;
   }
 
+  /* 4 Floating Metric Badges: Peeking behind the larger portrait frame (depth effect) */
   .floating-metric-badge {
-    padding: 0.2rem 0.42rem;
-    border-radius: 8px;
-    gap: 0.28rem;
-    max-width: 110px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.7);
+    padding: 0.32rem 0.52rem;
+    border-radius: 9px;
+    gap: 0.35rem;
+    max-width: 125px;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.7);
+    z-index: 4; /* Layered behind portrait frame (z-index 10) for 3D depth */
   }
 
-  .badge-icon { font-size: 0.75rem; }
-  .badge-value { font-size: 0.65rem; }
-  .badge-label { font-size: 0.46rem; }
+  .badge-icon { font-size: 0.82rem; }
+  .badge-value { font-size: 0.72rem; font-weight: 800; }
+  .badge-label { font-size: 0.5rem; }
 
-  /* Behind portrait with 3D depth */
-  .badge--top-left { top: 4%; left: 0%; }
-  .badge--bottom-left { bottom: 12%; left: 0%; }
-  .badge--top-right { top: 4%; right: 0%; }
-  .badge--bottom-right { bottom: 12%; right: 0%; }
+  .badge--top-left { top: 10%; left: 1%; }
+  .badge--bottom-left { bottom: 10%; left: 1%; }
+  .badge--top-right { top: 10%; right: 1%; }
+  .badge--bottom-right { bottom: 10%; right: 1%; }
 
   .founder-designation-strip {
-    margin: 0.25rem auto 0.2rem auto;
-    font-size: 0.54rem;
-    letter-spacing: 0.1em;
+    margin: 0.65rem auto 0.75rem auto;
+    font-size: 0.58rem;
+    letter-spacing: 0.12em;
     padding: 0 0.5rem;
     text-align: center;
-    flex-wrap: wrap;
     position: relative;
     z-index: 12;
   }
 
   .architectural-divider {
-    margin: 0.35rem auto 0.45rem auto;
+    margin: 0.95rem auto 1.25rem auto;
     flex-shrink: 0;
   }
 
-  /* Intent Section: Compact & Centered */
+  /* Intent Section */
   .intent-selection-section {
     flex-shrink: 0;
     width: 100%;
@@ -1227,22 +1254,22 @@ body {
   }
 
   .intent-header-wrap {
-    margin-bottom: 0.35rem;
+    margin-bottom: 0.85rem;
     padding: 0 0.5rem;
   }
 
   .intent-main-title {
-    font-size: 1.05rem;
-    line-height: 1.2;
-    gap: 0.2rem;
+    font-size: clamp(1.2rem, 5vw, 1.45rem);
+    line-height: 1.25;
+    gap: 0.25rem;
     flex-direction: column;
     align-items: center;
   }
 
   .title-sub {
-    font-size: 0.68rem;
-    line-height: 1.3;
-    margin-top: 0.15rem;
+    font-size: 0.76rem;
+    line-height: 1.35;
+    margin-top: 0.25rem;
     display: block;
     color: var(--text-muted);
   }
@@ -1253,10 +1280,12 @@ body {
     flex-direction: row;
     flex-wrap: nowrap;
     overflow-x: auto;
-    overflow-y: hidden;
-    gap: 0.5rem;
+    overflow-y: visible; /* CRITICAL: Prevents top border/bracket clipping on elevation */
+    gap: 0.6rem;
     width: 100%;
-    padding: 0.15rem 0.25rem 0.35rem 0.25rem;
+    padding: 0.85rem 0.35rem 0.95rem 0.35rem; /* Generous headroom for translateY(-4px) and top glow */
+    margin-top: -0.35rem;
+    margin-bottom: -0.25rem;
     scroll-snap-type: x mandatory;
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
@@ -1269,42 +1298,43 @@ body {
 
   /* Each card takes ~50% width to display exactly 2 cards side-by-side */
   .intent-card {
-    flex: 0 0 calc(50% - 0.25rem);
-    min-width: calc(50% - 0.25rem);
-    max-width: calc(50% - 0.25rem);
+    flex: 0 0 calc(50% - 0.3rem);
+    min-width: calc(50% - 0.3rem);
+    max-width: calc(50% - 0.3rem);
     scroll-snap-align: start;
-    min-height: 110px;
-    height: 110px;
-    padding: 0.65rem 0.6rem;
-    border-radius: 14px;
+    min-height: 120px;
+    height: auto;
+    padding: 0.85rem 0.75rem;
+    border-radius: 16px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    box-sizing: border-box;
   }
 
   .card-meta-bar {
-    margin-bottom: 0.25rem;
+    margin-bottom: 0.45rem;
   }
 
   .card-index-text {
-    font-size: 0.62rem;
+    font-size: 0.64rem;
   }
 
   .card-select-indicator {
-    width: 17px;
-    height: 17px;
+    width: 18px;
+    height: 18px;
   }
 
   .card-intent-heading {
-    font-size: 0.78rem;
-    line-height: 1.22;
-    margin-bottom: 0.2rem;
+    font-size: 0.82rem;
+    line-height: 1.25;
+    margin-bottom: 0.25rem;
     font-weight: 700;
   }
 
   .card-supporting-line {
-    font-size: 0.62rem;
-    line-height: 1.25;
+    font-size: 0.65rem;
+    line-height: 1.3;
     min-height: auto;
     margin-bottom: 0;
     display: -webkit-box;
@@ -1313,44 +1343,84 @@ body {
     overflow: hidden;
   }
 
-  /* Mobile Carousel Dots */
+  /* Mobile Carousel Navigation Controls (Arrows + Dots) */
+  .carousel-nav-control {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.85rem;
+    margin-top: 0.65rem;
+    width: 100%;
+  }
+
+  .carousel-nav-btn {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    color: #ffffff;
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    padding: 0;
+  }
+
+  .carousel-nav-btn:hover,
+  .carousel-nav-btn:active {
+    background: rgba(157, 101, 255, 0.28);
+    border-color: var(--accent-violet);
+    box-shadow: 0 0 12px var(--accent-violet-glow);
+    transform: scale(1.08);
+  }
+
+  .carousel-nav-btn.is-disabled {
+    opacity: 0.3;
+    pointer-events: none;
+  }
+
   .cards-carousel-dots {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 5px;
-    margin-top: 0.25rem;
-    height: 6px;
-    width: 100%;
+    gap: 6px;
+    height: 8px;
   }
 
   .carousel-dot {
-    width: 5px;
-    height: 5px;
+    width: 6px;
+    height: 6px;
     border-radius: 9999px;
     background: rgba(255, 255, 255, 0.2);
+    border: none;
+    padding: 0;
+    cursor: pointer;
     transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
   .carousel-dot.is-active {
-    width: 14px;
+    width: 16px;
     background: var(--accent-violet);
-    box-shadow: 0 0 8px var(--accent-violet-glow);
+    box-shadow: 0 0 10px var(--accent-violet-glow);
   }
 
   /* Dynamic CTA Stage on Mobile */
   .dynamic-cta-stage {
-    margin-top: 0.45rem;
+    margin-top: 0.85rem;
     width: 100%;
   }
 
   .dynamic-action-btn {
-    height: 40px;
-    font-size: 0.78rem;
+    height: 44px;
+    font-size: 0.8rem;
     width: 100%;
-    max-width: 310px;
+    max-width: 320px;
     padding: 0 1.15rem;
-    padding-right: 46px;
+    padding-right: 48px;
   }
 
   .dynamic-action-btn .btn-label {
@@ -1360,52 +1430,51 @@ body {
 
   .dynamic-action-btn::before,
   .dynamic-action-btn .btn-arrow-circle {
-    width: 30px;
-    height: 30px;
+    width: 32px;
+    height: 32px;
   }
 }
 
 /* Extra small devices (<= 380px: iPhone SE, Galaxy Fold) */
 @media (max-width: 380px) {
   .founder-orbit-container {
-    min-height: 145px;
-    height: 150px;
+    min-height: 215px;
+    height: 220px;
   }
 
   .founder-portrait-frame {
-    height: 145px;
+    height: 210px;
   }
 
   .founder-backdrop-text {
-    font-size: clamp(1rem, 5.2vw, 1.35rem) !important;
+    font-size: clamp(1.4rem, 7vw, 1.85rem) !important;
     letter-spacing: -0.02em;
   }
 
   .floating-metric-badge {
-    padding: 0.16rem 0.32rem;
-    max-width: 95px;
+    padding: 0.25rem 0.42rem;
+    max-width: 105px;
   }
 
-  .badge-value { font-size: 0.6rem; }
-  .badge-label { font-size: 0.42rem; }
+  .badge-value { font-size: 0.65rem; }
+  .badge-label { font-size: 0.44rem; }
 
   .intent-card {
-    min-height: 105px;
-    height: 105px;
-    padding: 0.55rem 0.5rem;
+    min-height: 115px;
+    padding: 0.75rem 0.65rem;
   }
 
   .card-intent-heading {
-    font-size: 0.74rem;
+    font-size: 0.76rem;
   }
 
   .card-supporting-line {
-    font-size: 0.58rem;
+    font-size: 0.6rem;
   }
 
   .dynamic-action-btn {
-    font-size: 0.74rem;
-    height: 38px;
+    font-size: 0.76rem;
+    height: 42px;
     max-width: 290px;
   }
 }
