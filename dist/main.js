@@ -1,6 +1,6 @@
 /**
  * MOYA ACADEMY GATEWAY — FAST GSAP INTERACTION ENGINE
- * Founder Proof Orbiting Badges • 5 Intent Pathways • Zero-Flicker Micro-Interactions
+ * Glitch Word Rotator • Hyperiux Button Interactions • Founder Proof Parallax
  */
 
 // ==========================================================================
@@ -11,7 +11,7 @@ const MOYA_CONFIG = {
   // Flagship Webinar / Masterclass
   webinarUrl: "https://ai.mechanismofya.com",
   
-  // Pathway Target Portals (Can be updated anytime)
+  // Pathway Target Portals
   mentorshipUrl: "#mentorship",
   productionsUrl: "#production",
   courseUrl: "https://vsl.mechanismofya.com",
@@ -33,10 +33,13 @@ document.addEventListener('DOMContentLoaded', () => {
     yearEl.textContent = new Date().getFullYear();
   }
 
-  // 3. Initialize Card mouse spotlight tracking (Linear style)
+  // 3. Initialize Glitch Word Alternator ("Choose Your Goal / Path / System...")
+  initGlitchWordRotator();
+
+  // 4. Initialize Card mouse spotlight tracking (Linear style)
   initCardSpotlight();
 
-  // 4. Initialize GSAP animations
+  // 5. Initialize GSAP animations
   if (typeof gsap !== 'undefined') {
     initGatewayEntrance();
     initBadgeFloatingMotion();
@@ -75,7 +78,49 @@ function initUrlBindings() {
 
 /**
  * ==========================================================================
- * 2. FAST SUB-SECOND ENTRANCE TIMELINE
+ * 2. GLITCH WORD ROTATOR (YouTube Synonyms & High-Impact Terms)
+ * Glitches every 2 seconds and smoothly transitions with character scramble
+ * ==========================================================================
+ */
+function initGlitchWordRotator() {
+  const el = document.getElementById('glitchWord');
+  if (!el) return;
+
+  const words = ["Goal", "Path", "Breakthrough", "System", "Playbook", "Blueprint"];
+  const chars = "!@#$%^&*()_+-=[]{}|;:,.<>?/~0123456789";
+  let currentIndex = 0;
+
+  setInterval(() => {
+    currentIndex = (currentIndex + 1) % words.length;
+    const targetWord = words[currentIndex];
+    
+    // Add glitching class
+    el.classList.add('is-glitching');
+
+    // Scramble effect
+    let iteration = 0;
+    const maxIterations = 8;
+    const interval = setInterval(() => {
+      iteration++;
+      if (iteration < maxIterations) {
+        let scrambled = "";
+        for (let i = 0; i < targetWord.length; i++) {
+          scrambled += chars[Math.floor(Math.random() * chars.length)];
+        }
+        el.textContent = scrambled;
+      } else {
+        clearInterval(interval);
+        el.textContent = targetWord;
+        el.setAttribute('data-text', targetWord);
+        el.classList.remove('is-glitching');
+      }
+    }, 30);
+  }, 2200);
+}
+
+/**
+ * ==========================================================================
+ * 3. FAST SUB-SECOND ENTRANCE TIMELINE
  * Total duration: ~0.85s - Snappy, modern, zero delay
  * ==========================================================================
  */
@@ -201,7 +246,7 @@ function initGatewayEntrance() {
 
 /**
  * ==========================================================================
- * 3. CONTINUOUS FLOATING MOTION FOR 4 ACHIEVEMENT BADGES
+ * 4. CONTINUOUS FLOATING MOTION FOR 4 ACHIEVEMENT BADGES
  * Subtle, elegant levitation physics
  * ==========================================================================
  */
@@ -238,7 +283,7 @@ function initBadgeFloatingMotion() {
 
 /**
  * ==========================================================================
- * 4. LINEAR-STYLE MOUSE-TRACKING SPOTLIGHT
+ * 5. LINEAR-STYLE MOUSE-TRACKING SPOTLIGHT
  * ==========================================================================
  */
 function initCardSpotlight() {
@@ -258,7 +303,7 @@ function initCardSpotlight() {
 
 /**
  * ==========================================================================
- * 5. INTENT CARDS HOVER & SIBLING DIMMING
+ * 6. INTENT CARDS HOVER & SIBLING DIMMING
  * ==========================================================================
  */
 function initIntentCardHover() {
@@ -300,7 +345,7 @@ function initIntentCardHover() {
 
 /**
  * ==========================================================================
- * 6. SUBTLE DESKTOP FOUNDER PARALLAX
+ * 7. SUBTLE DESKTOP FOUNDER PARALLAX
  * ==========================================================================
  */
 function initFounderParallax() {
