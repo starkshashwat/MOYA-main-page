@@ -16,21 +16,18 @@
   --text-secondary: rgba(222, 219, 200, 0.75);
   --text-muted: #84847e;
   
-  /* Brand Accents */
-  --accent-gold: #f5c518;
-  --accent-gold-glow: rgba(245, 197, 24, 0.38);
-  --accent-gold-bg: rgba(245, 197, 24, 0.1);
-  
+  /* Brand Accents - Strict 2-Tone System: White & Violet */
   --accent-violet: #9d65ff;
-  --accent-violet-glow: rgba(157, 101, 255, 0.38);
-  
-  --accent-cyan: #38bdf8;
-  --accent-cyan-glow: rgba(56, 189, 248, 0.38);
-  
-  --accent-green: #25d366;
-  --accent-green-glow: rgba(37, 211, 102, 0.38);
-  
-  --accent-silver: #e2e8f0;
+  --accent-violet-glow: rgba(157, 101, 255, 0.42);
+  --accent-violet-bg: rgba(157, 101, 255, 0.1);
+  --accent-gold: #9d65ff;
+  --accent-gold-glow: rgba(157, 101, 255, 0.42);
+  --accent-gold-bg: rgba(157, 101, 255, 0.1);
+  --accent-cyan: #9d65ff;
+  --accent-cyan-glow: rgba(157, 101, 255, 0.42);
+  --accent-green: #9d65ff;
+  --accent-green-glow: rgba(157, 101, 255, 0.42);
+  --accent-silver: #ffffff;
 
   /* Typography */
   --font-display: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
@@ -98,9 +95,9 @@ body {
   position: absolute;
   inset: -20%;
   background: 
-    radial-gradient(50% 45% at 50% 28%, rgba(98, 48, 190, 0.22) 0%, transparent 68%),
-    radial-gradient(40% 40% at 78% 45%, rgba(245, 197, 24, 0.07) 0%, transparent 65%),
-    radial-gradient(35% 35% at 22% 65%, rgba(56, 189, 248, 0.05) 0%, transparent 60%);
+    radial-gradient(50% 45% at 50% 28%, rgba(157, 101, 255, 0.24) 0%, transparent 68%),
+    radial-gradient(40% 40% at 78% 45%, rgba(157, 101, 255, 0.1) 0%, transparent 65%),
+    radial-gradient(35% 35% at 22% 65%, rgba(255, 255, 255, 0.05) 0%, transparent 60%);
   filter: blur(75px);
   will-change: transform;
 }
@@ -348,7 +345,7 @@ body {
   left: -20%;
   bottom: -5%;
   border-radius: 50%;
-  background: radial-gradient(circle at 50% 60%, rgba(98, 48, 190, 0.28) 0%, rgba(245, 197, 24, 0.07) 50%, transparent 75%);
+  background: radial-gradient(circle at 50% 60%, rgba(157, 101, 255, 0.32) 0%, rgba(98, 48, 190, 0.14) 50%, transparent 75%);
   filter: blur(45px);
   z-index: -1;
   pointer-events: none;
@@ -513,12 +510,12 @@ body {
   gap: 0.45rem;
 }
 
-/* Glitch Alternating Word Effect */
+/* Glitch Alternating Word Effect - Electric Violet Highlight */
 .glitch-word {
   position: relative;
   display: inline-block;
-  color: var(--accent-gold);
-  text-shadow: 0 0 24px var(--accent-gold-glow);
+  color: var(--accent-violet);
+  text-shadow: 0 0 24px var(--accent-violet-glow), 0 0 45px rgba(157, 101, 255, 0.35);
   font-weight: 900;
   transition: color 0.15s ease;
 }
@@ -526,7 +523,7 @@ body {
 .glitch-word.is-glitching {
   animation: cyberGlitch 0.28s steps(2, start) infinite;
   color: #ffffff;
-  text-shadow: -2px 0 var(--accent-cyan), 2px 0 var(--accent-violet), 0 0 15px var(--accent-gold);
+  text-shadow: -2px 0 rgba(255, 255, 255, 0.85), 2px 0 var(--accent-violet), 0 0 24px var(--accent-violet-glow);
 }
 
 @keyframes cyberGlitch {
@@ -592,22 +589,22 @@ body {
   transform: translateY(-2px);
 }
 
-/* Featured Card 1: Gold / Yellow Accent (Highlighted Entry Point) */
+/* Card 1 & All Pathways: Unified Violet & White Design Language */
 .intent-card--featured {
-  border-color: rgba(245, 197, 24, 0.32);
-  background: linear-gradient(180deg, rgba(28, 22, 12, 0.86) 0%, rgba(14, 12, 8, 0.96) 100%);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(245, 197, 24, 0.18);
+  border-color: rgba(157, 101, 255, 0.22);
+  background: linear-gradient(180deg, rgba(16, 14, 25, 0.84) 0%, rgba(10, 9, 15, 0.95) 100%);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.07);
 }
 
 .intent-card--featured:hover {
   z-index: 20;
-  border-color: rgba(245, 197, 24, 0.88);
-  background: linear-gradient(180deg, rgba(38, 30, 14, 0.92) 0%, rgba(18, 14, 8, 0.98) 100%);
-  box-shadow: 0 16px 36px -8px rgba(245, 197, 24, 0.35), 0 0 18px rgba(245, 197, 24, 0.2), inset 0 1px 0 rgba(245, 197, 24, 0.3);
+  border-color: rgba(157, 101, 255, 0.65);
+  background: linear-gradient(180deg, rgba(25, 20, 40, 0.9) 0%, rgba(13, 10, 22, 0.97) 100%);
+  box-shadow: 0 16px 36px -8px rgba(157, 101, 255, 0.3), 0 0 16px rgba(157, 101, 255, 0.16), inset 0 1px 0 rgba(255, 255, 255, 0.14);
   transform: translateY(-2px);
 }
 
-/* ACTIVE / SELECTED CARD STATES */
+/* ACTIVE / SELECTED CARD STATES - Universal Violet Highlighting */
 .intent-card.is-selected {
   z-index: 20 !important;
   border-color: var(--accent-violet) !important;
@@ -620,20 +617,6 @@ body {
   opacity: 1 !important;
   border-color: var(--accent-violet) !important;
   box-shadow: 0 0 8px var(--accent-violet-glow) !important;
-}
-
-.intent-card--featured.is-selected {
-  z-index: 20 !important;
-  border-color: var(--accent-gold) !important;
-  background: linear-gradient(180deg, rgba(42, 34, 16, 0.95) 0%, rgba(20, 16, 10, 0.98) 100%) !important;
-  box-shadow: 0 0 30px rgba(245, 197, 24, 0.45), 0 16px 32px rgba(0, 0, 0, 0.7), inset 0 0 18px rgba(245, 197, 24, 0.2) !important;
-  transform: translateY(-4px) !important;
-}
-
-.intent-card--featured.is-selected .card-bracket {
-  opacity: 1 !important;
-  border-color: var(--accent-gold) !important;
-  box-shadow: 0 0 8px var(--accent-gold-glow) !important;
 }
 
 /* Top Subtle Beam Highlight (21st.dev border-beam effect) */
@@ -656,7 +639,7 @@ body {
 }
 
 .intent-card--featured .card-beam-glow {
-  background: linear-gradient(90deg, transparent, rgba(245, 197, 24, 0.85), transparent);
+  background: linear-gradient(90deg, transparent, rgba(157, 101, 255, 0.85), transparent);
 }
 
 /* 21st.dev Technical Corner Framing Brackets */
@@ -701,13 +684,6 @@ body {
   border-right: 1.5px solid var(--accent-violet);
 }
 
-.intent-card--featured .bracket-tl,
-.intent-card--featured .bracket-tr,
-.intent-card--featured .bracket-bl,
-.intent-card--featured .bracket-br {
-  border-color: var(--accent-gold);
-}
-
 /* Dynamic Cursor Spotlight Layer */
 .card-spotlight-layer {
   position: absolute;
@@ -724,14 +700,6 @@ body {
 
 .intent-card:hover .card-spotlight-layer {
   opacity: 1;
-}
-
-.intent-card--featured .card-spotlight-layer {
-  background: radial-gradient(
-    280px circle at var(--mouse-x, -999px) var(--mouse-y, -999px),
-    rgba(245, 197, 24, 0.18),
-    transparent 65%
-  );
 }
 
 /* 21st.dev Card Meta Header (Clean Monospace + Status Pill) */
@@ -755,11 +723,6 @@ body {
   border-radius: 50%;
   background: var(--accent-violet);
   box-shadow: 0 0 8px var(--accent-violet-glow);
-}
-
-.intent-card--featured .card-index-dot {
-  background: var(--accent-gold);
-  box-shadow: 0 0 8px var(--accent-gold-glow);
 }
 
 .card-index-text {
@@ -801,12 +764,7 @@ body {
   background: rgba(157, 101, 255, 0.12);
 }
 
-.intent-card--featured:hover .card-select-indicator {
-  border-color: rgba(245, 197, 24, 0.7);
-  background: rgba(245, 197, 24, 0.12);
-}
-
-/* Card Selected -> Indicator Lights Up */
+/* Card Selected -> Indicator Lights Up in Electric Violet */
 .intent-card.is-selected .card-select-indicator {
   background: var(--accent-violet);
   border-color: var(--accent-violet);
@@ -817,18 +775,6 @@ body {
   opacity: 1;
   transform: scale(1);
   color: #ffffff;
-}
-
-.intent-card--featured.is-selected .card-select-indicator {
-  background: var(--accent-gold);
-  border-color: var(--accent-gold);
-  box-shadow: 0 0 14px var(--accent-gold-glow);
-}
-
-.intent-card--featured.is-selected .indicator-check {
-  opacity: 1;
-  transform: scale(1);
-  color: #000000;
 }
 
 /* Future Image Slot (Clean & Ready for assets) */
@@ -917,31 +863,23 @@ body {
   transition: border-color 0.45s var(--ease-hyper), box-shadow 0.45s var(--ease-hyper);
 }
 
-/* Button variant colors */
-.btn-gold {
-  --btn-fill: var(--accent-gold);
-  --btn-border: rgba(245, 197, 24, 0.4);
-}
-
-.intent-card--featured:hover .btn-gold {
-  border-color: var(--accent-gold);
-  box-shadow: 0 0 18px rgba(245, 197, 24, 0.35);
-}
-
+/* Button variant colors - Unified White & Violet System */
+.btn-gold,
 .btn-violet,
 .btn-silver,
 .btn-cyan,
 .btn-green {
   --btn-fill: #ffffff;
-  --btn-border: rgba(157, 101, 255, 0.35);
+  --btn-border: rgba(157, 101, 255, 0.4);
 }
 
+.intent-card:hover .btn-gold,
 .intent-card:hover .btn-violet,
 .intent-card:hover .btn-silver,
 .intent-card:hover .btn-cyan,
 .intent-card:hover .btn-green {
-  border-color: rgba(157, 101, 255, 0.7);
-  box-shadow: 0 0 16px rgba(157, 101, 255, 0.28);
+  border-color: rgba(157, 101, 255, 0.75);
+  box-shadow: 0 0 16px rgba(157, 101, 255, 0.32);
 }
 
 /* Expanding circle that sweeps across on hover */
@@ -1072,10 +1010,7 @@ body {
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
 }
 
-.dynamic-cta-stage.is-visible .dynamic-action-btn.btn-gold {
-  box-shadow: 0 0 28px rgba(245, 197, 24, 0.35), 0 8px 24px rgba(0, 0, 0, 0.6);
-}
-
+.dynamic-cta-stage.is-visible .dynamic-action-btn.btn-gold,
 .dynamic-cta-stage.is-visible .dynamic-action-btn.btn-violet {
   box-shadow: 0 0 28px rgba(157, 101, 255, 0.35), 0 8px 24px rgba(0, 0, 0, 0.6);
 }

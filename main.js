@@ -85,7 +85,7 @@ const GOAL_PORTALS = {
   cardStart: {
     label: "Launch My Channel",
     url: MOYA_CONFIG.webinarUrl,
-    theme: "gold"
+    theme: "violet"
   },
   cardStuck: {
     label: "Fix My Growth",
