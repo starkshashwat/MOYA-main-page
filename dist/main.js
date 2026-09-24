@@ -283,7 +283,7 @@ function initBadgeFloatingMotion() {
 
 /**
  * ==========================================================================
- * 5. LINEAR-STYLE MOUSE-TRACKING SPOTLIGHT
+ * 5. LINEAR-STYLE MOUSE-TRACKING SPOTLIGHT (Fallback / Baseline)
  * ==========================================================================
  */
 function initCardSpotlight() {
@@ -303,7 +303,8 @@ function initCardSpotlight() {
 
 /**
  * ==========================================================================
- * 6. INTENT CARDS HOVER & SIBLING DIMMING
+ * 6. 21ST.DEV INTERACTIVE 3D TILT, SPRING ELEVATION & SIBLING DIMMING
+ * Dynamic interactive placement: card responds to cursor physics and tilts in 3D
  * ==========================================================================
  */
 function initIntentCardHover() {
@@ -315,14 +316,28 @@ function initIntentCardHover() {
   if (!cards.length) return;
 
   cards.forEach(card => {
-    card.addEventListener('mouseenter', () => {
-      // Dim siblings
+    // Quick setters for smooth 60fps 3D tilt
+    const setRotateX = gsap.quickTo(card, "rotateX", { duration: 0.3, ease: "power2.out" });
+    const setRotateY = gsap.quickTo(card, "rotateY", { duration: 0.3, ease: "power2.out" });
+    const setY = gsap.quickTo(card, "y", { duration: 0.3, ease: "power2.out" });
+
+    card.addEventListener('pointerenter', () => {
+      // 1. Lift hovered card
+      gsap.to(card, {
+        scale: 1.025,
+        transformPerspective: 1000,
+        duration: 0.35,
+        ease: "power2.out",
+        overwrite: "auto"
+      });
+
+      // 2. Dim sibling cards
       cards.forEach(sibling => {
         if (sibling !== card) {
           gsap.to(sibling, {
-            opacity: 0.42,
+            opacity: 0.36,
             scale: 0.985,
-            duration: 0.3,
+            duration: 0.35,
             ease: "power2.out",
             overwrite: "auto"
           });
@@ -330,12 +345,43 @@ function initIntentCardHover() {
       });
     });
 
-    card.addEventListener('mouseleave', () => {
-      // Restore all cards
+    card.addEventListener('pointermove', (e) => {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      const centerX = rect.width / 2;
+      const centerY = rect.height / 2;
+
+      // 3D tilt physics (max ±5.5 degrees)
+      const tiltX = ((y - centerY) / centerY) * -5.5;
+      const tiltY = ((x - centerX) / centerX) * 5.5;
+
+      setRotateX(tiltX);
+      setRotateY(tiltY);
+      setY(-8);
+
+      // Update cursor spotlight position
+      card.style.setProperty('--mouse-x', `${x}px`);
+      card.style.setProperty('--mouse-y', `${y}px`);
+    });
+
+    card.addEventListener('pointerleave', () => {
+      // Smoothly spring card back to neutral resting state
+      gsap.to(card, {
+        rotateX: 0,
+        rotateY: 0,
+        y: 0,
+        scale: 1,
+        duration: 0.55,
+        ease: "power3.out",
+        overwrite: "auto"
+      });
+
+      // Restore all sibling cards
       gsap.to(cards, {
         opacity: 1,
         scale: 1,
-        duration: 0.35,
+        duration: 0.45,
         ease: "power2.out",
         overwrite: "auto"
       });

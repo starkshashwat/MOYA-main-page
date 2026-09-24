@@ -567,19 +567,20 @@ body {
   letter-spacing: 0.01em;
 }
 
-/* 5 Intent Pathways Grid */
+/* 5 Intent Pathways Grid (21st.dev Bento Aesthetic) */
 .intent-cards-grid {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   gap: 0.95rem;
   width: 100%;
+  perspective: 1200px;
 }
 
-/* Individual Intent Card */
+/* Individual Intent Card (21st.dev Architectural Framing) */
 .intent-card {
   position: relative;
-  background: var(--bg-card);
-  border: 1px solid var(--border-subtle);
+  background: linear-gradient(180deg, rgba(16, 14, 25, 0.84) 0%, rgba(10, 9, 15, 0.95) 100%);
+  border: 1px solid rgba(157, 101, 255, 0.18);
   border-radius: 18px;
   padding: 1.25rem 1.15rem 1.15rem 1.15rem;
   text-decoration: none;
@@ -587,195 +588,230 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  min-height: 235px;
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
+  min-height: 232px;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
   overflow: hidden;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
-  transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s var(--ease-snappy), opacity 0.3s ease;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.07);
+  transition: border-color 0.35s ease, box-shadow 0.35s ease, background 0.35s ease, opacity 0.35s ease;
   will-change: transform, opacity;
+  transform-style: preserve-3d;
 }
 
+/* Card Hover Elevation & Violet Glow (Matching Savan Matariya backdrop text) */
 .intent-card:hover {
-  transform: translateY(-4px);
-  border-color: var(--border-hover);
-  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.75);
-  background: var(--bg-card-hover);
+  border-color: rgba(157, 101, 255, 0.65);
+  background: linear-gradient(180deg, rgba(25, 20, 40, 0.9) 0%, rgba(13, 10, 22, 0.97) 100%);
+  box-shadow: 0 24px 50px -12px rgba(157, 101, 255, 0.38), 0 0 22px rgba(157, 101, 255, 0.22), inset 0 1px 0 rgba(255, 255, 255, 0.16);
 }
 
-/* Spotlight layer */
+/* Featured Card 1: Gold / Yellow Accent (Highlighted Entry Point) */
+.intent-card--featured {
+  border-color: rgba(245, 197, 24, 0.32);
+  background: linear-gradient(180deg, rgba(28, 22, 12, 0.86) 0%, rgba(14, 12, 8, 0.96) 100%);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(245, 197, 24, 0.18);
+}
+
+.intent-card--featured:hover {
+  border-color: rgba(245, 197, 24, 0.88);
+  background: linear-gradient(180deg, rgba(38, 30, 14, 0.92) 0%, rgba(18, 14, 8, 0.98) 100%);
+  box-shadow: 0 24px 50px -12px rgba(245, 197, 24, 0.42), 0 0 24px rgba(245, 197, 24, 0.25), inset 0 1px 0 rgba(245, 197, 24, 0.35);
+}
+
+/* Top Subtle Beam Highlight (21st.dev border-beam effect) */
+.card-beam-glow {
+  position: absolute;
+  top: 0;
+  left: 20%;
+  right: 20%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(157, 101, 255, 0.7), transparent);
+  pointer-events: none;
+  opacity: 0.6;
+  transition: opacity 0.35s ease, left 0.4s ease, right 0.4s ease;
+}
+
+.intent-card:hover .card-beam-glow {
+  left: 4%;
+  right: 4%;
+  opacity: 1;
+}
+
+.intent-card--featured .card-beam-glow {
+  background: linear-gradient(90deg, transparent, rgba(245, 197, 24, 0.85), transparent);
+}
+
+/* 21st.dev Technical Corner Framing Brackets */
+.card-bracket {
+  position: absolute;
+  width: 7px;
+  height: 7px;
+  pointer-events: none;
+  opacity: 0.3;
+  transition: opacity 0.3s ease, border-color 0.3s ease;
+}
+
+.intent-card:hover .card-bracket {
+  opacity: 0.9;
+}
+
+.bracket-tl {
+  top: 8px;
+  left: 8px;
+  border-top: 1.5px solid var(--accent-violet);
+  border-left: 1.5px solid var(--accent-violet);
+}
+
+.bracket-tr {
+  top: 8px;
+  right: 8px;
+  border-top: 1.5px solid var(--accent-violet);
+  border-right: 1.5px solid var(--accent-violet);
+}
+
+.bracket-bl {
+  bottom: 8px;
+  left: 8px;
+  border-bottom: 1.5px solid var(--accent-violet);
+  border-left: 1.5px solid var(--accent-violet);
+}
+
+.bracket-br {
+  bottom: 8px;
+  right: 8px;
+  border-bottom: 1.5px solid var(--accent-violet);
+  border-right: 1.5px solid var(--accent-violet);
+}
+
+.intent-card--featured .bracket-tl,
+.intent-card--featured .bracket-tr,
+.intent-card--featured .bracket-bl,
+.intent-card--featured .bracket-br {
+  border-color: var(--accent-gold);
+}
+
+/* Dynamic Cursor Spotlight Layer */
 .card-spotlight-layer {
   position: absolute;
   inset: 0;
   pointer-events: none;
   background: radial-gradient(
-    320px circle at var(--mouse-x, -999px) var(--mouse-y, -999px),
-    rgba(255, 255, 255, 0.08),
-    transparent 55%
+    280px circle at var(--mouse-x, -999px) var(--mouse-y, -999px),
+    rgba(157, 101, 255, 0.16),
+    transparent 65%
   );
   opacity: 0;
-  transition: opacity 0.4s ease;
+  transition: opacity 0.35s ease;
 }
 
 .intent-card:hover .card-spotlight-layer {
   opacity: 1;
 }
 
-/* Card Motion Header */
-.card-motion-header {
+.intent-card--featured .card-spotlight-layer {
+  background: radial-gradient(
+    280px circle at var(--mouse-x, -999px) var(--mouse-y, -999px),
+    rgba(245, 197, 24, 0.18),
+    transparent 65%
+  );
+}
+
+/* 21st.dev Card Meta Header (Clean Monospace + Status Pill) */
+.card-meta-bar {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 0.85rem;
+  margin-bottom: 1.15rem;
+  z-index: 2;
 }
 
-/* Enlarged Micro-Motion Graphic Box (52x52px) */
-.motion-graphic-box {
-  width: 52px;
-  height: 52px;
-  border-radius: 13px;
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 6px;
-  transition: transform 0.28s ease;
-}
-
-.intent-card:hover .motion-graphic-box {
-  transform: scale(1.08);
-}
-
-.motion-gold { color: var(--accent-gold); border-color: rgba(245, 197, 24, 0.25); background: rgba(245, 197, 24, 0.08); }
-.motion-violet { color: var(--accent-violet); border-color: rgba(157, 101, 255, 0.25); background: rgba(157, 101, 255, 0.08); }
-.motion-silver { color: var(--accent-silver); border-color: rgba(255, 255, 255, 0.15); background: rgba(255, 255, 255, 0.06); }
-.motion-cyan { color: var(--accent-cyan); border-color: rgba(56, 189, 248, 0.25); background: rgba(56, 189, 248, 0.08); }
-.motion-green { color: var(--accent-green); border-color: rgba(37, 211, 102, 0.25); background: rgba(37, 211, 102, 0.08); }
-
-.motion-svg {
-  width: 100%;
-  height: 100%;
-  display: block;
-}
-
-/* Motion Graphic Keyframes */
-.wave-1 {
-  transform-origin: 18px 18px;
-  animation: radarPing 2.5s ease-out infinite;
-}
-.wave-2 {
-  transform-origin: 18px 18px;
-  animation: radarPing 2.5s ease-out infinite 0.7s;
-}
-.rocket-core {
-  animation: rocketVibrate 1.2s ease-in-out infinite alternate;
-}
-.thrust-particle {
-  animation: particleDrop 0.8s ease-out infinite;
-}
-
-@keyframes radarPing {
-  0% { transform: scale(0.7); opacity: 0.8; }
-  100% { transform: scale(1.35); opacity: 0; }
-}
-
-@keyframes rocketVibrate {
-  0% { transform: translateY(0); }
-  100% { transform: translateY(-2px); }
-}
-
-@keyframes particleDrop {
-  0% { opacity: 1; transform: translateY(0); }
-  100% { opacity: 0; transform: translateY(4px); }
-}
-
-.breakout-curve {
-  stroke-dasharray: 40;
-  stroke-dashoffset: 40;
-  animation: drawCurve 2.2s cubic-bezier(0.16, 1, 0.3, 1) infinite;
-}
-.breakout-burst {
-  animation: burstPulse 2.2s ease-out infinite;
-}
-
-@keyframes drawCurve {
-  0% { stroke-dashoffset: 40; opacity: 0.3; }
-  50%, 100% { stroke-dashoffset: 0; opacity: 1; }
-}
-
-@keyframes burstPulse {
-  0%, 40% { transform: scale(0); opacity: 0; }
-  60% { transform: scale(1.6); opacity: 1; }
-  100% { transform: scale(1); opacity: 0.7; }
-}
-
-.timeline-laser {
-  animation: laserScan 2.4s ease-in-out infinite alternate;
-}
-.tb-1, .tb-2, .tb-3, .tb-4 {
-  animation: blockGlow 2.4s ease-in-out infinite;
-}
-
-@keyframes laserScan {
-  0% { transform: translateX(-9px); }
-  100% { transform: translateX(9px); }
-}
-
-@keyframes blockGlow {
-  0%, 100% { opacity: 0.5; }
-  50% { opacity: 0.95; }
-}
-
-.system-ring {
-  transform-origin: 18px 18px;
-  animation: ringSpin 9s linear infinite;
-}
-.orbit-node {
-  animation: nodeBlink 1.8s ease-in-out infinite alternate;
-}
-
-@keyframes ringSpin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
-
-@keyframes nodeBlink {
-  0% { opacity: 0.4; transform: scale(0.85); }
-  100% { opacity: 1; transform: scale(1.15); }
-}
-
-.live-dot {
-  animation: livePing 1.2s ease-in-out infinite alternate;
-}
-.bar-1 { animation: eqBounce 1s ease-in-out infinite alternate 0.1s; }
-.bar-2 { animation: eqBounce 1s ease-in-out infinite alternate 0.3s; }
-.bar-3 { animation: eqBounce 1s ease-in-out infinite alternate 0.0s; }
-.bar-4 { animation: eqBounce 1s ease-in-out infinite alternate 0.4s; }
-.bar-5 { animation: eqBounce 1s ease-in-out infinite alternate 0.2s; }
-
-@keyframes livePing {
-  0% { opacity: 0.4; transform: scale(0.8); }
-  100% { opacity: 1; transform: scale(1.2); }
-}
-
-@keyframes eqBounce {
-  0% { transform: scaleY(0.4); transform-origin: bottom; }
-  100% { transform: scaleY(1.2); transform-origin: bottom; }
-}
-
-/* Card Price Tag */
-.card-price-pill {
+.card-index-wrap {
   display: inline-flex;
   align-items: center;
-  padding: 0.2rem 0.65rem;
+  gap: 0.4rem;
+}
+
+.card-index-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--accent-violet);
+  box-shadow: 0 0 8px var(--accent-violet-glow);
+}
+
+.intent-card--featured .card-index-dot {
+  background: var(--accent-gold);
+  box-shadow: 0 0 8px var(--accent-gold-glow);
+}
+
+.card-index-text {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.12em;
+  color: var(--text-muted);
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+.intent-card:hover .card-index-text {
+  color: #ffffff;
+}
+
+/* Card Status Pills */
+.card-pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.18rem 0.55rem;
+  border-radius: 9999px;
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.card-pill--gold {
   background: var(--accent-gold);
   color: #000000;
-  border-radius: 9999px;
+  box-shadow: 0 0 14px var(--accent-gold-glow);
   font-family: var(--font-display);
-  font-size: 0.72rem;
+  font-size: 0.74rem;
   font-weight: 800;
-  box-shadow: 0 0 12px var(--accent-gold-glow);
+  padding: 0.18rem 0.65rem;
+}
+
+.card-pill--violet {
+  background: rgba(157, 101, 255, 0.12);
+  color: #d1b8ff;
+  border: 1px solid rgba(157, 101, 255, 0.3);
+}
+
+.intent-card:hover .card-pill--violet {
+  background: rgba(157, 101, 255, 0.22);
+  border-color: rgba(157, 101, 255, 0.6);
+  color: #ffffff;
+}
+
+/* Future Image Slot (Clean & Ready for assets) */
+.card-visual-slot:empty {
+  display: none;
+}
+
+.card-visual-slot:not(:empty) {
+  display: block;
+  width: 100%;
+  height: 110px;
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 0.85rem;
+  border: 1px solid rgba(157, 101, 255, 0.2);
+}
+
+.card-visual-slot img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }
 
 /* Card Content */
@@ -783,26 +819,33 @@ body {
   flex: 1;
   display: flex;
   flex-direction: column;
-  margin-bottom: 1.15rem;
+  margin-bottom: 1.25rem;
+  z-index: 2;
 }
 
 .card-intent-heading {
   font-family: var(--font-display);
-  font-size: 1.05rem;
+  font-size: 1.08rem;
   font-weight: 700;
   line-height: 1.25;
   color: #ffffff;
-  letter-spacing: -0.01em;
-  margin-bottom: 0.4rem;
+  letter-spacing: -0.015em;
+  margin-bottom: 0.45rem;
+  transition: color 0.25s ease;
 }
 
 .card-supporting-line {
   font-family: var(--font-sans);
-  font-size: 0.77rem;
-  line-height: 1.45;
+  font-size: 0.775rem;
+  line-height: 1.48;
   color: var(--text-muted);
   font-weight: 400;
-  min-height: 38px;
+  min-height: 40px;
+  transition: color 0.25s ease;
+}
+
+.intent-card:hover .card-supporting-line {
+  color: rgba(255, 255, 255, 0.84);
 }
 
 /* ==========================================================================
@@ -837,27 +880,28 @@ body {
 /* Button variant colors */
 .btn-gold {
   --btn-fill: var(--accent-gold);
-  --btn-border: rgba(245, 197, 24, 0.35);
+  --btn-border: rgba(245, 197, 24, 0.4);
 }
 
-.btn-violet {
-  --btn-fill: #ffffff;
-  --btn-border: rgba(157, 101, 255, 0.3);
+.intent-card--featured:hover .btn-gold {
+  border-color: var(--accent-gold);
+  box-shadow: 0 0 18px rgba(245, 197, 24, 0.35);
 }
 
-.btn-silver {
-  --btn-fill: #ffffff;
-  --btn-border: rgba(255, 255, 255, 0.18);
-}
-
-.btn-cyan {
-  --btn-fill: #ffffff;
-  --btn-border: rgba(56, 189, 248, 0.3);
-}
-
+.btn-violet,
+.btn-silver,
+.btn-cyan,
 .btn-green {
   --btn-fill: #ffffff;
-  --btn-border: rgba(37, 211, 102, 0.3);
+  --btn-border: rgba(157, 101, 255, 0.35);
+}
+
+.intent-card:hover .btn-violet,
+.intent-card:hover .btn-silver,
+.intent-card:hover .btn-cyan,
+.intent-card:hover .btn-green {
+  border-color: rgba(157, 101, 255, 0.7);
+  box-shadow: 0 0 16px rgba(157, 101, 255, 0.28);
 }
 
 /* Expanding circle that sweeps across on hover */
@@ -937,17 +981,6 @@ body {
   transform: translateX(0) scale(1);
 }
 
-/* Featured Card Accent */
-.intent-card--featured {
-  border-color: rgba(245, 197, 24, 0.32);
-  background: radial-gradient(circle at 85% 15%, rgba(245, 197, 24, 0.08) 0%, rgba(18, 17, 13, 0.88) 100%);
-}
-
-.intent-card--featured:hover {
-  border-color: var(--accent-gold);
-  box-shadow: 0 16px 38px rgba(245, 197, 24, 0.24);
-}
-
 /* ==========================================================================
    8. MOBILE VIEW AUDIT (2-Column Bento: All 5 Cards Visible Together)
    ========================================================================== */
@@ -984,7 +1017,7 @@ body {
 
   .intent-card {
     min-height: 165px;
-    padding: 0.85rem 0.8rem 0.75rem 0.8rem;
+    padding: 0.9rem 0.85rem 0.8rem 0.85rem;
     border-radius: 14px;
   }
 
@@ -993,9 +1026,8 @@ body {
     grid-column: span 2;
   }
 
-  .motion-graphic-box {
-    width: 42px;
-    height: 42px;
+  .card-meta-bar {
+    margin-bottom: 0.65rem;
   }
 
   .card-intent-heading {
@@ -1006,6 +1038,7 @@ body {
   .card-supporting-line {
     font-size: 0.7rem;
     min-height: auto;
+    margin-bottom: 0.85rem;
   }
 
   .arrow-fill-btn {
