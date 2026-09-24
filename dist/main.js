@@ -18,9 +18,9 @@ const MOYA_CONFIG = {
   eventsUrl: "#events",
 
   // Social Media Channels
-  youtubeUrl: "https://www.youtube.com",
-  instagramUrl: "https://www.instagram.com",
-  facebookUrl: "https://www.facebook.com"
+  youtubeUrl: "https://www.youtube.com/channel/UCx4bJ-Q2aSiEn6WnTwAXxKg",
+  instagramUrl: "https://www.instagram.com/mechanism_ya/",
+  facebookUrl: "https://www.facebook.com/mechanismofya/"
 };
 
 document.addEventListener('DOMContentLoaded', () => {

@@ -303,10 +303,10 @@ body {
   }
 }
 
-/* Enlarged Portrait Frame: Anchored right to baseline */
+/* Enlarged Portrait Frame: Anchored right to baseline, layered in front of floating badges */
 .founder-portrait-frame {
   position: relative;
-  z-index: 6;
+  z-index: 10;
   display: flex;
   align-items: flex-end;
   justify-content: center;
@@ -354,10 +354,10 @@ body {
   pointer-events: none;
 }
 
-/* 4 Floating Orbiting Achievement Badges */
+/* 4 Floating Orbiting Achievement Badges: Layered behind portrait (z-index 4) for 3D depth */
 .floating-metric-badge {
   position: absolute;
-  z-index: 8;
+  z-index: 4;
   display: flex;
   align-items: center;
   gap: 0.55rem;
@@ -410,45 +410,22 @@ body {
   letter-spacing: 0.02em;
 }
 
-/* Badge Desktop Positioning (Balanced with large image) */
+/* Badge Desktop & Tablet Positioning (Layered behind portrait with depth effect) */
 @media (min-width: 900px) {
-  .badge--top-left { top: 22%; left: 4%; }
-  .badge--bottom-left { bottom: 12%; left: 8%; }
-  .badge--top-right { top: 22%; right: 4%; }
-  .badge--bottom-right { bottom: 12%; right: 8%; }
+  .badge--top-left { top: 20%; left: 4%; }
+  .badge--bottom-left { bottom: 15%; left: 8%; }
+  .badge--top-right { top: 20%; right: 4%; }
+  .badge--bottom-right { bottom: 15%; right: 8%; }
 }
 
-@media (min-width: 640px) and (max-width: 899px) {
-  .badge--top-left { top: 12%; left: 2%; }
-  .badge--bottom-left { bottom: 8%; left: 3%; }
-  .badge--top-right { top: 12%; right: 2%; }
-  .badge--bottom-right { bottom: 8%; right: 3%; }
+@media (min-width: 641px) and (max-width: 899px) {
+  .badge--top-left { top: 10%; left: 2%; }
+  .badge--bottom-left { bottom: 14%; left: 3%; }
+  .badge--top-right { top: 10%; right: 2%; }
+  .badge--bottom-right { bottom: 14%; right: 3%; }
 }
 
-@media (max-width: 639px) {
-  .founder-orbit-container {
-    min-height: 250px;
-  }
-
-  .founder-portrait-frame {
-    height: 245px;
-  }
-
-  .floating-metric-badge {
-    padding: 0.35rem 0.6rem;
-    border-radius: 9px;
-  }
-
-  .badge-value { font-size: 0.72rem; }
-  .badge-label { font-size: 0.52rem; }
-
-  .badge--top-left { top: 6%; left: 1%; }
-  .badge--bottom-left { bottom: 4%; left: 2%; }
-  .badge--top-right { top: 6%; right: 1%; }
-  .badge--bottom-right { bottom: 4%; right: 2%; }
-}
-
-/* Clean Designation Strip: Flush to baseline */
+/* Clean Designation Strip: Elevated with comfortable breathing room */
 .founder-designation-strip {
   display: flex;
   align-items: center;
@@ -458,8 +435,9 @@ body {
   font-size: 0.625rem;
   letter-spacing: 0.14em;
   color: var(--text-muted);
-  margin-top: 0.2rem;
-  z-index: 10;
+  margin: 0.65rem auto 0.55rem auto;
+  position: relative;
+  z-index: 12;
 }
 
 .founder-name-label {
@@ -473,14 +451,14 @@ body {
 }
 
 /* ==========================================================================
-   5. CRISP ARCHITECTURAL SECTION DIVIDER (Minimal Void Gap)
+   5. CRISP ARCHITECTURAL SECTION DIVIDER (Generous Vertical Rhythm)
    ========================================================================== */
 
 .architectural-divider {
   position: relative;
   width: 100%;
   max-width: 1280px;
-  margin: 0.55rem auto 1.35rem auto;
+  margin: 1.15rem auto 1.65rem auto;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -518,7 +496,8 @@ body {
 
 .intent-header-wrap {
   text-align: center;
-  margin-bottom: 1.35rem;
+  margin-bottom: 1.75rem;
+  padding: 0 0.5rem;
 }
 
 .intent-main-title {
@@ -857,11 +836,11 @@ body {
   position: relative;
   display: inline-flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-start;
   width: 100%;
   height: 42px;
-  padding: 0 1rem;
-  padding-right: 42px;
+  padding: 0 1.15rem;
+  padding-right: 48px;
   border-radius: 9999px;
   background: rgba(255, 255, 255, 0.05);
   border: 1px solid var(--btn-border, rgba(255, 255, 255, 0.14));
@@ -874,6 +853,7 @@ body {
   overflow: hidden;
   cursor: pointer;
   white-space: nowrap;
+  text-align: left;
   transition: border-color 0.45s var(--ease-hyper), box-shadow 0.45s var(--ease-hyper);
 }
 
@@ -929,10 +909,16 @@ body {
   border-radius: 9999px;
 }
 
-/* Button Text Layer */
+/* Button Text Layer (Left-aligned, ellipsis-safe, clean arrow clearance) */
 .arrow-fill-btn .btn-label {
   position: relative;
   z-index: 2;
+  text-align: left;
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: calc(100% - 4px);
   transition: color 0.45s var(--ease-hyper);
 }
 
@@ -1046,11 +1032,22 @@ body {
     height: 32px;
   }
 
-  /* Founder Backdrop Name: Prevents canvas blowout */
-  .founder-backdrop-text {
-    font-size: clamp(1.85rem, 8.5vw, 2.9rem) !important;
-    letter-spacing: -0.02em;
+  /* Founder Backdrop Name: Centered, responsive clamp, zero right clipping */
+  .founder-backdrop-wrap {
+    top: 42%;
+    width: 100%;
     max-width: 100vw;
+    padding: 0 0.5rem;
+    overflow: visible;
+  }
+
+  .founder-backdrop-text {
+    font-size: clamp(1.35rem, 6.8vw, 2.25rem) !important;
+    letter-spacing: -0.03em;
+    max-width: 100%;
+    display: block;
+    text-align: center;
+    white-space: nowrap;
   }
 
   .founder-orbit-container {
@@ -1061,7 +1058,7 @@ body {
     height: 225px;
   }
 
-  /* Floating Metric Badges: Compact, balanced sidelines */
+  /* Floating Metric Badges: Peeking behind founder silhouette (depth effect) */
   .floating-metric-badge {
     padding: 0.3rem 0.5rem;
     border-radius: 9px;
@@ -1082,27 +1079,48 @@ body {
     font-size: 0.52rem;
   }
 
-  .badge--top-left { top: 5%; left: 0%; }
-  .badge--bottom-left { bottom: 4%; left: 0%; }
-  .badge--top-right { top: 5%; right: 0%; }
-  .badge--bottom-right { bottom: 4%; right: 0%; }
+  .badge--top-left { top: 6%; left: 1%; }
+  .badge--bottom-left { bottom: 16%; left: 1%; }
+  .badge--top-right { top: 6%; right: 1%; }
+  .badge--bottom-right { bottom: 16%; right: 1%; }
 
-  .architectural-divider {
-    margin: 0.35rem auto 1rem auto;
+  /* Designation Strip: Generous breathing room */
+  .founder-designation-strip {
+    margin: 0.75rem auto 0.65rem auto;
+    font-size: 0.58rem;
+    letter-spacing: 0.12em;
+    padding: 0 0.5rem;
+    text-align: center;
+    flex-wrap: wrap;
+    position: relative;
+    z-index: 12;
   }
 
+  /* Crisp Architectural Section Divider */
+  .architectural-divider {
+    margin: 1.25rem auto 1.55rem auto;
+  }
+
+  /* Intent Header: Spacious vertical separation */
   .intent-header-wrap {
-    margin-bottom: 0.95rem;
+    margin-bottom: 1.55rem;
+    padding: 0 0.5rem;
   }
 
   .intent-main-title {
     font-size: clamp(1.35rem, 5.5vw, 1.75rem);
-    line-height: 1.2;
+    line-height: 1.25;
     gap: 0.35rem;
+    flex-direction: column;
+    align-items: center;
   }
 
   .title-sub {
-    font-size: 0.8rem;
+    font-size: 0.82rem;
+    line-height: 1.4;
+    margin-top: 0.4rem;
+    display: block;
+    color: var(--text-muted);
   }
 
   /* 1-Column Responsive Stream: Maximum clarity, no squeezed text */
@@ -1139,12 +1157,19 @@ body {
     margin-bottom: 1.05rem;
   }
 
-  /* Full-width touch friendly Hyperiux buttons */
+  /* Full-width touch friendly Hyperiux buttons: Left aligned, generous arrow clearance */
   .arrow-fill-btn {
     height: 42px;
     font-size: 0.78rem;
-    padding: 0 1rem;
-    padding-right: 42px;
+    padding: 0 1.15rem;
+    padding-right: 48px;
+    justify-content: flex-start;
+    text-align: left;
+  }
+
+  .arrow-fill-btn .btn-label {
+    text-align: left;
+    max-width: calc(100% - 4px);
   }
 
   .arrow-fill-btn::before,
@@ -1156,6 +1181,11 @@ body {
 
 /* Extra small devices (<= 380px: iPhone SE, Galaxy Fold) */
 @media (max-width: 380px) {
+  .founder-backdrop-text {
+    font-size: clamp(1.2rem, 5.8vw, 1.55rem) !important;
+    letter-spacing: -0.02em;
+  }
+
   .floating-metric-badge {
     padding: 0.22rem 0.42rem;
     max-width: 110px;
@@ -1163,6 +1193,11 @@ body {
 
   .badge-value { font-size: 0.65rem; }
   .badge-label { font-size: 0.48rem; }
+
+  .badge--bottom-left,
+  .badge--bottom-right {
+    bottom: 18%;
+  }
   
   .card-intent-heading {
     font-size: 0.98rem;
@@ -1170,6 +1205,8 @@ body {
 
   .arrow-fill-btn {
     font-size: 0.74rem;
+    padding: 0 0.95rem;
+    padding-right: 44px;
   }
 }
 
