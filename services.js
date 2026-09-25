@@ -5,79 +5,85 @@
  * ==========================================================================
  */
 
-// 1. SERVICES KNOWLEDGE BASE & PRICING REGISTRY
+// 1. SERVICES KNOWLEDGE BASE & CUMULATIVE DELIVERABLES REGISTRY
 const SERVICES_DATA = {
   webinar: {
     id: "serviceWebinar",
-    tier: "LIVE MASTERCLASS",
-    status: "● LIMITED SEATS AVAILABLE",
+    badge: "Live 3-Hour Broadcast Pass",
     name: "I just want to join the webinar",
-    currency: "₹",
-    price: "499",
-    term: "",
-    guarantee: "Instant Access • 100% Actionable",
-    features: [
-      "Live 2-Hour Intensive Mechanism Breakdown with Savan Matariya",
-      "Live Q&A Session for Direct Channel Diagnostics",
-      "Exclusive System Cheat-Sheet & Case Study Vault PDF"
-    ],
-    btnLabel: "Lock My Seat Now",
+    desc: "Fast-track live breakdown of the Mechanism of YouTube Automation & direct channel diagnostics with Savan Matariya.",
+    btnLabel: "Reserve Masterclass Seat",
     btnUrl: "https://ai.mechanismofya.com",
-    subNote: "Secure Checkout • Instant Confirmation via WhatsApp & Email"
+    subNote: "Instant Confirmation • Live Interactive Broadcast Access",
+    checklist: [
+      { text: "3-Hour Live Mechanism of YouTube Automation Masterclass", included: true },
+      { text: "Live Interactive Q&A & Direct Channel Diagnostic Session with Savan Sir", included: true },
+      { text: "System Cheat-Sheet & Case Study Vault PDF", included: true },
+      { text: "Full MOYA Core Operating System (8 Modules & All Lectures)", included: false },
+      { text: "19 Implementation Bonuses Stack (Canva/PSD Templates & SOPs)", included: false },
+      { text: "2-Day Fast-Track Onboarding Bootcamp Access & Weekly Live Review Calls", included: false },
+      { text: "End-to-End Video Production (Scripting, Voiceover, 4K Editing)", included: false },
+      { text: "6-Month 1-on-1 Strategic Mentorship Journey with Savan Sir", included: false }
+    ]
   },
   program: {
     id: "serviceProgram",
-    tier: "CORE BLUEPRINT",
-    status: "● LIFETIME CURRICULUM ACCESS",
+    badge: "Includes Tier 01 + Full System",
     name: "I want program which can guide me in the right direction",
-    currency: "₹",
-    price: "9,999",
-    term: "",
-    guarantee: "Full Lifetime Curriculum Access",
-    features: [
-      "The Complete 8-Module YouTube Automation Engineering System",
-      "Algorithmic Retention Frameworks & High-CTR Thumbnail Playbooks",
-      "Private Community of Dedicated High-Growth Creators"
-    ],
-    btnLabel: "Enroll in Complete Program",
+    desc: "The complete self-paced YouTube automation curriculum, retention playbooks, and algorithmic growth blueprints.",
+    btnLabel: "Access Full MOYA Blueprint",
     btnUrl: "https://vsl.mechanismofya.com",
-    subNote: "Instant Dashboard Access • Includes All Future Updates"
+    subNote: "Instant Dashboard Access • Includes All Future Updates",
+    checklist: [
+      { text: "3-Hour Live Masterclass Access INCLUDED", included: true, inherit: true },
+      { text: "System Cheat-Sheet & Case Study Vault PDF INCLUDED", included: true, inherit: true },
+      { text: "Full MOYA Core Operating System (All 8 Modules: Mindset, Niche, Setup, Team, Viral Ideas, Production)", included: true },
+      { text: "The Complete 19 Bonus Stack (Worth ₹50,000+ Free: Niche Masterfiles, Canva Templates, PSDs, SOPs)", included: true },
+      { text: "18 Plug-and-Play Bonus Frameworks (Core Systems, Operational SOPs & Creative Toolkits)", included: true },
+      { text: "Private Creator Mastermind Community (Networking, Peer Feedback & Q&A)", included: true },
+      { text: "Weekly Live Review & Doubt-Clearing Calls with MOYA Team", included: true },
+      { text: "2-Day Fast-Track Setup Bootcamp Access", included: true },
+      { text: "Dedicated Media Production Team (Scripting, Voiceover, 4K Editing)", included: false },
+      { text: "6-Month 1-on-1 Strategic Mentorship with Savan Sir", included: false }
+    ]
   },
   production: {
     id: "serviceProduction",
-    tier: "STUDIO EXECUTION",
-    status: "● LIMITED CAPACITY: 3 SLOTS/MO",
+    badge: "Includes Tiers 01–02 + Studio Pipeline",
     name: "I want video making support",
-    currency: "From ₹",
-    price: "24,999",
-    term: "/mo",
-    guarantee: "Dedicated Media Production Team",
-    features: [
-      "End-to-End Retention Scripting & Packaging Strategy",
-      "High-Velocity Video Editing by MOYA Senior Video Architects",
-      "A/B Tested Packaging: Thumbnails, Titles & Metadata Engineering"
-    ],
-    btnLabel: "Apply for Production Team",
+    desc: "End-to-end done-with-you and done-for-you production: retention scripting, high-CTR packaging & elite 4K editing.",
+    btnLabel: "Book Studio Discovery Call",
     btnUrl: "https://www.instagram.com/mechanism_ya/",
-    subNote: "Application Required • We Only Accept Channels We Can Scale"
+    subNote: "Application Required • We Only Accept Channels We Can Scale",
+    checklist: [
+      { text: "Live Masterclass Pass INCLUDED", included: true, inherit: true },
+      { text: "Full MOYA Core Program & Complete 19 Implementation Bonuses INCLUDED", included: true, inherit: true },
+      { text: "Private Creator Mastermind Community & Weekly Review Calls INCLUDED", included: true, inherit: true },
+      { text: "FREE VIP Entry to all upcoming Bootcamps & Live Events", included: true, isHighlight: true },
+      { text: "Channel Niche Finalization & Complete Branding Architecture", included: true },
+      { text: "Viral Topic Engineering, Storyboarding & Retention Scripting", included: true },
+      { text: "High-CTR Thumbnail Design (A/B Tested Visual Concepts & Title Strategy)", included: true },
+      { text: "Cinema 4K Video Editing, Motion Graphics & Audio Mastering (Ready to Upload)", included: true },
+      { text: "Private 6-Month 1-on-1 Direct Advisory with Savan Sir", included: false }
+    ]
   },
   mentorship: {
     id: "serviceMentorship",
-    tier: "1-ON-1 ADVISORY",
-    status: "● DIRECT WITH SAVAN MATARIYA",
+    badge: "Full Ecosystem + 1-on-1 with Savan Sir",
     name: "I want 1-1 mentorship with Savan sir",
-    currency: "₹",
-    price: "49,999",
-    term: "",
-    guarantee: "Private Channel Audit & Custom Growth Model",
-    features: [
-      "Direct 1-on-1 Strategic Consulting with Savan Matariya",
-      "Comprehensive Channel Audit & Algorithmic Bottleneck Breakdown",
-      "Custom Tailored 90-Day Execution Roadmap & Direct Review Access"
-    ],
-    btnLabel: "Book 1-on-1 Advisory Session",
+    desc: "Direct, personal strategic advisory with Savan Matariya for custom channel growth architecture & pre-upload audits.",
+    btnLabel: "Apply for 1-on-1 Mentorship",
     btnUrl: "https://www.instagram.com/mechanism_ya/",
-    subNote: "Strictly Limited to 2 Creators Per Month • Application Only"
+    subNote: "Strictly Limited Capacity • Custom Tailored 6-Month Strategic Advisory",
+    checklist: [
+      { text: "Live Masterclass Pass INCLUDED", included: true, inherit: true },
+      { text: "Complete MOYA Operating System + 19 Implementation Bonus Stack INCLUDED", included: true, inherit: true },
+      { text: "Mastermind Community + Unlimited FREE Access to All Bootcamps & Events INCLUDED", included: true, inherit: true },
+      { text: "Complete Video Production Architecture, Templates & SOPs INCLUDED", included: true, inherit: true },
+      { text: "6-Month Structured Strategic Journey with Savan Matariya (Months 1–2: Weekly calls • Months 3–4: Fortnightly deep-dives • Months 5–6: Monthly check-ins)", included: true, isHighlight: true },
+      { text: "Custom Market Positioning & Data-Backed Decisions (Tailored for Dominance)", included: true },
+      { text: "Direct VIP Priority Access Line with Savan Sir (Pre-upload video & thumbnail reviews)", included: true, isHighlight: true }
+    ]
   }
 };
 
@@ -131,7 +137,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 /**
  * ==========================================================================
- * 3. SERVICES SELECTION ENGINE & PRICING REVEAL DOCK
+ * 3. SERVICES SELECTION ENGINE & DELIVERABLES REVEAL DOCK
  * ==========================================================================
  */
 let currentSelectedService = null;
@@ -178,16 +184,16 @@ function initServicesSelection() {
       }
     });
 
-    // B. Populate Pricing Dock Data
+    // B. Populate Deliverables Dock Data
     updatePricingDock(data, isInitial);
 
-    // C. Reveal Pricing Dock
+    // C. Reveal Dock
     if (pricingDock) {
       pricingDock.classList.add('is-revealed');
       if (typeof gsap !== 'undefined' && !isInitial) {
         gsap.fromTo(pricingDock,
-          { scale: 0.96, opacity: 0.8 },
-          { scale: 1, opacity: 1, duration: 0.35, ease: "back.out(2)" }
+          { scale: 0.98, opacity: 0.85 },
+          { scale: 1, opacity: 1, duration: 0.3, ease: "power2.out" }
         );
       }
     }
@@ -220,50 +226,60 @@ function initServicesSelection() {
 }
 
 /**
- * Updates the text and pricing values in the Pricing Dock
+ * Updates the text and deliverables in the Activation Dock
  */
 function updatePricingDock(data, isInitial) {
-  const tierTag = document.getElementById('dockTierTag');
-  const statusTag = document.getElementById('dockStatusTag');
   const serviceName = document.getElementById('dockServiceName');
-  const priceVal = document.getElementById('dockPriceVal');
-  const priceTerm = document.getElementById('dockPriceTerm');
-  const guaranteeNote = document.getElementById('dockGuaranteeNote');
+  const badgeTag = document.getElementById('dockBadge');
   const featuresList = document.getElementById('dockFeaturesList');
   const ctaBtn = document.getElementById('dockCtaBtn');
   const btnLabel = document.getElementById('dockBtnLabel');
   const actionSub = document.getElementById('dockActionSub');
 
-  if (tierTag) tierTag.textContent = data.tier;
-  if (statusTag) statusTag.textContent = data.status;
   if (serviceName) serviceName.textContent = data.name;
-  if (priceTerm) priceTerm.textContent = data.term;
-  if (guaranteeNote) guaranteeNote.textContent = data.guarantee;
+  if (badgeTag) badgeTag.textContent = data.badge;
   if (btnLabel) btnLabel.textContent = data.btnLabel;
   if (actionSub) actionSub.textContent = data.subNote;
   if (ctaBtn) ctaBtn.href = data.btnUrl;
 
-  // Numeric count / glitch punch on price change
-  if (priceVal) {
+  // Populate deliverables list with Tick ✓ (included) and Cross ✕ (excluded)
+  if (featuresList && data.checklist) {
+    featuresList.innerHTML = data.checklist.map(item => {
+      if (item.included) {
+        const highlightClass = item.isHighlight ? 'is-highlight' : '';
+        const inheritClass = item.inherit ? 'is-inherit' : '';
+        return `
+          <li class="checklist-item is-included ${highlightClass} ${inheritClass}">
+            <span class="icon-wrap check-wrap" aria-hidden="true">
+              <svg class="check-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12"/>
+              </svg>
+            </span>
+            <span class="item-text">${item.text}</span>
+          </li>
+        `;
+      } else {
+        return `
+          <li class="checklist-item is-excluded">
+            <span class="icon-wrap cross-wrap" aria-hidden="true">
+              <svg class="cross-icon" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+              </svg>
+            </span>
+            <span class="item-text">${item.text}</span>
+          </li>
+        `;
+      }
+    }).join('');
+
+    // Animate list items on selection
     if (typeof gsap !== 'undefined' && !isInitial) {
-      gsap.fromTo(priceVal,
-        { scale: 0.8, opacity: 0.5, y: -8 },
-        { scale: 1, opacity: 1, y: 0, duration: 0.3, ease: "back.out(2)" }
+      gsap.fromTo(featuresList.querySelectorAll('.checklist-item'),
+        { opacity: 0, y: 5 },
+        { opacity: 1, y: 0, duration: 0.22, stagger: 0.015, ease: "power2.out" }
       );
     }
-    priceVal.textContent = data.price;
-  }
-
-  // Populate deliverables list
-  if (featuresList && data.features) {
-    featuresList.innerHTML = data.features.map(feat => `
-      <li>
-        <svg class="check-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-          <polyline points="20 6 9 17 4 12"/>
-        </svg>
-        <span>${feat}</span>
-      </li>
-    `).join('');
   }
 }
 
