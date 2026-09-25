@@ -1,31 +1,35 @@
 /**
  * ==========================================================================
  * MOYA ACADEMY — SERVICES & PRICING BLUEPRINTS ENGINE
- * Self-Contained Pricing Cards • Continuous Intent Continuity • GSAP Micro-Interactions
+ * Self-Contained Pricing Cards • Goal-Driven Intent Routing • GSAP Micro-Interactions
  * ==========================================================================
  */
 
-// 1. CONTINUOUS INTENT MAPPING (From Home Gateway)
+// 1. INTENT MAPPING FROM GATEWAY CHOICES
 const INTENT_MAPPING = {
   start: {
+    goalTitle: "I Want to Start My Channel",
     cardId: "planWebinar",
-    lead: "RECOMMENDED PATHWAY //",
-    desc: "Starting Out? The Live Masterclass is your ideal foundational entry."
+    badge: "Matches Your Goal",
+    subtitle: "Starting out? We've highlighted the Live Masterclass as your foundational entry."
   },
   system: {
+    goalTitle: "I Want to Learn the Whole System",
     cardId: "planProgram",
-    lead: "RECOMMENDED PATHWAY //",
-    desc: "Building a Media Engine? MOYA 1.0 provides the complete operating framework."
+    badge: "Matches Your Goal",
+    subtitle: "Want the complete framework? We've highlighted MOYA 1.0 for self-paced mastery."
   },
   team: {
+    goalTitle: "I Want Someone to Build It With Me",
     cardId: "planProduction",
-    lead: "RECOMMENDED PATHWAY //",
-    desc: "Need an Execution Team? Growth Studio handles end-to-end video engineering."
+    badge: "Recommended • Matches Goal",
+    subtitle: "Need an execution team? We've highlighted Growth Studio for end-to-end production."
   },
   stuck: {
+    goalTitle: "I’m Stuck With My Channel",
     cardId: "planMentorship",
-    lead: "RECOMMENDED PATHWAY //",
-    desc: "Stuck with Algorithm Bottlenecks? 1-on-1 Advisory will audit and scale."
+    badge: "Matches Your Goal",
+    subtitle: "Stuck with growth? We've highlighted 1-on-1 Advisory to audit your bottlenecks."
   }
 };
 
@@ -34,10 +38,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const yearEl = document.getElementById('currentYear');
   if (yearEl) yearEl.textContent = new Date().getFullYear();
 
-  // Initialize Glitch Word Rotator
-  initGlitchWordRotator();
-
-  // Initialize Intent Routing & Card Focus
+  // Initialize Intent Routing & Card Highlight
   initIntentHandling();
 
   // Initialize Card Mouse Tracking Spotlight
@@ -58,23 +59,45 @@ document.addEventListener('DOMContentLoaded', () => {
 function initIntentHandling() {
   const urlParams = new URLSearchParams(window.location.search);
   const incomingIntent = urlParams.get('intent');
-  const contextDesc = document.getElementById('contextDesc');
+  const breadcrumbEl = document.getElementById('intentBreadcrumb');
+  const breadcrumbTarget = document.getElementById('breadcrumbTarget');
+  const subtitleEl = document.getElementById('servicesSubtitle');
 
   if (incomingIntent && INTENT_MAPPING[incomingIntent]) {
-    const intentConfig = INTENT_MAPPING[incomingIntent];
-    if (contextDesc) {
-      contextDesc.textContent = intentConfig.desc;
+    const config = INTENT_MAPPING[incomingIntent];
+
+    // Reveal and set breadcrumb
+    if (breadcrumbEl && breadcrumbTarget) {
+      breadcrumbTarget.textContent = config.goalTitle;
+      breadcrumbEl.style.display = 'inline-flex';
     }
 
-    const targetCard = document.getElementById(intentConfig.cardId);
-    if (targetCard) {
-      targetCard.classList.add('intent-focus');
+    // Set contextual subtitle
+    if (subtitleEl) {
+      subtitleEl.textContent = config.subtitle;
+    }
 
-      // On mobile or small screens, scroll smoothly to the recommended card
+    // Highlight and pop the target card
+    const targetCard = document.getElementById(config.cardId);
+    if (targetCard) {
+      targetCard.classList.add('is-matched');
+
+      // Check if badge already exists
+      const existingBadge = targetCard.querySelector('.recommended-badge') || targetCard.querySelector('.intent-match-badge');
+      if (existingBadge) {
+        existingBadge.textContent = config.badge;
+      } else {
+        const badge = document.createElement('div');
+        badge.className = 'intent-match-badge';
+        badge.textContent = config.badge;
+        targetCard.prepend(badge);
+      }
+
+      // Smooth scroll on mobile/tablet
       if (window.innerWidth <= 1024) {
         setTimeout(() => {
           targetCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        }, 350);
+        }, 400);
       }
     }
   }
@@ -82,46 +105,7 @@ function initIntentHandling() {
 
 /**
  * ==========================================================================
- * 3. GLITCH WORD ROTATOR ("Blueprints", "Systems", "Pathways", "Engines")
- * ==========================================================================
- */
-function initGlitchWordRotator() {
-  const el = document.getElementById('glitchWord');
-  if (!el) return;
-
-  const words = ["Blueprints", "Systems", "Pathways", "Engines", "Architectures", "Pipelines"];
-  const chars = "!@#$%^&*()_+-=[]{}|;:,.<>?/~0123456789";
-  let currentIndex = 0;
-
-  setInterval(() => {
-    currentIndex = (currentIndex + 1) % words.length;
-    const targetWord = words[currentIndex];
-    
-    el.classList.add('is-glitching');
-
-    let iteration = 0;
-    const maxIterations = 8;
-    const interval = setInterval(() => {
-      iteration++;
-      if (iteration < maxIterations) {
-        let scrambled = "";
-        for (let i = 0; i < targetWord.length; i++) {
-          scrambled += chars[Math.floor(Math.random() * chars.length)];
-        }
-        el.textContent = scrambled;
-      } else {
-        clearInterval(interval);
-        el.textContent = targetWord;
-        el.setAttribute('data-text', targetWord);
-        el.classList.remove('is-glitching');
-      }
-    }, 30);
-  }, 2600);
-}
-
-/**
- * ==========================================================================
- * 4. MOUSE-TRACKING SPOTLIGHT ON CARDS
+ * 3. MOUSE-TRACKING SPOTLIGHT ON CARDS
  * ==========================================================================
  */
 function initCardSpotlight() {
@@ -141,7 +125,7 @@ function initCardSpotlight() {
 
 /**
  * ==========================================================================
- * 5. GSAP ENTRANCE ANIMATION TIMELINE
+ * 4. GSAP ENTRANCE ANIMATION TIMELINE
  * ==========================================================================
  */
 function initPricingEntrance() {
@@ -173,7 +157,7 @@ function initPricingEntrance() {
 
 /**
  * ==========================================================================
- * 6. DESKTOP 3D TILT PHYSICS ON PRICING CARDS
+ * 5. DESKTOP 3D TILT PHYSICS ON PRICING CARDS
  * ==========================================================================
  */
 function initPricingCardHoverPhysics() {
@@ -184,9 +168,6 @@ function initPricingCardHoverPhysics() {
   if (!cards.length) return;
 
   cards.forEach(card => {
-    const isRecommended = card.classList.contains('is-recommended');
-    const baseScale = isRecommended ? 1.025 : 1;
-
     const setRotateX = gsap.quickTo(card, "rotateX", { duration: 0.3, ease: "power2.out" });
     const setRotateY = gsap.quickTo(card, "rotateY", { duration: 0.3, ease: "power2.out" });
 
