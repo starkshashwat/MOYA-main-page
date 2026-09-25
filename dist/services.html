@@ -20,7 +20,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   
-  <link rel="stylesheet" href="services.css?v=20260925-v3">
+  <link rel="stylesheet" href="services.css?v=20260925-v4">
   
   <!-- GSAP Animation Library -->
   <script src="assets/gsap.min.js"></script>
@@ -78,7 +78,7 @@
       </div>
     </nav>
 
-    <!-- MAIN SERVICES CONTAINER -->
+    <!-- MAIN PRICING MODULE CONTAINER -->
     <div class="services-container">
 
       <!-- CONTEXT CONTINUITY & FUNNEL HEADER STAGE -->
@@ -87,186 +87,363 @@
         <!-- Continuous Journey Pill (Automatically Syncs with Landing Page Selection) -->
         <div class="funnel-context-pill" id="contextPill" aria-live="polite">
           <span class="context-pulsar"></span>
-          <span class="context-label">JOURNEY CONTINUITY //</span>
-          <span class="context-desc" id="contextDesc">Exploring MOYA Execution Pathways</span>
+          <span class="context-label">EXECUTION BLUEPRINTS //</span>
+          <span class="context-desc" id="contextDesc">Choose the pathway that matches your channel's scale</span>
         </div>
 
         <h1 class="services-main-title">
-          Select Your <span class="glitch-word" id="glitchWord" data-text="Blueprint">Blueprint</span>
-          <span class="services-sub-title">// What level of execution does your channel require?</span>
+          Simple, Transparent <span class="glitch-word" id="glitchWord" data-text="Blueprints">Blueprints</span>
+          <span class="services-sub-title">// Choose the execution pathway that fits your YouTube growth needs.</span>
         </h1>
 
       </section>
 
-      <!-- 4 SERVICE PATHWAYS MATRIX (Clean Architectural Selectable Cards) -->
-      <section class="services-grid-wrapper" aria-label="Selectable Services Matrix">
-        
-        <div class="services-cards-grid" id="servicesGrid" role="radiogroup" aria-label="MOYA Services Blueprints">
+      <!-- 4 PRICING CARDS GRID (Self-Contained Plans with All Details & CTAs) -->
+      <section class="pricing-cards-wrapper" aria-label="MOYA Pricing Blueprints">
+        <div class="pricing-cards-grid" id="pricingGrid">
 
-          <!-- SERVICE 1: LIVE WEBINAR -->
-          <div class="service-card spotlight-card" id="serviceWebinar" role="radio" tabindex="0" aria-checked="false" data-service="webinar">
-            <span class="card-bracket bracket-tl" aria-hidden="true"></span>
-            <span class="card-bracket bracket-tr" aria-hidden="true"></span>
-            <span class="card-bracket bracket-bl" aria-hidden="true"></span>
-            <span class="card-bracket bracket-br" aria-hidden="true"></span>
-            <div class="card-beam-glow" aria-hidden="true"></div>
-            <div class="card-spotlight-layer" aria-hidden="true"></div>
-
-            <div class="card-select-indicator" aria-hidden="true">
-              <svg class="indicator-check" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-                <polyline points="20 6 9 17 4 12"></polyline>
-              </svg>
-            </div>
-
-            <div class="service-card-body">
-              <h2 class="service-card-title">I just want to join the webinar</h2>
-              <p class="service-card-desc">Fast-track live breakdown of the Mechanism of YouTube Automation & direct channel diagnostics with Savan Matariya.</p>
-            </div>
-
-            <div class="service-card-footer">
-              <span class="card-value-badge">Live 3-Hour Broadcast Pass</span>
-            </div>
-          </div>
-
-          <!-- SERVICE 2: GUIDED PROGRAM -->
-          <div class="service-card spotlight-card" id="serviceProgram" role="radio" tabindex="0" aria-checked="false" data-service="program">
-            <span class="card-bracket bracket-tl" aria-hidden="true"></span>
-            <span class="card-bracket bracket-tr" aria-hidden="true"></span>
-            <span class="card-bracket bracket-bl" aria-hidden="true"></span>
-            <span class="card-bracket bracket-br" aria-hidden="true"></span>
-            <div class="card-beam-glow" aria-hidden="true"></div>
-            <div class="card-spotlight-layer" aria-hidden="true"></div>
-
-            <div class="card-select-indicator" aria-hidden="true">
-              <svg class="indicator-check" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-                <polyline points="20 6 9 17 4 12"></polyline>
-              </svg>
-            </div>
-
-            <div class="service-card-body">
-              <h2 class="service-card-title">I want program which can guide me in the right direction</h2>
-              <p class="service-card-desc">The complete self-paced YouTube automation curriculum, retention playbooks, and algorithmic growth blueprints.</p>
-            </div>
-
-            <div class="service-card-footer">
-              <span class="card-value-badge">Includes Tier 01 + Full System</span>
-            </div>
-          </div>
-
-          <!-- SERVICE 3: VIDEO MAKING SUPPORT -->
-          <div class="service-card spotlight-card" id="serviceProduction" role="radio" tabindex="0" aria-checked="false" data-service="production">
-            <span class="card-bracket bracket-tl" aria-hidden="true"></span>
-            <span class="card-bracket bracket-tr" aria-hidden="true"></span>
-            <span class="card-bracket bracket-bl" aria-hidden="true"></span>
-            <span class="card-bracket bracket-br" aria-hidden="true"></span>
-            <div class="card-beam-glow" aria-hidden="true"></div>
-            <div class="card-spotlight-layer" aria-hidden="true"></div>
-
-            <div class="card-select-indicator" aria-hidden="true">
-              <svg class="indicator-check" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-                <polyline points="20 6 9 17 4 12"></polyline>
-              </svg>
-            </div>
-
-            <div class="service-card-body">
-              <h2 class="service-card-title">I want video making support</h2>
-              <p class="service-card-desc">End-to-end done-with-you and done-for-you production: retention scripting, high-CTR packaging & elite 4K editing.</p>
-            </div>
-
-            <div class="service-card-footer">
-              <span class="card-value-badge">Includes Tiers 01–02 + Studio Pipeline</span>
-            </div>
-          </div>
-
-          <!-- SERVICE 4: 1-1 MENTORSHIP WITH SAVAN SIR -->
-          <div class="service-card spotlight-card" id="serviceMentorship" role="radio" tabindex="0" aria-checked="false" data-service="mentorship">
-            <span class="card-bracket bracket-tl" aria-hidden="true"></span>
-            <span class="card-bracket bracket-tr" aria-hidden="true"></span>
-            <span class="card-bracket bracket-bl" aria-hidden="true"></span>
-            <span class="card-bracket bracket-br" aria-hidden="true"></span>
-            <div class="card-beam-glow" aria-hidden="true"></div>
-            <div class="card-spotlight-layer" aria-hidden="true"></div>
-
-            <div class="card-select-indicator" aria-hidden="true">
-              <svg class="indicator-check" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-                <polyline points="20 6 9 17 4 12"></polyline>
-              </svg>
-            </div>
-
-            <div class="service-card-body">
-              <h2 class="service-card-title">I want 1-1 mentorship with Savan sir</h2>
-              <p class="service-card-desc">Direct, personal strategic advisory with Savan Matariya for custom channel growth architecture & pre-upload audits.</p>
-            </div>
-
-            <div class="service-card-footer">
-              <span class="card-value-badge">Full Ecosystem + 1-on-1 with Savan Sir</span>
-            </div>
-          </div>
-
-        </div>
-
-        <!-- Mobile Carousel Navigation Controls (Arrows + Dots) -->
-        <div class="services-carousel-nav" id="servicesCarouselNav" aria-label="Services Navigation">
-          <button type="button" class="carousel-nav-btn btn--prev" id="servicesPrevBtn" aria-label="Previous service">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-              <path d="m15 18-6-6 6-6"/>
-            </svg>
-          </button>
-
-          <div class="cards-carousel-dots" id="servicesDots" aria-label="Services pagination">
-            <button type="button" class="carousel-dot is-active" data-index="0" aria-label="Go to service 1"></button>
-            <button type="button" class="carousel-dot" data-index="1" aria-label="Go to service 2"></button>
-            <button type="button" class="carousel-dot" data-index="2" aria-label="Go to service 3"></button>
-            <button type="button" class="carousel-dot" data-index="3" aria-label="Go to service 4"></button>
-          </div>
-
-          <button type="button" class="carousel-nav-btn btn--next" id="servicesNextBtn" aria-label="Next service">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-              <path d="m9 18 6-6-6-6"/>
-            </svg>
-          </button>
-        </div>
-
-      </section>
-
-      <!-- DYNAMIC DELIVERABLES & ACTIVATION DOCK (Compact Cumulative Checklist) -->
-      <section class="pricing-reveal-dock deliverables-dock" id="pricingDock" aria-live="polite">
-        <div class="dock-backdrop-glow" aria-hidden="true"></div>
-        <div class="dock-glass-shell">
-          
-          <div class="dock-header">
-            <div class="dock-title-group">
-              <span class="dock-active-label">ACTIVE BLUEPRINT //</span>
-              <h3 class="dock-service-name" id="dockServiceName">I just want to join the webinar</h3>
-            </div>
-            <div class="dock-badge-group">
-              <span class="dock-footprint-tag" id="dockBadge">Live 3-Hour Broadcast Pass</span>
-            </div>
-          </div>
-
-          <!-- Dynamic 2-Column Master Checklist -->
-          <div class="dock-checklist-stage">
-            <ul class="dock-features-list" id="dockFeaturesList">
-              <!-- Dynamically populated with ✓ (included) and ✕ (excluded) -->
-            </ul>
-          </div>
-
-          <!-- Dynamic Action Button Bar -->
-          <div class="dock-action-row">
-            <a href="https://ai.mechanismofya.com" class="arrow-fill-btn btn-violet dock-cta-btn" id="dockCtaBtn" target="_blank" rel="noopener noreferrer">
-              <span class="btn-label" id="dockBtnLabel">Reserve Masterclass Seat</span>
-              <span class="btn-arrow-circle">
-                <svg class="arrow-icon arrow-icon-1" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M5 12h14"></path>
-                  <path d="m12 5 7 7-7 7"></path>
+          <!-- CARD 1: LIVE MASTERCLASS -->
+          <div class="pricing-card" id="planWebinar" data-plan="webinar">
+            <div class="card-header">
+              <div class="card-icon-wrap" aria-hidden="true">
+                <svg class="card-icon" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+                  <polyline points="2 17 12 22 22 17"></polyline>
+                  <polyline points="2 12 12 17 22 12"></polyline>
                 </svg>
-                <svg class="arrow-icon arrow-icon-2" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M5 12h14"></path>
-                  <path d="m12 5 7 7-7 7"></path>
+              </div>
+              <h2 class="card-title">Live Masterclass</h2>
+              <p class="card-description">For beginners & creators seeking foundational clarity on automation.</p>
+            </div>
+
+            <div class="card-content">
+              <a href="https://ai.mechanismofya.com" class="card-btn btn-outline" target="_blank" rel="noopener noreferrer">
+                Reserve Masterclass Seat
+              </a>
+
+              <div class="card-details-section">
+                <h3 class="details-heading">Overview</h3>
+                <p class="overview-line">
+                  <span class="overview-tick" aria-hidden="true">✓</span>
+                  <span>3-Hour Live Interactive Masterclass</span>
+                </p>
+
+                <h3 class="details-heading">Highlights</h3>
+                <ul class="features-list">
+                  <li class="feature-item is-included">
+                    <svg class="feature-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
+                    <span class="feature-label">3-Hour Live Masterclass with Savan Sir</span>
+                  </li>
+                  <li class="feature-item is-included">
+                    <svg class="feature-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
+                    <span class="feature-label">Direct Channel Diagnostics & Live Q&A</span>
+                  </li>
+                  <li class="feature-item is-included">
+                    <svg class="feature-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
+                    <span class="feature-label">System Cheat-Sheet & Case Study Vault PDF</span>
+                  </li>
+                  <li class="feature-item is-excluded">
+                    <svg class="feature-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <line x1="18" y1="6" x2="6" y2="18"></line>
+                      <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                    <span class="feature-label">Full MOYA 1.0 Core Curriculum (8 Modules)</span>
+                  </li>
+                  <li class="feature-item is-excluded">
+                    <svg class="feature-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <line x1="18" y1="6" x2="6" y2="18"></line>
+                      <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                    <span class="feature-label">19 Bonus Frameworks, PSDs & SOP Toolkits</span>
+                  </li>
+                  <li class="feature-item is-excluded">
+                    <svg class="feature-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <line x1="18" y1="6" x2="6" y2="18"></line>
+                      <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                    <span class="feature-label">Mastermind Community & Weekly Review Calls</span>
+                  </li>
+                  <li class="feature-item is-excluded">
+                    <svg class="feature-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <line x1="18" y1="6" x2="6" y2="18"></line>
+                      <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                    <span class="feature-label">Dedicated Video Production Team Pipeline</span>
+                  </li>
+                  <li class="feature-item is-excluded">
+                    <svg class="feature-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <line x1="18" y1="6" x2="6" y2="18"></line>
+                      <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                    <span class="feature-label">6-Month 1-on-1 Mentorship with Savan Sir</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- CARD 2: MOYA 1.0 PROGRAM -->
+          <div class="pricing-card" id="planProgram" data-plan="program">
+            <div class="card-header">
+              <div class="card-icon-wrap" aria-hidden="true">
+                <svg class="card-icon" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                  <line x1="8" y1="21" x2="16" y2="21"></line>
+                  <line x1="12" y1="17" x2="12" y2="21"></line>
                 </svg>
-              </span>
-            </a>
-            <span class="dock-action-sub" id="dockActionSub">Instant Confirmation • Live Interactive Broadcast Access</span>
+              </div>
+              <h2 class="card-title">MOYA 1.0 Program</h2>
+              <p class="card-description">For solo creators ready to build a scalable, automated media engine.</p>
+            </div>
+
+            <div class="card-content">
+              <a href="https://vsl.mechanismofya.com" class="card-btn btn-outline" target="_blank" rel="noopener noreferrer">
+                Access Full Blueprint
+              </a>
+
+              <div class="card-details-section">
+                <h3 class="details-heading">Overview</h3>
+                <p class="overview-line">
+                  <span class="overview-tick" aria-hidden="true">✓</span>
+                  <span>Complete Operating System + Mastermind</span>
+                </p>
+
+                <h3 class="details-heading">Highlights</h3>
+                <ul class="features-list">
+                  <li class="feature-item is-included">
+                    <svg class="feature-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
+                    <span class="feature-label">3-Hour Live Masterclass Access Included</span>
+                  </li>
+                  <li class="feature-item is-included">
+                    <svg class="feature-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
+                    <span class="feature-label">System Cheat-Sheet & Case Study Vault PDF</span>
+                  </li>
+                  <li class="feature-item is-included">
+                    <svg class="feature-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
+                    <span class="feature-label">Full MOYA Core System (All 8 Modules)</span>
+                  </li>
+                  <li class="feature-item is-included">
+                    <svg class="feature-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
+                    <span class="feature-label">19 Bonus Frameworks, PSDs & SOP Toolkits</span>
+                  </li>
+                  <li class="feature-item is-included">
+                    <svg class="feature-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
+                    <span class="feature-label">Private Creator Mastermind Community</span>
+                  </li>
+                  <li class="feature-item is-included">
+                    <svg class="feature-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
+                    <span class="feature-label">Weekly Live Review & Doubt-Clearing Calls</span>
+                  </li>
+                  <li class="feature-item is-included">
+                    <svg class="feature-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
+                    <span class="feature-label">2-Day Fast-Track Onboarding Bootcamp</span>
+                  </li>
+                  <li class="feature-item is-excluded">
+                    <svg class="feature-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <line x1="18" y1="6" x2="6" y2="18"></line>
+                      <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                    <span class="feature-label">6-Month 1-on-1 Mentorship with Savan Sir</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- CARD 3: GROWTH STUDIO (RECOMMENDED) -->
+          <div class="pricing-card is-recommended" id="planProduction" data-plan="production">
+            <div class="recommended-badge" aria-label="Recommended plan">
+              Recommended
+            </div>
+
+            <div class="card-header">
+              <div class="card-icon-wrap" aria-hidden="true">
+                <svg class="card-icon" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
+                  <circle cx="9" cy="7" r="4"></circle>
+                  <path d="M22 21v-2a4 4 0 0 0-3-3.87"></path>
+                  <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                </svg>
+              </div>
+              <h2 class="card-title">Growth Studio</h2>
+              <p class="card-description">For brands & founders wanting an elite done-for-you production team.</p>
+            </div>
+
+            <div class="card-content">
+              <a href="https://www.instagram.com/mechanism_ya/" class="card-btn btn-primary" target="_blank" rel="noopener noreferrer">
+                Apply for Studio Pipeline
+              </a>
+
+              <div class="card-details-section">
+                <h3 class="details-heading">Overview</h3>
+                <p class="overview-line">
+                  <span class="overview-tick" aria-hidden="true">✓</span>
+                  <span>Done-For-You Production & Video Pipeline</span>
+                </p>
+
+                <h3 class="details-heading">Highlights</h3>
+                <ul class="features-list">
+                  <li class="feature-item is-included">
+                    <svg class="feature-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
+                    <span class="feature-label">Everything in MOYA 1.0 Program Included</span>
+                  </li>
+                  <li class="feature-item is-included">
+                    <svg class="feature-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
+                    <span class="feature-label">VIP Entry to All Bootcamps & Live Events</span>
+                  </li>
+                  <li class="feature-item is-included">
+                    <svg class="feature-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
+                    <span class="feature-label">Channel Niche Positioning & Architecture</span>
+                  </li>
+                  <li class="feature-item is-included">
+                    <svg class="feature-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
+                    <span class="feature-label">Viral Topic Engineering & Retention Scripting</span>
+                  </li>
+                  <li class="feature-item is-included">
+                    <svg class="feature-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
+                    <span class="feature-label">High-CTR Thumbnail Design & A/B Strategy</span>
+                  </li>
+                  <li class="feature-item is-included">
+                    <svg class="feature-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
+                    <span class="feature-label">Cinema 4K Video Editing & Motion Graphics</span>
+                  </li>
+                  <li class="feature-item is-included">
+                    <svg class="feature-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
+                    <span class="feature-label">Private Mastermind & Weekly Review Calls</span>
+                  </li>
+                  <li class="feature-item is-excluded">
+                    <svg class="feature-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <line x1="18" y1="6" x2="6" y2="18"></line>
+                      <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                    <span class="feature-label">6-Month 1-on-1 Mentorship with Savan Sir</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- CARD 4: 1-ON-1 ADVISORY -->
+          <div class="pricing-card" id="planMentorship" data-plan="mentorship">
+            <div class="card-header">
+              <div class="card-icon-wrap" aria-hidden="true">
+                <svg class="card-icon" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="4" y="2" width="16" height="20" rx="2" ry="2"></rect>
+                  <path d="M9 22v-4h6v4"></path>
+                  <path d="M8 6h.01"></path>
+                  <path d="M16 6h.01"></path>
+                  <path d="M12 6h.01"></path>
+                  <path d="M12 10h.01"></path>
+                  <path d="M12 14h.01"></path>
+                  <path d="M16 10h.01"></path>
+                  <path d="M16 14h.01"></path>
+                  <path d="M8 10h.01"></path>
+                  <path d="M8 14h.01"></path>
+                </svg>
+              </div>
+              <h2 class="card-title">1-on-1 Advisory</h2>
+              <p class="card-description">For serious operators wanting personal channel engineering with Savan Sir.</p>
+            </div>
+
+            <div class="card-content">
+              <a href="https://www.instagram.com/mechanism_ya/" class="card-btn btn-outline" target="_blank" rel="noopener noreferrer">
+                Apply for 1-on-1 Advisory
+              </a>
+
+              <div class="card-details-section">
+                <h3 class="details-heading">Overview</h3>
+                <p class="overview-line">
+                  <span class="overview-tick" aria-hidden="true">✓</span>
+                  <span>6-Month Structured Advisory with Savan Sir</span>
+                </p>
+
+                <h3 class="details-heading">Highlights</h3>
+                <ul class="features-list">
+                  <li class="feature-item is-included">
+                    <svg class="feature-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
+                    <span class="feature-label">Full MOYA 1.0 Program + All Bonuses Included</span>
+                  </li>
+                  <li class="feature-item is-included">
+                    <svg class="feature-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
+                    <span class="feature-label">Unlimited VIP Access to All Bootcamps & Events</span>
+                  </li>
+                  <li class="feature-item is-included">
+                    <svg class="feature-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
+                    <span class="feature-label">Full Studio Production SOPs & Blueprints</span>
+                  </li>
+                  <li class="feature-item is-included">
+                    <svg class="feature-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
+                    <span class="feature-label">6-Month Strategic Journey with Savan Matariya</span>
+                  </li>
+                  <li class="feature-item is-included">
+                    <svg class="feature-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
+                    <span class="feature-label">Private Bi-Weekly Strategic Advisory Calls</span>
+                  </li>
+                  <li class="feature-item is-included">
+                    <svg class="feature-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
+                    <span class="feature-label">Direct Priority VIP Line with Savan Sir</span>
+                  </li>
+                  <li class="feature-item is-included">
+                    <svg class="feature-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
+                    <span class="feature-label">Pre-Upload Script & Thumbnail Audits</span>
+                  </li>
+                  <li class="feature-item is-included">
+                    <svg class="feature-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
+                    <span class="feature-label">Custom Algorithmic Growth Architecture</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
           </div>
 
         </div>
@@ -286,6 +463,6 @@
 
   </main>
 
-  <script src="services.js?v=20260925-v3"></script>
+  <script src="services.js?v=20260925-v4"></script>
 </body>
 </html>
