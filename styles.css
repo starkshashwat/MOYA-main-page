@@ -47,6 +47,11 @@
   padding: 0;
 }
 
+img, svg, video, canvas {
+  display: block;
+  max-width: 100%;
+}
+
 html {
   font-size: 16px;
   background-color: var(--bg-black);
@@ -1141,19 +1146,21 @@ body {
   .founder-backdrop-wrap {
     top: 45%;
     width: 100%;
-    max-width: 100vw;
+    max-width: 100%;
     padding: 0 0.5rem;
-    overflow: visible;
+    overflow: hidden;
   }
 
   .founder-backdrop-text {
-    font-size: clamp(2.35rem, 10.5vw, 3.25rem) !important;
+    font-size: clamp(1.75rem, 8.5vw, 2.65rem) !important;
     line-height: 1;
     letter-spacing: -0.02em;
     max-width: 100%;
     display: block;
     text-align: center;
     white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   /* 4 Floating Metric Badges: Peeking behind the larger portrait frame (depth effect) */

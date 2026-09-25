@@ -47,7 +47,9 @@ function handleRequest(req, res) {
     const ext = path.extname(filePath).toLowerCase();
     const contentType = mimeTypes[ext] || 'application/octet-stream';
 
-    if (ext !== '.html') {
+    if (ext === '.css' || ext === '.js') {
+      res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, max-age=0');
+    } else if (ext !== '.html') {
       res.setHeader('Cache-Control', 'public, max-age=2592000');
     } else {
       res.setHeader('Cache-Control', 'public, max-age=0, must-revalidate');
