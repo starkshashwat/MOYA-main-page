@@ -34,6 +34,10 @@ function handleRequest(req, res) {
   let relativePath = urlPath === '/' ? 'index.html' : urlPath.replace(/^\//, '');
   let filePath = path.join(__dirname, relativePath);
 
+  if (!fs.existsSync(filePath) && fs.existsSync(filePath + '.html')) {
+    filePath = filePath + '.html';
+  }
+
   fs.stat(filePath, (err, stats) => {
     if (err || !stats.isFile()) {
       // SPA Fallback: serve index.html

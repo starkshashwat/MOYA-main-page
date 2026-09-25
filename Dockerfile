@@ -7,7 +7,7 @@ RUN rm -rf /usr/share/nginx/html/*
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 
 # Copy production files
-COPY index.html styles.css main.js /usr/share/nginx/html/
+COPY index.html services.html styles.css services.css main.js services.js /usr/share/nginx/html/
 COPY assets/ /usr/share/nginx/html/assets/
 
 # Expose both ports so Coolify works with either 80 or 3000

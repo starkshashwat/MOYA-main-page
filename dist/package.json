@@ -4,7 +4,7 @@
   "description": "MOYA — The Mechanism of YouTube Automation",
   "main": "server.js",
   "scripts": {
-    "build": "mkdir -p dist && cp -r index.html styles.css main.js server.js assets dist/ 2>/dev/null || echo 'Built'",
+    "build": "mkdir -p dist && cp -r index.html services.html styles.css services.css main.js services.js server.js assets dist/ 2>/dev/null || echo 'Built'",
     "start": "node server.js"
   },
   "keywords": ["moya", "landing-page"],

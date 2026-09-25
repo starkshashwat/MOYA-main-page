@@ -83,29 +83,34 @@ function initUrlBindings() {
  */
 const GOAL_PORTALS = {
   cardStart: {
-    label: "Launch My Channel",
-    url: MOYA_CONFIG.webinarUrl,
-    theme: "violet"
+    label: "Proceed to Services",
+    url: "services.html?intent=start",
+    theme: "violet",
+    target: "_self"
   },
   cardStuck: {
-    label: "Fix My Growth",
-    url: MOYA_CONFIG.mentorshipUrl,
-    theme: "violet"
+    label: "Proceed to Services",
+    url: "services.html?intent=stuck",
+    theme: "violet",
+    target: "_self"
   },
   cardTeam: {
-    label: "Build With Team",
-    url: MOYA_CONFIG.productionsUrl,
-    theme: "violet"
+    label: "Proceed to Services",
+    url: "services.html?intent=team",
+    theme: "violet",
+    target: "_self"
   },
   cardSystem: {
-    label: "Get The System",
-    url: MOYA_CONFIG.courseUrl,
-    theme: "violet"
+    label: "Proceed to Services",
+    url: "services.html?intent=system",
+    theme: "violet",
+    target: "_self"
   },
   cardLive: {
     label: "Explore Events",
     url: MOYA_CONFIG.eventsUrl,
-    theme: "violet"
+    theme: "violet",
+    target: "_self"
   }
 };
 
@@ -143,6 +148,7 @@ function initGoalSelection() {
         actionBtn.classList.remove('btn-gold', 'btn-violet');
         actionBtn.classList.add(`btn-${goal.theme}`);
         actionBtn.href = goal.url;
+        actionBtn.target = goal.target || "_self";
         btnLabel.textContent = goal.label;
 
         ctaStage.classList.add('is-visible');
