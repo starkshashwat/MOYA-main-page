@@ -50,7 +50,13 @@
     return url.href;
   }
 
-  const api = Object.freeze({ destination, validPending, formUrl, formId, save, read, clear });
+  function navigate(url) {
+    if (typeof root.location !== 'undefined' && typeof root.location.assign === 'function') {
+      root.location.assign(url);
+    }
+  }
+
+  const api = Object.freeze({ destination, validPending, formUrl, formId, save, read, clear, navigate });
   root.MoyaFlow = api;
   if (typeof module !== 'undefined' && module.exports) module.exports = api;
 })(typeof window === 'undefined' ? globalThis : window);

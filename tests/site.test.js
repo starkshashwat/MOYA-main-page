@@ -123,8 +123,9 @@ async function gateway() {
   window.scrollTo = () => {};
   const doc = window.document;
   const dialog = doc.getElementById('leadDialog');
-  dialog.showModal = () => { dialog.setAttribute('open', ''); };
-  dialog.close = () => { dialog.removeAttribute('open'); dialog.dispatchEvent(new window.Event('close')); };
+  dialog.open = false;
+  dialog.showModal = () => { dialog.setAttribute('open', ''); dialog.open = true; };
+  dialog.close = () => { dialog.removeAttribute('open'); dialog.open = false; dialog.dispatchEvent(new window.Event('close')); };
   for (const file of ['lead-flow.js', 'analytics.js', 'main.js', 'lead-form.js']) {
     vm.runInContext(source(file), dom.getInternalVMContext(), { filename: file });
   }
@@ -153,7 +154,7 @@ test('mouse and keyboard selection enable CTA without moving the page or opening
   } finally { app.dom.window.close(); }
 });
 
-test('one lazy popup supports all five intents; closing/reopening replaces stale intent', async () => {
+test('native modal popup supports all five intents; closing/reopening resets flow', async () => {
   const app = await gateway();
   try {
     for (const goal of ['start', 'stuck', 'team', 'system', 'live']) {
@@ -161,37 +162,55 @@ test('one lazy popup supports all five intents; closing/reopening replaces stale
       app.button.click();
       app.button.click();
       assert.equal(app.dialog.open, true);
-      assert.equal(app.doc.querySelectorAll('iframe').length, 1);
-      const frame = app.doc.querySelector('iframe');
-      assert.equal(new URL(frame.src).searchParams.get('moya_intent'), goal);
-      frame.dispatchEvent(new app.window.Event('load'));
-      assert.equal(events(app.window).filter(row => row[1] === 'generate_lead').length, 0);
+      assert.equal(app.doc.getElementById('leadIntentInput').value, goal);
+      assert.ok(app.doc.getElementById('leadSelectedGoal').textContent.length > 0);
       app.doc.getElementById('leadClose').click();
       assert.equal(app.dialog.open, false);
       assert.equal(app.window.MoyaFlow.read(), null);
     }
-    assert.equal(app.doc.querySelectorAll('script[src*="form_embed.js"]').length, 1);
     assert.equal(events(app.window).filter(row => row[1] === 'lead_form_open').length, 5);
   } finally { app.dom.window.close(); }
 });
 
-test('completion ignores other origins, other frames, stale intents and duplicates', async () => {
+test('form validation prevents submit with empty/invalid inputs and shows inline errors', async () => {
+  const app = await gateway();
+  try {
+    app.doc.getElementById('cardStart').click();
+    app.button.click();
+    assert.equal(app.dialog.open, true);
+    const form = app.doc.getElementById('leadCustomForm');
+    form.dispatchEvent(new app.window.Event('submit', { cancelable: true, bubbles: true }));
+    assert.ok(app.doc.getElementById('nameError').textContent.includes('name'));
+    assert.ok(app.doc.getElementById('emailError').textContent.includes('email'));
+    assert.ok(app.doc.getElementById('phoneError').textContent.includes('phone'));
+    assert.equal(events(app.window).filter(row => row[1] === 'generate_lead').length, 0);
+  } finally { app.dom.window.close(); }
+});
+
+test('valid native form submit dispatches generate_lead and posts to /api/lead with contact data', async () => {
   const app = await gateway();
   try {
     app.doc.getElementById('cardTeam').click();
     app.button.click();
-    const frame = app.doc.querySelector('iframe');
-    const message = { type: 'moya:lead-complete', formId: app.window.MoyaFlow.formId, intent: 'team' };
-    const emit = (origin, sender, data) => app.window.dispatchEvent(new app.window.MessageEvent('message', { origin, source: sender, data }));
-    emit('https://evil.example', frame.contentWindow, message);
-    emit(app.window.location.origin, app.window, message);
-    emit(app.window.location.origin, frame.contentWindow, { ...message, intent: 'start' });
-    emit(app.window.location.origin, frame.contentWindow, { ...message, formId: 'other-form' });
-    assert.equal(events(app.window).filter(row => row[1] === 'generate_lead').length, 0);
-    emit(app.window.location.origin, frame.contentWindow, message);
-    emit(app.window.location.origin, frame.contentWindow, message);
+    let apiPayload = null;
+    let navigatedTo = null;
+    app.window.fetch = async (url, options) => {
+      apiPayload = JSON.parse(options.body);
+      return { ok: true, json: async () => ({ succeded: true }) };
+    };
+    app.window.MoyaFlow = { ...app.window.MoyaFlow, navigate: dest => { navigatedTo = dest; } };
+    app.doc.getElementById('leadName').value = 'Test User';
+    app.doc.getElementById('leadEmail').value = 'user@example.com';
+    app.doc.getElementById('leadPhone').value = '+91 98765 43210';
+    const form = app.doc.getElementById('leadCustomForm');
+    form.dispatchEvent(new app.window.Event('submit', { cancelable: true, bubbles: true }));
+    await new Promise(r => setTimeout(r, 50));
+    assert.equal(apiPayload.name, 'Test User');
+    assert.equal(apiPayload.email, 'user@example.com');
+    assert.equal(apiPayload.phone, '+91 98765 43210');
+    assert.deepEqual(apiPayload.tags, ['website-lead', 'intent-team']);
     assert.equal(events(app.window).filter(row => row[1] === 'generate_lead').length, 1);
-    assert.equal(app.window.MoyaFlow.read(), null);
+    assert.equal(navigatedTo, '/services.html?intent=team');
   } finally { app.dom.window.close(); }
 });
 
@@ -224,24 +243,21 @@ test('completion page handles embedded/top-level routing and does not count unso
   }
 });
 
-test('form helper failure offers retry; closing a flow rejects late completion', async () => {
+test('network failure or timeout still safely navigates to destination without blocking user', async () => {
   const app = await gateway();
   try {
     app.doc.getElementById('cardStart').click();
     app.button.click();
-    const helper = app.doc.querySelector('script[src*="form_embed.js"]');
-    helper.dispatchEvent(new app.window.Event('error'));
-    await Promise.resolve();
-    assert.equal(app.doc.getElementById('leadRetry').hidden, false);
-    const frame = app.doc.querySelector('iframe');
-    app.doc.getElementById('leadRetry').click();
-    assert.equal(app.doc.querySelectorAll('script[src*="form_embed.js"]').length, 1);
-    app.dialog.close();
-    app.window.dispatchEvent(new app.window.MessageEvent('message', {
-      origin: app.window.location.origin, source: frame.contentWindow,
-      data: { type: 'moya:lead-complete', formId: app.window.MoyaFlow.formId, intent: 'start' }
-    }));
-    assert.equal(events(app.window).filter(row => row[1] === 'generate_lead').length, 0);
+    let navigatedTo = null;
+    app.window.fetch = async () => { throw new Error('Network error'); };
+    app.window.MoyaFlow = { ...app.window.MoyaFlow, navigate: dest => { navigatedTo = dest; } };
+    app.doc.getElementById('leadName').value = 'Offline User';
+    app.doc.getElementById('leadEmail').value = 'offline@example.com';
+    app.doc.getElementById('leadPhone').value = '+91 98765 00000';
+    const form = app.doc.getElementById('leadCustomForm');
+    form.dispatchEvent(new app.window.Event('submit', { cancelable: true, bubbles: true }));
+    await new Promise(r => setTimeout(r, 50));
+    assert.equal(navigatedTo, '/services.html?intent=start');
   } finally { app.dom.window.close(); }
 });
 

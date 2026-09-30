@@ -20,16 +20,71 @@ function handleRequest(req, res) {
   res.setHeader('Referrer-Policy', 'strict-origin-when-cross-origin');
   res.setHeader('Content-Security-Policy', "frame-ancestors 'self'");
   res.setHeader('Cache-Control', 'no-cache');
-  if (!['GET', 'HEAD'].includes(req.method)) {
-    res.writeHead(405, { Allow: 'GET, HEAD' });
-    return res.end();
-  }
   let url;
   let pathname;
   try {
     url = new URL(req.url, 'http://localhost');
     pathname = decodeURIComponent(url.pathname);
   } catch (_) { res.writeHead(400); return res.end('Bad request'); }
+
+  // API Proxy for GHL Direct Contact Upsert
+  if (pathname === '/api/lead' && req.method === 'POST') {
+    let body = '';
+    req.on('data', chunk => { body += chunk; });
+    req.on('end', () => {
+      try {
+        const payload = JSON.parse(body || '{}');
+        const tags = Array.isArray(payload.tags) && payload.tags.length > 0
+          ? payload.tags
+          : ['website-lead', payload.intent ? `intent-${payload.intent}` : null].filter(Boolean);
+        const ghlData = JSON.stringify({
+          locationId: payload.locationId || 'jsuZqhDRfnfSBFMgdfs2',
+          name: payload.name || '',
+          email: payload.email || '',
+          phone: payload.phone || '',
+          tags: tags,
+          source: payload.source || 'MOYA Website'
+        });
+
+        const https = require('node:https');
+        const ghlReq = https.request({
+          hostname: 'services.leadconnectorhq.com',
+          path: '/contacts/upsert',
+          method: 'POST',
+          headers: {
+            'Authorization': 'Bearer pit-2fcd87af-adc1-406e-9350-734a48dcff54',
+            'Version': '2021-07-28',
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            'Content-Length': Buffer.byteLength(ghlData)
+          }
+        }, ghlRes => {
+          let ghlResData = '';
+          ghlRes.on('data', chunk => { ghlResData += chunk; });
+          ghlRes.on('end', () => {
+            res.writeHead(ghlRes.statusCode, { 'Content-Type': 'application/json' });
+            res.end(ghlResData);
+          });
+        });
+
+        ghlReq.on('error', err => {
+          res.writeHead(502, { 'Content-Type': 'application/json' });
+          res.end(JSON.stringify({ error: err.message }));
+        });
+        ghlReq.write(ghlData);
+        ghlReq.end();
+      } catch (err) {
+        res.writeHead(400, { 'Content-Type': 'application/json' });
+        res.end(JSON.stringify({ error: 'Invalid JSON' }));
+      }
+    });
+    return;
+  }
+
+  if (!['GET', 'HEAD'].includes(req.method)) {
+    res.writeHead(405, { Allow: 'GET, HEAD, POST' });
+    return res.end();
+  }
   if (pathname === '/health') {
     res.writeHead(200, { 'Content-Type': 'text/plain; charset=utf-8' });
     return res.end(req.method === 'HEAD' ? undefined : 'OK');
