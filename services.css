@@ -334,6 +334,35 @@ body {
   z-index: 10;
 }
 
+/* Keep the four desktop offers on one visual baseline. Grid stretching makes
+   every card share the tallest card's height, while the explicit height keeps
+   the inner flex layout anchored consistently. */
+@media (min-width: 1025px) {
+  .pricing-cards-grid {
+    grid-auto-rows: 1fr;
+  }
+
+  .pricing-card {
+    height: 100%;
+    transform: none;
+  }
+
+  /* Recommended styling stays prominent through its border and glow, not a
+     larger physical box that breaks the four-card comparison. */
+  .pricing-card.is-recommended {
+    transform: none;
+  }
+
+  .pricing-card.is-recommended:hover {
+    transform: translateY(-4px);
+  }
+
+  .pricing-card.is-matched {
+    transform: none !important;
+    animation: none;
+  }
+}
+
 /* Base Pricing Card */
 .pricing-card {
   position: relative;
@@ -370,13 +399,13 @@ body {
   border: 1.5px solid var(--accent-violet) !important;
   background: linear-gradient(180deg, rgba(28, 20, 48, 0.92) 0%, rgba(14, 11, 24, 0.98) 100%) !important;
   box-shadow: 0 0 32px rgba(157, 101, 255, 0.28), 0 14px 40px rgba(0, 0, 0, 0.75), inset 0 0 16px rgba(157, 101, 255, 0.15) !important;
-  transform: scale(1.025);
+  transform: none;
   z-index: 10;
 }
 
 @media (min-width: 1025px) {
   .pricing-card.is-recommended:hover {
-    transform: scale(1.025) translateY(-4px);
+    transform: translateY(-4px);
     box-shadow: 0 0 42px rgba(157, 101, 255, 0.4), 0 18px 48px rgba(0, 0, 0, 0.85), inset 0 0 20px rgba(157, 101, 255, 0.22) !important;
   }
 }
@@ -428,9 +457,9 @@ body {
   border: 1.5px solid var(--accent-violet) !important;
   background: linear-gradient(180deg, rgba(32, 22, 54, 0.95) 0%, rgba(14, 11, 24, 0.98) 100%) !important;
   box-shadow: 0 0 36px rgba(157, 101, 255, 0.42), 0 14px 40px rgba(0, 0, 0, 0.8), inset 0 0 18px rgba(157, 101, 255, 0.2) !important;
-  transform: scale(1.03) !important;
+  transform: none !important;
   z-index: 15 !important;
-  animation: cardMatchPop 0.65s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation: none;
 }
 
 @keyframes cardMatchPop {
@@ -515,6 +544,17 @@ body {
   flex-grow: 1;
 }
 
+/* The comparison rhythm is intentional: overview, inherited bundle,
+   highlights, then the action. The DOM remains content-first and accessible. */
+.card-details-section {
+  order: 1;
+}
+
+.card-btn {
+  order: 2;
+  margin-top: auto;
+}
+
 /* Full-Width Action Buttons */
 .card-btn {
   display: inline-flex;
@@ -575,6 +615,27 @@ body {
   flex-grow: 1;
 }
 
+/* Cumulative inclusion label: highlighted like the reference layout, without
+   introducing a second card or a heavy box inside each service card. */
+.bundle-inclusion {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  margin: 0.85rem 0 0.2rem;
+  padding: 0.62rem 0 0.65rem 0.85rem;
+  border-top: 1px solid rgba(157, 101, 255, 0.28);
+  border-bottom: 1px solid rgba(157, 101, 255, 0.2);
+  box-shadow: inset 3px 0 0 var(--accent-violet);
+}
+
+.bundle-title {
+  color: var(--accent-violet);
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  font-weight: 700;
+  line-height: 1.4;
+}
+
 .details-heading {
   font-family: var(--font-mono);
   font-size: 0.72rem;
@@ -623,8 +684,8 @@ body {
   align-items: flex-start;
   gap: 0.55rem;
   font-family: var(--font-sans);
-  font-size: 0.79rem;
-  line-height: 1.38;
+  font-size: 0.81rem;
+  line-height: 1.45;
 }
 
 .feature-icon {
@@ -641,18 +702,6 @@ body {
 .feature-item.is-included .feature-label {
   color: #e2e8f0;
   font-weight: 500;
-}
-
-/* Excluded Features (Muted Cross ✕ with Strike-through) */
-.feature-item.is-excluded .feature-icon {
-  color: #ef4444;
-  opacity: 0.6;
-}
-
-.feature-item.is-excluded .feature-label {
-  color: rgba(148, 163, 184, 0.45);
-  text-decoration: line-through;
-  text-decoration-color: rgba(239, 68, 68, 0.4);
 }
 
 /* ==========================================================================
@@ -788,6 +837,15 @@ body {
     padding-top: 1.15rem;
   }
 
+  .bundle-inclusion {
+    margin-top: 0.72rem;
+    padding: 0.62rem 0 0.65rem 0.78rem;
+  }
+
+  .bundle-title {
+    font-size: 0.78rem;
+  }
+
   .details-heading {
     font-size: 0.68rem;
   }
@@ -811,3 +869,24 @@ body {
   }
 }
 
+/* Keep the page calm and fully readable for visitors who request less motion. */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .pricing-card:hover,
+  .pricing-card.is-recommended,
+  .pricing-card.is-matched {
+    transform: none !important;
+  }
+}

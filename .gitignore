@@ -15,3 +15,6 @@ reference/
 # Environment
 .env
 .env.local
+
+# IDE & Editor Scratch
+.opencode/

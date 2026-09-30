@@ -44,8 +44,11 @@ document.addEventListener('DOMContentLoaded', () => {
   // Initialize Card Mouse Tracking Spotlight
   initCardSpotlight();
 
-  // GSAP Entrance & Interactions
-  if (typeof gsap !== 'undefined') {
+  // GSAP Entrance & Interactions. Respect the visitor's motion preference so
+  // the cumulative comparison remains immediately readable when animation is
+  // disabled at the system level.
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (typeof gsap !== 'undefined' && !prefersReducedMotion) {
     initPricingEntrance();
     initPricingCardHoverPhysics();
   }
@@ -96,7 +99,11 @@ function initIntentHandling() {
       // Smooth scroll on mobile/tablet
       if (window.innerWidth <= 1024) {
         setTimeout(() => {
-          targetCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+           const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+           targetCard.scrollIntoView({
+             behavior: prefersReducedMotion ? 'auto' : 'smooth',
+             block: 'center'
+           });
         }, 400);
       }
     }
