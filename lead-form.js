@@ -41,8 +41,8 @@
       if (submitting) {
         submitLabel.textContent = 'Securing Access…';
       } else {
-        const intent = active?.intent || intentInput?.value;
-        submitLabel.textContent = intent === 'live' ? 'Proceed to Live Event' : 'Proceed to Blueprint';
+        const intent = active?.intent || intentInput?.value || trigger?.dataset?.intent;
+        submitLabel.textContent = intent === 'live' ? 'Join Live Event' : 'Continue to Blueprint';
       }
     }
   }
@@ -61,7 +61,7 @@
     flow.save(active);
 
     if (typeof dialog.showModal !== 'function') {
-      window.location.assign(flow.destination(intent));
+      window.location.assign(intent === 'live' ? '/events.html' : flow.destination(intent));
       return;
     }
 
@@ -69,7 +69,11 @@
     if (goalHeading) {
       const selectedEl = document.querySelector(`.intent-card[data-goal="${intent}"] .card-intent-heading`) ||
                          document.querySelector('.intent-card.is-selected .card-intent-heading');
-      goalHeading.textContent = selectedEl?.textContent?.trim() || 'Executive Blueprint';
+      goalHeading.textContent = selectedEl?.textContent?.trim() || (intent === 'live' ? 'Live Masterclass' : 'Executive Blueprint');
+    }
+    const titleEl = document.getElementById('leadTitle');
+    if (titleEl) {
+      titleEl.textContent = intent === 'live' ? 'Join Exclusive Live Event' : 'Access Your Blueprint';
     }
 
     clearErrors();
@@ -154,7 +158,7 @@
       statusMsg.className = 'lead-form-status';
     }
 
-    const dest = flow.destination(intent) || '/services.html';
+    const dest = intent === 'live' ? '/events.html' : (flow.destination(intent) || '/services.html');
     let navigated = false;
     const navigateOnce = () => {
       if (!navigated) {
@@ -177,8 +181,7 @@
       goal: intent,
       name,
       email,
-      phone,
-      event_callback: navigateOnce
+      phone
     });
 
     // Safety fallback: Never trap the user if network is slow

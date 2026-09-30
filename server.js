@@ -120,32 +120,20 @@ function handleRequest(req, res) {
 }
 
 if (require.main === module) {
-  const envPort = process.env.PORT ? Number(process.env.PORT) : null;
-  const primaryPort = envPort || 80;
+  const ports = new Set([80, 3000]);
+  if (process.env.PORT) {
+    const p = Number(process.env.PORT);
+    if (Number.isInteger(p) && p >= 1 && p <= 65535) ports.add(p);
+  }
 
-  function startListener(p, isPrimary = false) {
-    if (!Number.isInteger(p) || p < 1 || p > 65535) return null;
+  ports.forEach(p => {
     const s = http.createServer(handleRequest);
     s.on('error', error => {
-      if (isPrimary && envPort) {
-        console.error(`Primary listener on port ${p} failed: ${error.message}`);
-        process.exitCode = 1;
-      } else {
-        console.warn(`Port ${p} notice: ${error.message}`);
-      }
+      console.warn(`[Port ${p}] notice: ${error.message}`);
     });
     s.listen(p, '0.0.0.0', () => {
       console.log(`MOYA preview: http://0.0.0.0:${p}`);
     });
-    return s;
-  }
-
-  // Bind port 80 (required by Coolify default healthcheck & proxy)
-  startListener(primaryPort, true);
-
-  // Auxiliary listener on port 3000 (ensures both 80 and 3000 respond)
-  if (primaryPort !== 3000) {
-    startListener(3000, false);
-  }
+  });
 }
 module.exports = { handleRequest };

@@ -214,6 +214,31 @@ test('valid native form submit dispatches generate_lead and posts to /api/lead w
   } finally { app.dom.window.close(); }
 });
 
+test('submitting lead form on join event card navigates directly to /events.html with Goal: Live Event tag', async () => {
+  const app = await gateway();
+  try {
+    app.doc.getElementById('cardLive').click();
+    app.button.click();
+    let apiPayload = null;
+    let navigatedTo = null;
+    app.window.fetch = async (url, options) => {
+      apiPayload = JSON.parse(options.body);
+      return { ok: true, json: async () => ({ succeded: true }) };
+    };
+    app.window.MoyaFlow = { ...app.window.MoyaFlow, navigate: dest => { navigatedTo = dest; } };
+    app.doc.getElementById('leadName').value = 'Live Attendee';
+    app.doc.getElementById('leadEmail').value = 'attendee@example.com';
+    app.doc.getElementById('leadPhone').value = '+91 98765 11111';
+    const form = app.doc.getElementById('leadCustomForm');
+    form.dispatchEvent(new app.window.Event('submit', { cancelable: true, bubbles: true }));
+    await new Promise(r => setTimeout(r, 50));
+    assert.equal(apiPayload.name, 'Live Attendee');
+    assert.equal(apiPayload.email, 'attendee@example.com');
+    assert.deepEqual(apiPayload.tags, ['Website Lead', 'Goal: Live Event']);
+    assert.equal(navigatedTo, '/events.html');
+  } finally { app.dom.window.close(); }
+});
+
 test('completion page handles embedded/top-level routing and does not count unsolicited visits', () => {
   for (const embedded of [true, false]) {
     for (const pending of [true, false]) {
