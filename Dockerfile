@@ -1,20 +1,13 @@
-FROM nginx:alpine
+FROM node:22-alpine AS build
+WORKDIR /site
+COPY . .
+RUN node build.js
 
-# Remove default nginx static assets
+FROM nginx:stable-alpine
 RUN rm -rf /usr/share/nginx/html/*
-
-# Copy custom nginx configuration (listens on both 80 and 3000)
 COPY nginx.conf /etc/nginx/conf.d/default.conf
-
-# Copy production files
-COPY index.html services.html styles.css services.css main.js services.js /usr/share/nginx/html/
-COPY assets/ /usr/share/nginx/html/assets/
-
-# Expose both ports so Coolify works with either 80 or 3000
+COPY --from=build /site/dist/ /usr/share/nginx/html/
 EXPOSE 80 3000
-
-# Built-in container healthcheck using Alpine wget
 HEALTHCHECK --interval=15s --timeout=3s --start-period=5s --retries=3 \
-  CMD wget -q --spider http://127.0.0.1:80/health || wget -q --spider http://127.0.0.1:3000/health || exit 1
-
+  CMD wget -q --spider http://127.0.0.1:80/health || exit 1
 CMD ["nginx", "-g", "daemon off;"]

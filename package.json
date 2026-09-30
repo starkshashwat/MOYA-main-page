@@ -4,10 +4,17 @@
   "description": "MOYA — The Mechanism of YouTube Automation",
   "main": "server.js",
   "scripts": {
-    "build": "mkdir -p dist && cp -r index.html services.html styles.css services.css main.js services.js server.js assets dist/ 2>/dev/null || echo 'Built'",
-    "start": "node server.js"
+    "build": "node build.js",
+    "start": "node server.js",
+    "test": "node --test tests/*.test.js"
   },
-  "keywords": ["moya", "landing-page"],
+  "keywords": [
+    "moya",
+    "landing-page"
+  ],
   "author": "MOYA",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "jsdom": "^26.1.0"
+  }
 }

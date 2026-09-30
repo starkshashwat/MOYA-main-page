@@ -1,72 +1,42 @@
-# MOYA Gateway — Main Landing Page
+# MOYA Academy website
 
-The official digital front door for **MOYA (Mechanism of YouTube Automation)**.
+Static gateway and service comparison site for **https://mechanismofya.com**.
+Hosted through a GitHub-connected Coolify Docker deployment.
 
-Crafted with an editorial luxury aesthetic inspired by cinematic studio design systems, featuring atmospheric lighting, oversized typography, dimensional mentor layering, and an interactive floating gateway dock connecting visitors to MOYA's 4 core service pathways.
+## Local commands
 
----
+Node 22+; no runtime npm dependencies. Install development dependencies to run
+the DOM integration tests.
 
-## 🏛 The 4 Core Pathways
-
-1. **One-to-One Mentorship**: High-touch, direct guidance to build scalable YouTube channel assets (no price displayed).
-2. **Productions**: Done-for-you content production built for channel scaling.
-3. **YouTube Automation Masterclass (Webinar)**: Live intensive system breakdown priced at **₹1,999**.
-4. **WhatsApp Channel**: The official broadcast community for updates and insights (`JOIN WHATSAPP CHANNEL`).
-
----
-
-## ⚡ Tech Stack & Architecture
-
-- **HTML5**: Semantic, accessible markup with OpenGraph & Twitter metadata.
-- **CSS3**: Custom design tokens, fluid typography via viewport units, backdrop blur filters, and GPU-accelerated transforms.
-- **Vanilla JavaScript**: Lightweight (~3KB), zero external dependencies, 60 FPS requestAnimationFrame cursor parallax, magnetic button interactions, and centralized URL configuration.
-- **Performance**: Optimized WebP imagery, asynchronous font preloading, 60 FPS rendering target, full `prefers-reduced-motion` compliance.
-
----
-
-## 🔗 Central URL Configuration
-
-All primary CTAs across the header, gateway cards, and footer read dynamically from a single configuration object in `main.js`:
-
-```javascript
-const MOYA_CONFIG = {
-  quickCallUrl: "https://calendly.com",
-  mentorshipUrl: "https://mentorship.moya.com",
-  productionsUrl: "https://productions.moya.com",
-  webinarUrl: "https://webinar.moya.com",
-  whatsappUrl: "https://whatsapp.com/channel/moya"
-};
+```sh
+npm ci
+npm run build
+npm test
+npm start
 ```
 
-Simply update these values to point to your live booking and registration links.
+Local preview: `http://localhost:3000`. Set `PORT` to use another port.
+GA4 queues locally for debugging but does not send localhost traffic to Google.
 
----
+## Website files
 
-## 🚀 Deployment
+- `index.html`, `styles.css`, `main.js`: homepage with stable goal selection and manual mobile carousel.
+- `services.html`, `services.css`, `services.js`: equal-width/height desktop cards; included benefits only.
+- `lead-flow.js`, `lead-form.js`, `lead-form.css`: one CTA-triggered GHL form.
+- `lead-complete.html`, `lead-complete.js`: allowlisted post-submission routing.
+- `events.html`: temporary events preview, excluded from search indexing.
+- `analytics.js`: GA4 `G-304WG9J9Z8`, page views and funnel events.
+- `sitemap.xml`, `robots.txt`, `404.html`: technical SEO and routing.
+- `public-files.js`: explicit public build manifest; `build.js` replaces generated `dist/`.
 
-The repository is pre-configured for zero-config, 1-click deployments on:
+Keep edits in root source files, then run the build. Docker builds `dist/` from
+source automatically. It never serves the repository, setup notes or tests.
+Optional image regeneration: `powershell -File tools/generate-images.ps1` on Windows.
 
-### Vercel
-1. Import this repository into [Vercel](https://vercel.com).
-2. Framework Preset: **Other**.
-3. Root Directory: `./` (leave default).
-4. Click **Deploy**.
+## GHL configuration and deployment
 
-### Netlify
-1. Connect this repository to [Netlify](https://netlify.com).
-2. Publish Directory: `.`
-3. Build Command: *(Leave blank)*.
-4. Click **Deploy Site**.
+See **[docs/GHL-SETUP.md](docs/GHL-SETUP.md)** for the exact hidden field/query key,
+five conditional redirect URLs, Coolify settings, analytics and live verification.
 
-### GitHub Pages
-1. Go to repository **Settings** &rarr; **Pages**.
-2. Source: **Deploy from a branch** &rarr; Branch: `main` / `(root)`.
-3. Click **Save**.
-
----
-
-## 📱 Responsiveness
-
-- **Desktop (1440 × 900)**: Framed gallery canvas with atmospheric depth, ambient mesh glow, and floating 4-card dock.
-- **Tablet (1024 × 768)**: Fluid 2x2 gateway grid with balanced mentor visual.
-- **Mobile (390 × 844)**: Responsive column layout, touch-optimized hit areas, zero clipping.
+The website alone cannot configure GHL's form rules. Configure those rules and
+verify real submissions in GHL before treating the funnel as live-ready.

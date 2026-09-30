@@ -66,7 +66,7 @@ function initIntentHandling() {
   const breadcrumbTarget = document.getElementById('breadcrumbTarget');
   const subtitleEl = document.getElementById('servicesSubtitle');
 
-  if (incomingIntent && INTENT_MAPPING[incomingIntent]) {
+  if (incomingIntent && Object.prototype.hasOwnProperty.call(INTENT_MAPPING, incomingIntent)) {
     const config = INTENT_MAPPING[incomingIntent];
 
     // Reveal and set breadcrumb
@@ -99,11 +99,11 @@ function initIntentHandling() {
       // Smooth scroll on mobile/tablet
       if (window.innerWidth <= 1024) {
         setTimeout(() => {
-           const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-           targetCard.scrollIntoView({
-             behavior: prefersReducedMotion ? 'auto' : 'smooth',
-             block: 'center'
-           });
+          const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+          targetCard.scrollIntoView({
+            behavior: prefersReducedMotion ? 'auto' : 'smooth',
+            block: 'center'
+          });
         }, 400);
       }
     }
@@ -168,8 +168,8 @@ function initPricingEntrance() {
  * ==========================================================================
  */
 function initPricingCardHoverPhysics() {
-  const isTouch = window.matchMedia('(pointer: coarse)').matches;
-  if (isTouch) return;
+  const isFinePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+  if (!isFinePointer) return;
 
   const cards = document.querySelectorAll('.pricing-card');
   if (!cards.length) return;

@@ -3,8 +3,26 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MOYA — The Mechanism of YouTube Automation | Gateway</title>
-  <meta name="description" content="MOYA Gateway: Choose your goal and access proven YouTube automation systems, mentorship, productions, courses, and live bootcamps with Savan Matariya.">
+  <title>MOYA Academy | YouTube Automation with Savan Matariya</title>
+  <meta name="description" content="Find your next step in YouTube automation with MOYA Academy: live masterclasses, the MOYA 1.0 Program, Growth Studio and 1-on-1 Advisory with Savan Matariya.">
+  <meta name="theme-color" content="#060608">
+  <link rel="canonical" href="https://mechanismofya.com/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="MOYA Academy">
+  <meta property="og:title" content="MOYA Academy | YouTube Automation with Savan Matariya">
+  <meta property="og:description" content="Choose your next step: masterclasses, structured learning, production and personal advisory.">
+  <meta property="og:url" content="https://mechanismofya.com/">
+  <meta property="og:image" content="https://mechanismofya.com/assets/moya-social.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="MOYA Academy — The Mechanism of YouTube Automation">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="MOYA Academy | YouTube Automation">
+  <meta name="twitter:description" content="Choose your next step with Savan Matariya and MOYA Academy.">
+  <meta name="twitter:image" content="https://mechanismofya.com/assets/moya-social.jpg">
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://mechanismofya.com/#organization","name":"MOYA Academy","url":"https://mechanismofya.com/","logo":"https://mechanismofya.com/assets/moya-logo.webp","founder":{"@type":"Person","name":"Savan Matariya"},"sameAs":["https://www.instagram.com/mechanism_ya/","https://www.youtube.com/channel/UCx4bJ-Q2aSiEn6WnTwAXxKg","https://www.facebook.com/mechanismofya/"]},{"@type":"WebSite","@id":"https://mechanismofya.com/#website","url":"https://mechanismofya.com/","name":"MOYA Academy","publisher":{"@id":"https://mechanismofya.com/#organization"}}]}
+  </script>
   
   <!-- Favicon -->
   <link rel="icon" type="image/png" href="assets/favicon.png">
@@ -16,9 +34,17 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600;700&family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="styles.css?v=20260925-v3">
+  <link rel="stylesheet" href="styles.css?v=20260930-v9">
+  <link rel="stylesheet" href="shared.css?v=20260930-v1">
+  <link rel="stylesheet" href="lead-form.css?v=20260930-v1">
+  <script defer src="assets/gsap.min.js"></script>
+  <script defer src="analytics.js?v=20260930-v2"></script>
+  <script defer src="lead-flow.js?v=20260930-v1"></script>
+  <script defer src="main.js?v=20260930-v9"></script>
+  <script defer src="lead-form.js?v=20260930-v1"></script>
 </head>
 <body>
+  <a class="skip-link" href="#intentSection">Skip to choose your goal</a>
 
   <!-- FULL BLEED GATEWAY CANVAS -->
   <main class="gateway-root" id="gatewayRoot">
@@ -35,7 +61,7 @@
     <!-- TOP NAVIGATION BAR (Clean & Minimalist: Logo Left, Socials Right) -->
     <header class="top-nav-bar" id="topNav">
       <!-- Brand Logo (Left) -->
-      <a href="#" class="brand-logo-link" aria-label="MOYA Home">
+      <a href="/" class="brand-logo-link" aria-label="MOYA Home">
         <img src="assets/moya-logo.webp" alt="MOYA Logo" class="brand-logo-img" width="132" height="32">
       </a>
 
@@ -102,10 +128,12 @@
 
           <!-- Central Mentor Visual (Enlarged, Anchored on Divider Baseline, Masked) -->
           <div class="founder-portrait-frame" id="founderPortrait">
-            <img src="assets/savan-desktop.png" 
+            <img src="assets/savan-1100.png"
+                 srcset="assets/savan-640.png 640w, assets/savan-1100.png 1100w"
+                 sizes="(max-width: 640px) 100vw, 700px"
+                 width="1672" height="941"
                  alt="Savan Matariya — Founder & Chief Architect, MOYA" 
                  class="founder-img" 
-                 style="max-width: 100%; height: auto;"
                  loading="eager" 
                  fetchpriority="high">
             <div class="portrait-ambient-glow"></div>
@@ -151,12 +179,12 @@
       <!-- Choose Your Goal with Glitch Text Animation +        -->
       <!-- Hyperiux ArrowFillButtons with Psychological CTAs   -->
       <!-- ==================================================== -->
-      <section class="intent-selection-section" id="intentSection" aria-label="Choose Your Goal">
+      <section class="intent-selection-section" id="intentSection" tabindex="-1" aria-label="Choose Your Goal">
         
         <!-- Intent Section Header with Glitch Alternating Word -->
         <div class="intent-header-wrap" id="intentHeader">
           <h1 class="intent-main-title">
-            Choose Your <span class="glitch-word" id="glitchWord" data-text="Goal">Goal</span> 
+            Choose Your <span class="sr-only">Goal</span><span class="glitch-word" id="glitchWord" data-text="Goal" aria-hidden="true">Goal</span>
             <span class="title-sub">// Where is your YouTube journey today?</span>
           </h1>
         </div>
@@ -343,7 +371,7 @@
         <!-- DYNAMIC SELECTION ACTION BUTTON -->
         <!-- Appears smoothly as soon as a card is selected, matching its intent and target URL -->
         <div class="dynamic-cta-stage" id="dynamicCtaStage" aria-live="polite">
-          <a href="#" class="arrow-fill-btn btn-violet dynamic-action-btn" id="dynamicActionBtn" target="_blank" rel="noopener noreferrer">
+          <button type="button" class="arrow-fill-btn btn-violet dynamic-action-btn" id="dynamicActionBtn" disabled aria-haspopup="dialog" aria-controls="leadDialog">
             <span class="btn-label" id="dynamicBtnLabel">Choose your goal above</span>
             <span class="btn-arrow-circle">
               <svg class="arrow-icon arrow-icon-1" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
@@ -355,8 +383,10 @@
                 <path d="m12 5 7 7-7 7"></path>
               </svg>
             </span>
-          </a>
+          </button>
         </div>
+
+        <noscript><p>Enable JavaScript to use goal selection and the enquiry form. You can also <a href="services.html">explore our services</a>.</p></noscript>
 
       </section>
 
@@ -370,14 +400,23 @@
       <div class="footer-right">
         <span class="footer-tagline">SYSTEMS OVER GUESSWORK</span>
       </div>
+      <nav class="footer-links" aria-label="Explore MOYA"><a href="services.html">Services</a><a href="events.html">Events</a></nav>
     </footer>
 
   </main>
 
-  <!-- GSAP Animation Engine -->
-  <script src="assets/gsap.min.js"></script>
-  <script>window.gsap || document.write('<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"><\/script>')</script>
-  <script src="analytics.js?v=20260930-v1"></script>
-  <script src="main.js?v=20260925-v3"></script>
+  <dialog id="leadDialog" class="lead-dialog" aria-labelledby="leadTitle" aria-describedby="leadSelectedGoal">
+    <header class="lead-dialog-header">
+      <h2 id="leadTitle">Let’s take your next step</h2>
+      <p id="leadSelectedGoal"></p>
+      <button type="button" class="lead-close" id="leadClose" aria-label="Close form" autofocus>&times;</button>
+    </header>
+    <div id="leadFrameSlot" class="lead-frame-slot"></div>
+    <footer class="lead-dialog-footer">
+      <p id="leadStatus" role="status" aria-live="polite">Loading your form…</p>
+      <button type="button" class="lead-retry" id="leadRetry" hidden>Reload form</button>
+      <a id="leadDirectLink" href="https://pay.mechanismofya.com/widget/form/lmEIPrjjK5rZ1x0oLzZe">Open form directly</a>
+    </footer>
+  </dialog>
 </body>
 </html>

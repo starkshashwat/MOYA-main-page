@@ -7,6 +7,8 @@ Thumbs.db
 output/
 tmp/
 *.py
+.build-*/
+*.log
 
 # Local reference source (design only)
 refrance/

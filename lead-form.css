@@ -1,0 +1,33 @@
+/* The dialog lives outside the animated page canvas. */
+.lead-dialog {
+  position: fixed;
+  inset: 0;
+  margin: auto;
+  width: min(600px, calc(100% - 24px));
+  max-height: calc(100vh - 32px);
+  max-height: calc(100dvh - 32px);
+  padding: 0;
+  border: 1px solid #9d65ff;
+  border-radius: 20px;
+  background: #f2f1e8;
+  color: #16131e;
+  overflow: auto;
+  overscroll-behavior: contain;
+  box-shadow: 0 24px 90px #0009;
+}
+.lead-dialog::backdrop { background: #060608cc; }
+.lead-dialog-header { position: relative; padding: 24px 64px 16px 24px; }
+.lead-dialog-header h2 { font: 700 1.4rem/1.25 var(--font-display); }
+.lead-dialog-header p { margin-top: 8px; font-size: .875rem; line-height: 1.5; }
+.lead-close {
+  position: absolute; top: 12px; right: 12px;
+  width: 44px; height: 44px; border: 1px solid #c5bfd1;
+  border-radius: 50%; background: #fff; color: #16131e;
+  font-size: 1.6rem; cursor: pointer;
+}
+.lead-frame-slot { width: 100%; min-width: 0; min-height: 594px; background: #fff; }
+.lead-frame { display: block; width: 100%; height: 650px; border: 0; }
+.lead-dialog-footer { padding: 16px 24px 24px; font-size: .85rem; line-height: 1.6; }
+.lead-dialog-footer a { color: #6533b1; text-underline-offset: 3px; }
+.lead-retry { padding: 10px 16px; margin: 12px 10px 0 0; border: 1px solid #6533b1; border-radius: 8px; background: transparent; color: #50218f; cursor: pointer; }
+.lead-dialog :focus-visible { outline: 3px solid #6533b1; outline-offset: 3px; }

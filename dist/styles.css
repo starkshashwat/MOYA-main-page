@@ -519,6 +519,9 @@ body {
 .glitch-word {
   position: relative;
   display: inline-block;
+  width: 7.5em;
+  max-width: 100%;
+  text-align: center;
   color: var(--accent-violet);
   text-shadow: 0 0 24px var(--accent-violet-glow), 0 0 45px rgba(157, 101, 255, 0.35);
   font-weight: 900;
@@ -554,6 +557,7 @@ body {
   grid-template-columns: repeat(5, 1fr);
   gap: 0.95rem;
   width: 100%;
+  min-width: 0;
   perspective: 1200px;
 }
 
@@ -984,25 +988,15 @@ body {
   justify-content: center;
   width: 100%;
   margin-top: 1.25rem;
-  opacity: 0;
-  max-height: 0;
-  transform: translateY(12px) scale(0.96);
-  pointer-events: none;
-  overflow: hidden;
-  transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1), 
-              transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), 
-              max-height 0.35s cubic-bezier(0.16, 1, 0.3, 1), 
-              margin-top 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  min-height: 60px;
+  padding: 0.5rem 0;
 }
 
 .dynamic-cta-stage.is-visible {
   opacity: 1;
-  max-height: 100px;
-  padding: 0.5rem 0;
-  overflow: visible;
-  transform: translateY(0) scale(1);
-  pointer-events: auto;
 }
+
+.dynamic-action-btn:disabled { opacity: 0.55; cursor: default; }
 
 .dynamic-action-btn {
   width: 100%;
@@ -1237,7 +1231,9 @@ body {
     flex-direction: row;
     flex-wrap: nowrap;
     overflow-x: auto;
-    overflow-y: visible;
+    overflow-y: hidden;
+    overscroll-behavior-x: contain;
+    min-width: 0;
     gap: 0.6rem;
     width: 100%;
     padding: 1.15rem 0.5rem 1.65rem 0.5rem; /* Generous breathing room for bottom and top glows */
@@ -1267,6 +1263,15 @@ body {
     flex-direction: column;
     justify-content: space-between;
     box-sizing: border-box;
+    transform: none;
+  }
+
+  .intent-card:hover {
+    transform: none;
+  }
+
+  .intent-card.is-selected {
+    transform: none !important;
   }
 
   .card-meta-bar {
@@ -1283,21 +1288,18 @@ body {
   }
 
   .card-intent-heading {
-    font-size: 0.82rem;
+    font-size: 0.875rem;
     line-height: 1.25;
     margin-bottom: 0.25rem;
     font-weight: 700;
   }
 
   .card-supporting-line {
-    font-size: 0.65rem;
-    line-height: 1.3;
+    font-size: 0.75rem;
+    line-height: 1.45;
     min-height: auto;
     margin-bottom: 0;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
+    display: block;
   }
 
   /* Mobile Carousel Navigation Controls (Arrows + Dots) */
@@ -1314,8 +1316,8 @@ body {
   }
 
   .carousel-nav-btn {
-    width: 32px;
-    height: 32px;
+    width: 44px;
+    height: 44px;
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -1338,8 +1340,10 @@ body {
     transform: scale(1.08);
   }
 
-  .carousel-nav-btn.is-disabled {
+  .carousel-nav-btn:disabled {
     opacity: 0.5;
+    cursor: default;
+    transform: none;
   }
 
   .cards-carousel-dots {
@@ -1347,14 +1351,16 @@ body {
     align-items: center;
     justify-content: center;
     gap: 6px;
-    height: 8px;
+    height: 24px;
   }
 
   .carousel-dot {
-    width: 6px;
-    height: 6px;
+    width: 24px;
+    height: 24px;
+    display: grid;
+    place-items: center;
     border-radius: 9999px;
-    background: rgba(255, 255, 255, 0.2);
+    background: transparent;
     border: none;
     padding: 0;
     cursor: pointer;
@@ -1362,6 +1368,18 @@ body {
   }
 
   .carousel-dot.is-active {
+    width: 24px;
+  }
+
+  .carousel-dot::after {
+    content: "";
+    width: 6px;
+    height: 6px;
+    border-radius: 9999px;
+    background: rgba(255, 255, 255, 0.35);
+  }
+
+  .carousel-dot.is-active::after {
     width: 16px;
     background: var(--accent-violet);
     box-shadow: 0 0 10px var(--accent-violet-glow);
