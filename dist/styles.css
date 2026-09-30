@@ -987,13 +987,27 @@ body {
   align-items: center;
   justify-content: center;
   width: 100%;
-  margin-top: 1.25rem;
-  min-height: 60px;
-  padding: 0.5rem 0;
+  margin-top: 0;
+  max-height: 0;
+  opacity: 0;
+  pointer-events: none;
+  overflow: hidden;
+  transform: translateY(12px) scale(0.96);
+  transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1), 
+              transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), 
+              max-height 0.35s cubic-bezier(0.16, 1, 0.3, 1), 
+              margin-top 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              padding 0.35s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .dynamic-cta-stage.is-visible {
   opacity: 1;
+  max-height: 100px;
+  margin-top: 1.25rem;
+  padding: 0.5rem 0;
+  overflow: visible;
+  transform: translateY(0) scale(1);
+  pointer-events: auto;
 }
 
 .dynamic-action-btn:disabled { opacity: 0.55; cursor: default; }
