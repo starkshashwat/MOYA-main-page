@@ -51,8 +51,16 @@
   }
 
   function navigate(url) {
-    if (typeof root.location !== 'undefined' && typeof root.location.assign === 'function') {
-      root.location.assign(url);
+    if (typeof root.location !== 'undefined') {
+      let target = url;
+      if (root.location.protocol === 'file:' && target.startsWith('/')) {
+        target = target.slice(1);
+      }
+      if (typeof root.location.assign === 'function') {
+        root.location.assign(target);
+      } else {
+        root.location.href = target;
+      }
     }
   }
 

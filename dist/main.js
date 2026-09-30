@@ -47,12 +47,21 @@ function initGoalSelection() {
     label.textContent = intent === 'live' ? 'Explore Events' : 'Proceed to Services';
     stage.classList.add('is-visible');
     if (changed) window.moyaAnalytics?.track('select_goal', { goal: intent });
-    // Clicking a visible card never scrolls the page or changes card geometry.
+
+    // Lock horizontal window scroll to 0 — viewport must never shift or jerk sideways
+    if (typeof window !== 'undefined' && window.scrollX && window.scrollX !== 0) {
+      window.scrollTo({ left: 0, top: window.scrollY, behavior: 'instant' });
+    }
   }
 
   cards.forEach((card, index) => {
     card.tabIndex = index === 0 ? 0 : -1;
-    card.addEventListener('click', () => select(card));
+    card.addEventListener('click', () => {
+      select(card);
+      if (typeof window !== 'undefined' && window.scrollX && window.scrollX !== 0) {
+        window.scrollTo({ left: 0, top: window.scrollY, behavior: 'instant' });
+      }
+    });
     card.addEventListener('keydown', event => {
       if (event.key === 'Enter' || event.key === ' ') {
         event.preventDefault();

@@ -159,11 +159,15 @@
     const navigateOnce = () => {
       if (!navigated) {
         navigated = true;
+        let target = dest;
+        if (typeof window !== 'undefined' && window.location?.protocol === 'file:' && target.startsWith('/')) {
+          target = target.slice(1);
+        }
         const nav = window.MoyaFlow?.navigate || flow?.navigate;
         if (typeof nav === 'function') {
-          nav(dest);
+          nav(target);
         } else {
-          window.location.assign(dest);
+          window.location.assign(target);
         }
       }
     };
