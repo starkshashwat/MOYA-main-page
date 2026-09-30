@@ -27,8 +27,19 @@ function handleRequest(req, res) {
     pathname = decodeURIComponent(url.pathname);
   } catch (_) { res.writeHead(400); return res.end('Bad request'); }
 
-  // API Proxy for GHL Direct Contact Upsert
-  if (pathname === '/api/lead' && req.method === 'POST') {
+  // API Proxy for GHL Direct Contact Upsert with CORS Support
+  if (pathname === '/api/lead') {
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization, Version');
+    if (req.method === 'OPTIONS') {
+      res.writeHead(204);
+      return res.end();
+    }
+    if (req.method !== 'POST') {
+      res.writeHead(405, { Allow: 'POST, OPTIONS' });
+      return res.end();
+    }
     let body = '';
     req.on('data', chunk => { body += chunk; });
     req.on('end', () => {

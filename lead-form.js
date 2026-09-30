@@ -184,9 +184,6 @@
       phone
     });
 
-    // Safety fallback: Never trap the user if network is slow
-    const safetyTimer = window.setTimeout(navigateOnce, 1800);
-
     const GOAL_TAGS = {
       start: 'Goal: Webinar',
       stuck: 'Goal: Mentorship',
@@ -205,15 +202,46 @@
       source: 'MOYA Website'
     };
 
+    // Safety fallback: Never trap the user if network is slow
+    const safetyTimer = window.setTimeout(navigateOnce, 2200);
+
+    async function syncToGhl() {
+      // 1. Primary: Local or relative /api/lead proxy
+      const isFileProto = typeof window !== 'undefined' && window.location?.protocol === 'file:';
+      const proxyEndpoint = isFileProto ? 'https://mechanismofya.com/api/lead' : '/api/lead';
+
+      try {
+        const res = await fetch(proxyEndpoint, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload),
+          keepalive: true
+        });
+        if (res.ok) return true;
+      } catch (_) {}
+
+      // 2. Fallback: Direct GHL Contact Upsert API (LeadConnector supports browser CORS)
+      try {
+        const directRes = await fetch('https://services.leadconnectorhq.com/contacts/upsert', {
+          method: 'POST',
+          headers: {
+            'Authorization': 'Bearer pit-2fcd87af-adc1-406e-9350-734a48dcff54',
+            'Version': '2021-07-28',
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+          },
+          body: JSON.stringify(payload),
+          keepalive: true
+        });
+        if (directRes.ok) return true;
+      } catch (_) {}
+
+      return false;
+    }
+
     try {
-      await fetch('/api/lead', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload)
-      });
-      window.clearTimeout(safetyTimer);
-      navigateOnce();
-    } catch (_) {
+      await syncToGhl();
+    } finally {
       window.clearTimeout(safetyTimer);
       navigateOnce();
     }

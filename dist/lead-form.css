@@ -264,7 +264,8 @@
   position: relative;
   margin-top: 0.35rem;
   height: 48px;
-  padding: 0 1.25rem;
+  padding: 0 0.85rem 0 1.35rem;
+  font-family: var(--font-sans, 'Inter', sans-serif);
   font-size: 0.84rem;
   font-weight: 700;
   text-transform: uppercase;
@@ -275,12 +276,19 @@
   border-radius: 9999px;
   box-shadow: 0 0 26px rgba(168, 85, 247, 0.45), 0 6px 18px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.3);
   cursor: pointer;
-  display: inline-flex;
+  display: flex;
   align-items: center;
   justify-content: space-between;
   width: 100%;
   overflow: hidden;
   transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  box-sizing: border-box;
+}
+
+.lead-submit-btn::before,
+.lead-submit-btn::after {
+  content: none !important;
+  display: none !important;
 }
 
 .lead-submit-btn:hover {
@@ -306,19 +314,21 @@
   width: 32px;
   height: 32px;
   border-radius: 50%;
-  background: rgba(0, 0, 0, 0.35);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(0, 0, 0, 0.38);
+  border: 1px solid rgba(255, 255, 255, 0.25);
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
   position: relative;
   flex-shrink: 0;
-  transition: background 0.2s ease;
+  margin-left: auto;
+  transition: background 0.2s ease, border-color 0.2s ease;
 }
 
 .lead-submit-btn:hover .btn-arrow-circle {
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.55);
+  border-color: rgba(255, 255, 255, 0.45);
 }
 
 .lead-submit-btn .arrow-icon {
