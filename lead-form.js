@@ -184,12 +184,21 @@
     // Safety fallback: Never trap the user if network is slow
     const safetyTimer = window.setTimeout(navigateOnce, 1800);
 
+    const GOAL_TAGS = {
+      start: 'Goal: Webinar',
+      stuck: 'Goal: Mentorship',
+      team: 'Goal: Production',
+      system: 'Goal: Course',
+      live: 'Goal: Live Event'
+    };
+    const goalTag = GOAL_TAGS[intent] || 'Goal: Webinar';
+
     const payload = {
       locationId: 'jsuZqhDRfnfSBFMgdfs2',
       name,
       email,
       phone,
-      tags: ['website-lead', `intent-${intent}`],
+      tags: ['Website Lead', goalTag],
       source: 'MOYA Website'
     };
 

@@ -34,9 +34,17 @@ function handleRequest(req, res) {
     req.on('end', () => {
       try {
         const payload = JSON.parse(body || '{}');
+        const GOAL_TAGS = {
+          start: 'Goal: Webinar',
+          stuck: 'Goal: Mentorship',
+          team: 'Goal: Production',
+          system: 'Goal: Course',
+          live: 'Goal: Live Event'
+        };
+        const goalTag = payload.intent && GOAL_TAGS[payload.intent] ? GOAL_TAGS[payload.intent] : null;
         const tags = Array.isArray(payload.tags) && payload.tags.length > 0
           ? payload.tags
-          : ['website-lead', payload.intent ? `intent-${payload.intent}` : null].filter(Boolean);
+          : ['Website Lead', goalTag].filter(Boolean);
         const ghlData = JSON.stringify({
           locationId: payload.locationId || 'jsuZqhDRfnfSBFMgdfs2',
           name: payload.name || '',

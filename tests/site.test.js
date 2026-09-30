@@ -208,7 +208,7 @@ test('valid native form submit dispatches generate_lead and posts to /api/lead w
     assert.equal(apiPayload.name, 'Test User');
     assert.equal(apiPayload.email, 'user@example.com');
     assert.equal(apiPayload.phone, '+91 98765 43210');
-    assert.deepEqual(apiPayload.tags, ['website-lead', 'intent-team']);
+    assert.deepEqual(apiPayload.tags, ['Website Lead', 'Goal: Production']);
     assert.equal(events(app.window).filter(row => row[1] === 'generate_lead').length, 1);
     assert.equal(navigatedTo, '/services.html?intent=team');
   } finally { app.dom.window.close(); }
