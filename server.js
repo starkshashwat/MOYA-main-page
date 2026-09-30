@@ -120,10 +120,32 @@ function handleRequest(req, res) {
 }
 
 if (require.main === module) {
-  const port = Number(process.env.PORT || 3000);
-  if (!Number.isInteger(port) || port < 1 || port > 65535) throw new Error('PORT must be between 1 and 65535');
-  const server = http.createServer(handleRequest);
-  server.on('error', error => { console.error(error.message); process.exitCode = 1; });
-  server.listen(port, '0.0.0.0', () => console.log(`MOYA preview: http://localhost:${port}`));
+  const envPort = process.env.PORT ? Number(process.env.PORT) : null;
+  const primaryPort = envPort || 80;
+
+  function startListener(p, isPrimary = false) {
+    if (!Number.isInteger(p) || p < 1 || p > 65535) return null;
+    const s = http.createServer(handleRequest);
+    s.on('error', error => {
+      if (isPrimary && envPort) {
+        console.error(`Primary listener on port ${p} failed: ${error.message}`);
+        process.exitCode = 1;
+      } else {
+        console.warn(`Port ${p} notice: ${error.message}`);
+      }
+    });
+    s.listen(p, '0.0.0.0', () => {
+      console.log(`MOYA preview: http://0.0.0.0:${p}`);
+    });
+    return s;
+  }
+
+  // Bind port 80 (required by Coolify default healthcheck & proxy)
+  startListener(primaryPort, true);
+
+  // Auxiliary listener on port 3000 (ensures both 80 and 3000 respond)
+  if (primaryPort !== 3000) {
+    startListener(3000, false);
+  }
 }
 module.exports = { handleRequest };
