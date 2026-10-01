@@ -12,7 +12,12 @@ const mime = {
 };
 const redirects = {
   '/index.html': '/', '/services': '/services.html', '/services/': '/services.html',
-  '/events': '/events.html', '/events/': '/events.html', '/lead-complete': '/lead-complete.html'
+  '/events': '/events.html', '/events/': '/events.html', '/lead-complete': '/lead-complete.html',
+  '/privacy': '/privacy.html', '/privacy/': '/privacy.html', '/privacy-policy': '/privacy.html', '/privacy-policy/': '/privacy.html',
+  '/terms': '/terms.html', '/terms/': '/terms.html', '/terms-of-service': '/terms.html', '/terms-of-service/': '/terms.html',
+  '/refund': '/refund.html', '/refund/': '/refund.html', '/refund-policy': '/refund.html', '/refund-policy/': '/refund.html',
+  '/disclaimer': '/disclaimer.html', '/disclaimer/': '/disclaimer.html',
+  '/contact': '/contact.html', '/contact/': '/contact.html', '/contact-us': '/contact.html', '/contact-us/': '/contact.html'
 };
 
 function handleRequest(req, res) {

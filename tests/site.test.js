@@ -67,7 +67,14 @@ test('public files are served, missing files return actual 404, repository files
 });
 
 test('canonical redirects preserve intent; SEO and completion response types are correct', async () => {
-  for (const [from, to] of [['/index.html', '/'], ['/services', '/services.html'], ['/events', '/events.html']]) {
+  for (const [from, to] of [
+    ['/index.html', '/'], ['/services', '/services.html'], ['/events', '/events.html'],
+    ['/privacy', '/privacy.html'], ['/privacy-policy', '/privacy.html'],
+    ['/terms', '/terms.html'], ['/terms-of-service', '/terms.html'],
+    ['/refund', '/refund.html'], ['/refund-policy', '/refund.html'],
+    ['/disclaimer', '/disclaimer.html'],
+    ['/contact', '/contact.html'], ['/contact-us', '/contact.html']
+  ]) {
     const response = await fetch(`${origin}${from}?intent=team`, { redirect: 'manual' });
     assert.equal(response.status, 308);
     assert.equal(response.headers.get('location'), `${to}?intent=team`);
@@ -91,7 +98,7 @@ test('built pages have valid local references, unique IDs, metadata and crawlabl
     assert.equal(new Set(ids).size, ids.length, `${file}: duplicate IDs`);
     doc.querySelectorAll('[src], link[href], a[href]').forEach(el => {
       const ref = el.getAttribute('src') || el.getAttribute('href');
-      if (!ref || ref.startsWith('http') || ref.startsWith('#')) return;
+      if (!ref || ref.startsWith('http') || ref.startsWith('#') || ref.startsWith('mailto:') || ref.startsWith('tel:')) return;
       const target = ref.split('?')[0].replace(/^\//, '') || 'index.html';
       assert.ok(files.includes(target), `${file} references unpublished ${target}`);
     });
@@ -105,7 +112,14 @@ test('built pages have valid local references, unique IDs, metadata and crawlabl
   }
   const xml = new JSDOM(source('sitemap.xml'), { contentType: 'application/xml' });
   assert.deepEqual(Array.from(xml.window.document.querySelectorAll('loc'), el => el.textContent), [
-    'https://mechanismofya.com/', 'https://mechanismofya.com/services.html', 'https://mechanismofya.com/events.html'
+    'https://mechanismofya.com/',
+    'https://mechanismofya.com/services.html',
+    'https://mechanismofya.com/events.html',
+    'https://mechanismofya.com/privacy.html',
+    'https://mechanismofya.com/terms.html',
+    'https://mechanismofya.com/refund.html',
+    'https://mechanismofya.com/disclaimer.html',
+    'https://mechanismofya.com/contact.html'
   ]);
   xml.window.close();
   for (const file of files) assert.deepEqual(fs.readFileSync(path.join(root, file)), fs.readFileSync(path.join(root, 'dist', file)), file);
