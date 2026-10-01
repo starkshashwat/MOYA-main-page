@@ -21,7 +21,7 @@
   <meta name="twitter:description" content="Choose your next step with Savan Matariya and MOYA Academy.">
   <meta name="twitter:image" content="https://mechanismofya.com/assets/moya-social.jpg">
   <script type="application/ld+json">
-  {"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://mechanismofya.com/#organization","name":"MOYA Academy","url":"https://mechanismofya.com/","logo":"https://mechanismofya.com/assets/moya-logo.webp","founder":{"@type":"Person","name":"Savan Matariya"},"sameAs":["https://www.instagram.com/mechanism_ya/","https://www.youtube.com/channel/UCx4bJ-Q2aSiEn6WnTwAXxKg","https://www.facebook.com/mechanismofya/"]},{"@type":"WebSite","@id":"https://mechanismofya.com/#website","url":"https://mechanismofya.com/","name":"MOYA Academy","publisher":{"@id":"https://mechanismofya.com/#organization"}}]}
+  {"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://mechanismofya.com/#organization","name":"MOYA Academy","url":"https://mechanismofya.com/","logo":"https://mechanismofya.com/assets/moya-logo.webp","description":"MOYA Academy (The Mechanism of YouTube Automation) delivers advanced algorithmic engineering, production pipelines, and strategic mentorship for YouTube creators.","founder":{"@id":"https://mechanismofya.com/#savan-matariya"},"sameAs":["https://www.instagram.com/mechanism_ya/","https://www.youtube.com/channel/UCx4bJ-Q2aSiEn6WnTwAXxKg","https://www.facebook.com/mechanismofya/"]},{"@type":"Person","@id":"https://mechanismofya.com/#savan-matariya","name":"Savan Matariya","jobTitle":"Founder & Chief YouTube Automation Architect","worksFor":{"@id":"https://mechanismofya.com/#organization"},"image":"https://mechanismofya.com/assets/savan-1100.webp","description":"Savan Matariya is the founder and chief architect of MOYA Academy, having engineered 12,500+ YouTube videos, tested 15,000+ thumbnails, and scaled over 450 channels.","sameAs":["https://www.instagram.com/mechanism_ya/","https://www.youtube.com/channel/UCx4bJ-Q2aSiEn6WnTwAXxKg","https://www.facebook.com/mechanismofya/"],"knowsAbout":["YouTube Automation","Algorithmic Channel Growth","Video Production Pipelines","CTR Thumbnail Optimization","Faceless Media Pipelines"]},{"@type":"WebSite","@id":"https://mechanismofya.com/#website","url":"https://mechanismofya.com/","name":"MOYA Academy","publisher":{"@id":"https://mechanismofya.com/#organization"}},{"@type":"BreadcrumbList","@id":"https://mechanismofya.com/#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://mechanismofya.com/"}]},{"@type":"FAQPage","@id":"https://mechanismofya.com/#faq","mainEntity":[{"@type":"Question","name":"What is MOYA Academy and who is Savan Matariya?","acceptedAnswer":{"@type":"Answer","text":"MOYA Academy (The Mechanism of YouTube Automation) is an algorithmic YouTube architecture and education platform founded by Savan Matariya, who has scaled 450+ channels and engineered 12,500+ videos."}},{"@type":"Question","name":"What YouTube automation services and programs are available?","acceptedAnswer":{"@type":"Answer","text":"MOYA Academy offers 4 structured tracks: Live Masterclasses for channel audits, the MOYA 1.0 Curriculum with weekly bootcamps, the Growth Studio for done-for-you production pipelines, and 1-on-1 Strategic Advisory directly with Savan Matariya."}},{"@type":"Question","name":"How does YouTube Automation work without showing my face?","acceptedAnswer":{"@type":"Answer","text":"Faceless YouTube automation uses modular production systems: validated niche discovery, retention-engineered scriptwriting, professional voiceovers, dynamic editing, and CTR-tested thumbnail packages to build recurring revenue channels without on-camera talent."}},{"@type":"Question","name":"How can I join upcoming live events and masterclasses?","acceptedAnswer":{"@type":"Answer","text":"You can join upcoming live sessions, algorithm teardowns, and workshops by selecting the Live Event goal on the homepage or visiting our Live Events page at mechanismofya.com/events.html."}},{"@type":"Question","name":"How do I choose the best pathway for my channel?","acceptedAnswer":{"@type":"Answer","text":"Choose 'I Want to Start' or MOYA 1.0 if launching fresh; choose 'I’m Stuck' if your impressions plateaued; choose 'Need Video Production' if you have capital and need turnkey media; or apply for 1-on-1 Advisory for personalized channel scaling."}}]}]}
   </script>
   
   <!-- Favicon -->
@@ -128,14 +128,17 @@
 
           <!-- Central Mentor Visual (Enlarged, Anchored on Divider Baseline, Masked) -->
           <div class="founder-portrait-frame" id="founderPortrait">
-            <img src="assets/savan-1100.png"
-                 srcset="assets/savan-640.png 640w, assets/savan-1100.png 1100w"
-                 sizes="(max-width: 640px) 100vw, 700px"
-                 width="1672" height="941"
-                 alt="Savan Matariya — Founder & Chief Architect, MOYA" 
-                 class="founder-img" 
-                 loading="eager" 
-                 fetchpriority="high">
+            <picture class="founder-picture">
+              <source type="image/webp" srcset="assets/savan-640.webp 640w, assets/savan-1100.webp 1100w" sizes="(max-width: 640px) 100vw, 700px">
+              <img src="assets/savan-1100.png"
+                   srcset="assets/savan-640.png 640w, assets/savan-1100.png 1100w"
+                   sizes="(max-width: 640px) 100vw, 700px"
+                   width="1672" height="941"
+                   alt="Savan Matariya — Founder &amp; Chief Architect, MOYA Academy" 
+                   class="founder-img" 
+                   loading="eager" 
+                   fetchpriority="high">
+            </picture>
             <div class="portrait-ambient-glow"></div>
           </div>
 
@@ -164,6 +167,13 @@
           <span class="founder-name-label">SAVAN MATARIYA</span>
           <span class="founder-sep">&bull;</span>
           <span class="founder-role-label">FOUNDER &amp; CHIEF ARCHITECT</span>
+        </div>
+
+        <!-- Accessible Author & Founder Micro-Bio (E-E-A-T Semantic Layer) -->
+        <div class="sr-only" itemprop="author" itemscope itemtype="https://schema.org/Person">
+          <span itemprop="name">Savan Matariya</span>
+          <span itemprop="jobTitle">Founder &amp; Chief YouTube Automation Architect</span>
+          <p itemprop="description">Savan Matariya is the founder of MOYA Academy, scaling 450+ channels and engineering 12,500+ videos with systematic production architectures.</p>
         </div>
 
       </section>
@@ -396,6 +406,11 @@
     <footer class="gateway-footer-strip" id="gatewayFooter">
       <div class="footer-left">
         <span>&copy; <span id="currentYear">2026</span> MOYA &bull; THE MECHANISM OF YOUTUBE AUTOMATION</span>
+      </div>
+      <div class="footer-nav-links" aria-label="Footer navigation">
+        <a href="services.html" class="footer-nav-link">Services</a>
+        <span class="footer-sep">&bull;</span>
+        <a href="events.html" class="footer-nav-link">Live Events</a>
       </div>
       <div class="footer-right">
         <span class="footer-tagline">SYSTEMS OVER GUESSWORK</span>

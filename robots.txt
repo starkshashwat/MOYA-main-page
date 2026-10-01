@@ -1,4 +1,11 @@
 User-agent: *
 Allow: /
+Disallow: /api/
+Disallow: /lead-complete.html
+
+User-agent: Googlebot
+Allow: /
+Disallow: /api/
+Disallow: /lead-complete.html
 
 Sitemap: https://mechanismofya.com/sitemap.xml

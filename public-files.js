@@ -5,5 +5,5 @@ module.exports = Object.freeze([
   'main.js', 'services.js', 'analytics.js', 'lead-flow.js', 'lead-form.js', 'lead-complete.js',
   'robots.txt', 'sitemap.xml',
   'assets/gsap.min.js', 'assets/favicon.png', 'assets/moya-logo.webp',
-  'assets/savan-640.png', 'assets/savan-1100.png', 'assets/savan-desktop.png', 'assets/savan-mobile.png', 'assets/moya-social.jpg'
+  'assets/savan-640.png', 'assets/savan-1100.png', 'assets/savan-640.webp', 'assets/savan-1100.webp', 'assets/savan-desktop.png', 'assets/savan-mobile.png', 'assets/moya-social.jpg'
 ]);

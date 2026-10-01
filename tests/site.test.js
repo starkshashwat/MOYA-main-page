@@ -105,7 +105,7 @@ test('built pages have valid local references, unique IDs, metadata and crawlabl
   }
   const xml = new JSDOM(source('sitemap.xml'), { contentType: 'application/xml' });
   assert.deepEqual(Array.from(xml.window.document.querySelectorAll('loc'), el => el.textContent), [
-    'https://mechanismofya.com/', 'https://mechanismofya.com/services.html'
+    'https://mechanismofya.com/', 'https://mechanismofya.com/services.html', 'https://mechanismofya.com/events.html'
   ]);
   xml.window.close();
   for (const file of files) assert.deepEqual(fs.readFileSync(path.join(root, file)), fs.readFileSync(path.join(root, 'dist', file)), file);
