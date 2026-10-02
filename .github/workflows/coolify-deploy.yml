@@ -1,0 +1,22 @@
+name: Coolify Auto Deploy
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    name: Trigger Coolify Webhook
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy via Coolify Webhook
+        run: |
+          if [ -n "${{ secrets.COOLIFY_WEBHOOK_URL }}" ]; then
+            echo "Triggering Coolify deploy webhook..."
+            curl -s -X POST "${{ secrets.COOLIFY_WEBHOOK_URL }}"
+            echo "Deploy triggered successfully."
+          else
+            echo "Notice: COOLIFY_WEBHOOK_URL secret is not set in GitHub repository secrets."
+            echo "To enable direct GitHub Webhook without Actions, add your Coolify Deploy Webhook URL in GitHub -> Settings -> Webhooks."
+          fi
