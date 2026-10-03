@@ -73,7 +73,8 @@ test('canonical redirects preserve intent; SEO and completion response types are
     ['/terms', '/terms.html'], ['/terms-of-service', '/terms.html'],
     ['/refund', '/refund.html'], ['/refund-policy', '/refund.html'],
     ['/disclaimer', '/disclaimer.html'],
-    ['/contact', '/contact.html'], ['/contact-us', '/contact.html']
+    ['/contact', '/contact.html'], ['/contact-us', '/contact.html'],
+    ['/production', '/production.html']
   ]) {
     const response = await fetch(`${origin}${from}?intent=team`, { redirect: 'manual' });
     assert.equal(response.status, 308);
@@ -115,6 +116,7 @@ test('built pages have valid local references, unique IDs, metadata and crawlabl
     'https://mechanismofya.com/',
     'https://mechanismofya.com/services.html',
     'https://mechanismofya.com/events.html',
+    'https://mechanismofya.com/production.html',
     'https://mechanismofya.com/privacy.html',
     'https://mechanismofya.com/terms.html',
     'https://mechanismofya.com/refund.html',

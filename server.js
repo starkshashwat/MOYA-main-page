@@ -17,7 +17,8 @@ const redirects = {
   '/terms': '/terms.html', '/terms/': '/terms.html', '/terms-of-service': '/terms.html', '/terms-of-service/': '/terms.html',
   '/refund': '/refund.html', '/refund/': '/refund.html', '/refund-policy': '/refund.html', '/refund-policy/': '/refund.html',
   '/disclaimer': '/disclaimer.html', '/disclaimer/': '/disclaimer.html',
-  '/contact': '/contact.html', '/contact/': '/contact.html', '/contact-us': '/contact.html', '/contact-us/': '/contact.html'
+  '/contact': '/contact.html', '/contact/': '/contact.html', '/contact-us': '/contact.html', '/contact-us/': '/contact.html',
+  '/production': '/production.html', '/production/': '/production.html'
 };
 
 function handleRequest(req, res) {
